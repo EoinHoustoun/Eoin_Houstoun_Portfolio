@@ -7,7 +7,7 @@
 Classified individuals into cognitive stages using machine learning models on the Bio-Hermes dataset.  
 - Presented at AIAI 2025 Conference  
 - Techniques: XGBoost, SVM, Monte Carlo CV, Feature Selection  
-- 📂 [Repo]([https://github.com/yourusername/alzheimers-biohermes](https://github.com/EoinHoustoun/Alzheimers_Biohermes/blob/main/README.md)) | 📄 [Published in Artificial Intelligence Applications and Innovations (Springer)]((https://link.springer.com/chapter/10.1007/978-3-031-96235-6_5))
+- 📂 [Repo](https://github.com/EoinHoustoun/Alzheimers_Biohermes/blob/main/README.md) | 📄 [Published in Artificial Intelligence Applications and Innovations (Springer)](https://link.springer.com/chapter/10.1007/978-3-031-96235-6_5)
 
 ---
 
