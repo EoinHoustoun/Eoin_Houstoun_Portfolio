@@ -15,7 +15,7 @@ Classified individuals into cognitive stages using machine learning models on th
 ### Fever Prediction & Classification with Infrared Thermography
 Built regression and classification models to predict oral temperature using infrared sensor data.  
 - Used nested cross-validation, MLPs, and SHAP for explainability  
-- 📂 [Project Repo](https://github.com/EoinHoustoun/Infrared_Thermography/blob/main/Infrared_Thermography_Temperature.ipynb)
+- 📂 [Project Repo](https://github.com/EoinHoustoun/Infrared_Thermography/blob/main/README.md)
 
 ---
 
