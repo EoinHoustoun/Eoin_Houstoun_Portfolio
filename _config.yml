@@ -3,11 +3,6 @@ logo: docs/assets/headshot.png
 description: >
   Data Scientist | AI Scientist | Machine Learning Engineer help
 
-show_downloads: false
+#show_downloads: false
 theme: jekyll-theme-minimal
 
-# Social links
-github:
-  is_project_page: false
-
-# Optional: contact buttons or links (custom later)
