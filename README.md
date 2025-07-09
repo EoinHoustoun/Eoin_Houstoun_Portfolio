@@ -8,7 +8,8 @@ Classified individuals into cognitive stages using machine learning models on th
 - Presented at AIAI 2025 Conference  
 - Techniques: XGBoost, SVM, Monte Carlo CV, Feature Selection  
 - 📂 [Project Repo](https://github.com/EoinHoustoun/Alzheimers_Biohermes/blob/main/README.md) | 📄 [Published in Artificial Intelligence Applications and Innovations (Springer)](https://link.springer.com/chapter/10.1007/978-3-031-96235-6_5)
-<img src="docs/assets/Research_Image.png" width="400"/>
+
+<img src="https://github.com/EoinHoustoun/Alzheimers_Biohermes/blob/main/docs/assets/Research_Image.png" width="400"/>
 
 ---
 
