@@ -10,7 +10,7 @@ Classified individuals into cognitive stages using machine learning models on th
 - Techniques: XGBoost, Monte Carlo CV, Random Forest, Feature Selection  
 - 📂 [Project Repo](https://github.com/EoinHoustoun/Alzheimers_Biohermes/blob/main/README.md) 
 
-<img src="docs/assets/Research_Image.png" width="200"/>
+<img src="docs/assets/Research_Image.png" width="400"/>
 
 ---
 
@@ -19,7 +19,7 @@ Developed regression and classification models to estimate oral temperature and 
 - Techniques: Nested cross-validation, custom PyTorch MLPs, XGBoost, SHAP
 - 📂 [Project Repo](https://github.com/EoinHoustoun/Infrared_Thermography/blob/main/README.md)
 
-<img src="docs/assets/infra.png" width="200"/>
+<img src="docs/assets/infra.png" width="400"/>
 
 ---
 
@@ -37,7 +37,7 @@ Investigated the impact of various validation methods in machine learning on cas
 - Techniques: Regression, Cross-Validation, Monte Carlo CV, Temporal Validation, Bootstrapping, XGBoost, Random Forest.
 - 📂 [Project Repo](https://github.com/EoinHoustoun/Final-Year-Project/blob/main/README.md)
 
-<img src="docs/assets/int_val.png" width="200"/>
+<img src="docs/assets/int_val.png" width="400"/>
 
 ---
 
