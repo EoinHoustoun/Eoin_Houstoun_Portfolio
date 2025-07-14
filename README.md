@@ -10,12 +10,16 @@ Classified individuals into cognitive stages using machine learning models on th
 - Techniques: XGBoost, Monte Carlo CV, Random Forest, Feature Selection  
 - 📂 [Project Repo](https://github.com/EoinHoustoun/Alzheimers_Biohermes/blob/main/README.md) 
 
+<img src="docs/assets/Research_Image.png" width="200"/>
+
 ---
 
 ### Fever Prediction & Classification with Infrared Thermography
 Developed regression and classification models to estimate oral temperature and fever status (≥ 37.5 °C) using non-contact thermal sensor data.
 - Techniques: Nested cross-validation, custom PyTorch MLPs, XGBoost, SHAP
 - 📂 [Project Repo](https://github.com/EoinHoustoun/Infrared_Thermography/blob/main/README.md)
+
+<img src="docs/assets/infra.png" width="200"/>
 
 ---
 
@@ -24,6 +28,8 @@ An interactive recipe chatbot using DistilBERT and TF-IDF with a Tkinter-based G
 - Techniques: NLP, Cosine Similarity, TF-IDF, Tkinter, LLM, SLM, Web Scraping, Beautiful Soup  
 - 📂 [Project Repo](https://github.com/EoinHoustoun/AI_Chef/blob/main/README.md)
 
+<img src="docs/assets/AI_CHEF_ROBOT copy.png" width="200"/>
+
 ---
 
 ### Exploration of Validation Procedures
@@ -31,7 +37,7 @@ Investigated the impact of various validation methods in machine learning on cas
 - Techniques: Regression, Cross-Validation, Monte Carlo CV, Temporal Validation, Bootstrapping, XGBoost, Random Forest.
 - 📂 [Project Repo](https://github.com/EoinHoustoun/Final-Year-Project/blob/main/README.md)
 
-<img src="docs/assets/headshot.png" width="200"/>
+<img src="docs/assets/int_val.png" width="200"/>
 
 ---
 
