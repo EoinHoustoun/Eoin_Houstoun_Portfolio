@@ -46,7 +46,7 @@ Developed a machine learning tool to predict pediatric appendicitis diagnosis an
 - Techniques: Classification, Monte Carlo Cross-Validation, XGBoost, MLP Neural Networks, SHAP, Gradio, Feature Importance Analysis.
 - 📂 [Project Repo](https://github.com/EoinHoustoun/Pediatric_Appendicitis/blob/main/README.md)
 
-<img src="docs/assets/poster.png" width="800"/>
+<img src="docs/assets/poster.png" width="400"/>
 
 
 
