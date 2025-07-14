@@ -19,7 +19,7 @@ Developed regression and classification models to estimate oral temperature and 
 - Techniques: Nested cross-validation, custom PyTorch MLPs, XGBoost, SHAP
 - 📂 [Project Repo](https://github.com/EoinHoustoun/Infrared_Thermography/blob/main/README.md)
 
-<img src="docs/assets/infra.png" width="400"/>
+<img src="docs/assets/infra.png" width="600"/>
 
 ---
 
