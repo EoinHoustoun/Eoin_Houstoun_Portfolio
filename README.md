@@ -31,6 +31,8 @@ Investigated the impact of various validation methods in machine learning on cas
 - Techniques: Regression, Cross-Validation, Monte Carlo CV, Temporal Validation, Bootstrapping, XGBoost, Random Forest.
 - 📂 [Project Repo](https://github.com/EoinHoustoun/Final-Year-Project/blob/main/README.md)
 
+<img src="docs/assets/headshot.png" width="500"/>
+
 ---
 
 
