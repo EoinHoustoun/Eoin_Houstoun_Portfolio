@@ -33,12 +33,20 @@ An interactive recipe chatbot using DistilBERT and TF-IDF with a Tkinter-based G
 ---
 
 ### Exploration of Validation Procedures
-Investigated the impact of various validation methods in machine learning on case study: football player transfer fee prediction.
+Investigated the impact of various validation methods in machine learning on a case study: football player transfer fee prediction.
 - Techniques: Regression, Cross-Validation, Monte Carlo CV, Temporal Validation, Bootstrapping, XGBoost, Random Forest.
 - 📂 [Project Repo](https://github.com/EoinHoustoun/Final-Year-Project/blob/main/README.md)
 
 <img src="docs/assets/int_val.png" width="400"/>
 
 ---
+
+### Pediatric Appendicitis Diagnosis and Severity Prediction
+Developed a machine learning tool to predict pediatric appendicitis diagnosis and severity using clinical, laboratory, and ultrasound data. Deployed an interactive Gradio web application for real-time clinical decision support.
+- Techniques: Classification, Monte Carlo Cross-Validation, XGBoost, MLP Neural Networks, SHAP, Gradio, Feature Importance Analysis.
+- 📂 [Project Repo](https://github.com/EoinHoustoun/Pediatric_Appendicitis/blob/main/README.md)
+
+<img src="docs/assets/poster.png" width="800"/>
+
 
 
