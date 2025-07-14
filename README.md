@@ -14,22 +14,16 @@ Classified individuals into cognitive stages using machine learning models on th
 
 ### Fever Prediction & Classification with Infrared Thermography
 Developed regression and classification models to estimate oral temperature and fever status (≥ 37.5 °C) using non-contact thermal sensor data.
-- Applied nested cross-validation and built custom PyTorch MLPs, outperforming XGBoost; SHAP used for feature explainability 
+- Techniques: Nested cross-validation, custom PyTorch MLPs, XGBoost, SHAP
 - 📂 [Project Repo](https://github.com/EoinHoustoun/Infrared_Thermography/blob/main/README.md)
 
 ---
 
 ### Cooking AI Chatbot with NLP
 An interactive recipe chatbot using DistilBERT and TF-IDF with a Tkinter-based GUI.  
-- Features: loading animations, NLP-driven logic, randomizer option  
-- 📂 [Repo](https://github.com/yourusername/ai-cooking-assistant)
+- Techniques: NLP, Cosine Similarity, TF-IDF, Tkinter, LLM, SLM  
+- 📂 [Project Repo](https://github.com/EoinHoustoun/AI_Chef/blob/main/README.md)
 
 ---
 
-### Cooking Chatbot with NLP
-An interactive recipe chatbot using DistilBERT and TF-IDF with a Tkinter-based GUI.  
-- Features: loading animations, NLP-driven logic, randomizer option  
-- 📂 [Repo](https://github.com/yourusername/ai-cooking-assistant)
-
----
 
