@@ -28,7 +28,7 @@ An interactive recipe chatbot using DistilBERT and TF-IDF with a Tkinter-based G
 - Techniques: NLP, Cosine Similarity, TF-IDF, Tkinter, LLM, SLM, Web Scraping, Beautiful Soup  
 - 📂 [Project Repo](https://github.com/EoinHoustoun/AI_Chef/blob/main/README.md)
 
-<img src="docs/assets/ai_chef.png" width="400"/>
+<img src="docs/assets/ai_chef.png" width="550"/>
 
 ---
 
