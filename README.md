@@ -23,7 +23,7 @@ Developed regression and classification models to estimate oral temperature and 
 
 ---
 
-### AI CHef Chatbot with NLP
+### AI Chef Chatbot with NLP
 An interactive recipe chatbot using DistilBERT and TF-IDF with a Tkinter-based GUI.  
 - Techniques: NLP, Cosine Similarity, TF-IDF, Tkinter, LLM, SLM, Web Scraping, Beautiful Soup  
 - 📂 [Project Repo](https://github.com/EoinHoustoun/AI_Chef/blob/main/README.md)
