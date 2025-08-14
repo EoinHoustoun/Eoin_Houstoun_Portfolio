@@ -49,6 +49,11 @@ Developed a machine learning tool to predict pediatric appendicitis diagnosis an
 <img src="docs/assets/poster.png" width="400"/>
 
 ---
+### Neural Style Transfer - Generative AI
+
+![Comic Book Leo](https://github.com/EoinHoustoun/Eoin_Houstoun/blob/master/style_transfer6.gif?raw=true)
+
+---
 ### Building a recommendation system to recommend the best Amazon products to users
 ### Predicting Potential Retail Customers 
 ### Customer Personality Segmentation
