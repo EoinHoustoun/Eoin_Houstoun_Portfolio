@@ -57,12 +57,16 @@ Developed a machine learning tool to predict pediatric appendicitis diagnosis an
 <img src="docs/assets/poster.png" width="400"/>
 
 ---
-### Building a recommendation system to recommend the best Amazon products to users
-### Predicting Potential Retail Customers 
-### Customer Personality Segmentation
 
-Click Badge to see [MIT ePortfolio](https://www.mygreatlearning.com/eportfolio/eoin-houstoun)
+### Click Badge to see [MIT ePortfolio](https://www.mygreatlearning.com/eportfolio/eoin-houstoun)
 [![MIT ePortfolio](docs/assets/MIT_BADGE.png)](https://www.mygreatlearning.com/eportfolio/eoin-houstoun)
+
+### 1. Building a recommendation system to recommend the best Amazon products to users
+
+### 2. Predicting Potential Retail Customers 
+
+### 3. Customer Personality Segmentation
+
 
 
 
