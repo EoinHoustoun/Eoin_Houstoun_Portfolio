@@ -53,7 +53,7 @@ Developed a machine learning tool to predict pediatric appendicitis diagnosis an
 ### Predicting Potential Retail Customers 
 ### Customer Personality Segmentation
 
-Click Badge to see MIT ePortfolio
+Click Badge to see [MIT ePortfolio](https://www.mygreatlearning.com/eportfolio/eoin-houstoun)
 [![MIT ePortfolio](docs/assets/MIT_BADGE.png)](https://www.mygreatlearning.com/eportfolio/eoin-houstoun)
 
 
