@@ -22,6 +22,15 @@ Developed regression and classification models to estimate oral temperature and 
 <img src="docs/assets/infra.png" width="600"/>
 
 ---
+### Neural Style Transfer - Generative AI
+Neural Style Transfer with generative AI models to transform a celebrity face into a comic book illustration style.
+- Techniques: Neural Style Transfer, Convolutional Neural Networks (VGG19), PyTorch implementation
+- 📂 [Project Repo](https://github.com/EoinHoustoun/Generative_AI/blob/main/README.md) 
+
+<img src="docs/assets/Research_Image.png" width="400"/>
+![Comic Book Leo](https://github.com/EoinHoustoun/Eoin_Houstoun/blob/master/style_transfer6.gif?raw=true)
+
+---
 
 ### AI Chef Chatbot with NLP
 An interactive recipe chatbot using DistilBERT and TF-IDF with a Tkinter-based GUI.  
@@ -47,11 +56,6 @@ Developed a machine learning tool to predict pediatric appendicitis diagnosis an
 - 📂 [Project Repo](https://github.com/EoinHoustoun/Pediatric_Appendicitis/blob/main/README.md)
 
 <img src="docs/assets/poster.png" width="400"/>
-
----
-### Neural Style Transfer - Generative AI
-
-![Comic Book Leo](https://github.com/EoinHoustoun/Eoin_Houstoun/blob/master/style_transfer6.gif?raw=true)
 
 ---
 ### Building a recommendation system to recommend the best Amazon products to users
