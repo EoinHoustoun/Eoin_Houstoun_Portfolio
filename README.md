@@ -48,5 +48,9 @@ Developed a machine learning tool to predict pediatric appendicitis diagnosis an
 
 <img src="docs/assets/poster.png" width="400"/>
 
+---
+MIT ePortfolio https://www.mygreatlearning.com/eportfolio/eoin-houstoun
+[![MIT ePortfolio](docs/assets/MIT_BADGE.png)](https://www.mygreatlearning.com/eportfolio/eoin-houstoun)
+
 
 
