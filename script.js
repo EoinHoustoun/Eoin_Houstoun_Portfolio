@@ -287,9 +287,26 @@
   let bins, balls, spawned;
   function resetB() { bins = new Array(BINS).fill(0); balls = []; spawned = 0; seed = 1337; }
 
+  // Scene C: gradient descent path on a rotated elliptical loss bowl (precomputed)
+  const C_PATH = [];
+  (function buildPath() {
+    let x = 0.86, y = 0.16, vx = 0, vy = 0;
+    const cx = 0.42, cy = 0.62, a = 1.0, b = 2.6, rot = 0.6;
+    const cos = Math.cos(rot), sin = Math.sin(rot);
+    for (let i = 0; i < 70; i++) {
+      C_PATH.push({ x, y });
+      const dx = x - cx, dy = y - cy;
+      const u = cos * dx + sin * dy, v = -sin * dx + cos * dy;
+      const gu = 2 * a * u, gv = 2 * b * v;
+      vx = 0.8 * vx - 0.024 * (cos * gu - sin * gv);
+      vy = 0.8 * vy - 0.024 * (sin * gu + cos * gv);
+      x += vx; y += vy;
+    }
+  })();
+
   let phase = 'A';
   let t0 = null;
-  const A_DUR = 6000, A_HOLD = 1400, B_DUR = 7000, B_HOLD = 2000;
+  const A_DUR = 6000, A_HOLD = 1400, B_DUR = 7000, B_HOLD = 2000, C_DUR = 6000, C_HOLD = 1600;
 
   function drawAxes(pad) {
     ctx.strokeStyle = 'rgba(255,255,255,0.12)';
@@ -405,6 +422,70 @@
     }
   }
 
+  function drawC(p) {
+    const pad = 26;
+    const cx = 0.42, cy = 0.62, a = 1.0, b = 2.6, rot = 0.6;
+    const cos = Math.cos(rot), sin = Math.sin(rot);
+    const X = (ux) => pad + (W - 2 * pad) * ux;
+    const Y = (uy) => pad / 2 + (H - 2 * pad) * uy;
+
+    // Contour rings of the loss surface
+    for (let l = 1; l <= 6; l++) {
+      const r = l * 0.115;
+      ctx.beginPath();
+      for (let t = 0; t <= 64; t++) {
+        const ang = (t / 64) * Math.PI * 2;
+        const u = (r * Math.cos(ang)) / Math.sqrt(a);
+        const v = (r * Math.sin(ang)) / Math.sqrt(b);
+        const px = X(cx + cos * u - sin * v);
+        const py = Y(cy + sin * u + cos * v);
+        t ? ctx.lineTo(px, py) : ctx.moveTo(px, py);
+      }
+      ctx.closePath();
+      ctx.strokeStyle = 'rgba(0, 212, 255, ' + (0.22 - l * 0.025) + ')';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+
+    // Minimum marker
+    ctx.beginPath();
+    ctx.arc(X(cx), Y(cy), 3, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(255,255,255,0.35)';
+    ctx.fill();
+
+    // Descent trail
+    const n = Math.max(2, Math.floor(p * C_PATH.length));
+    ctx.beginPath();
+    for (let i = 0; i < n; i++) {
+      const px = X(C_PATH[i].x), py = Y(C_PATH[i].y);
+      i ? ctx.lineTo(px, py) : ctx.moveTo(px, py);
+    }
+    ctx.strokeStyle = GREEN;
+    ctx.lineWidth = 1.6;
+    ctx.shadowColor = 'rgba(0, 255, 135, 0.5)';
+    ctx.shadowBlur = 6;
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+
+    // Step markers
+    for (let i = 0; i < n; i += 4) {
+      ctx.beginPath();
+      ctx.arc(X(C_PATH[i].x), Y(C_PATH[i].y), 1.8, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(0, 255, 135, 0.5)';
+      ctx.fill();
+    }
+
+    // The ball
+    const lead = C_PATH[n - 1];
+    ctx.beginPath();
+    ctx.arc(X(lead.x), Y(lead.y), 5, 0, Math.PI * 2);
+    ctx.fillStyle = ACCENT;
+    ctx.shadowColor = 'rgba(0, 212, 255, 0.8)';
+    ctx.shadowBlur = 10;
+    ctx.fill();
+    ctx.shadowBlur = 0;
+  }
+
   resetB();
 
   // Only animate while visible (saves battery, pauses offscreen)
@@ -426,15 +507,242 @@
         phase = 'B'; t0 = now; resetB();
         if (caption) caption.textContent = 'Sampling · N(μ, σ²)';
       }
-    } else {
+    } else if (phase === 'B') {
       drawB(Math.min(1, el / B_DUR));
       if (el > B_DUR + B_HOLD) {
+        phase = 'C'; t0 = now;
+        if (caption) caption.textContent = 'Gradient descent · minimising loss';
+      }
+    } else {
+      // Ease-out so the ball decelerates into the minimum
+      const raw = Math.min(1, el / C_DUR);
+      drawC(1 - Math.pow(1 - raw, 2.2));
+      if (el > C_DUR + C_HOLD) {
         phase = 'A'; t0 = now;
         if (caption) caption.textContent = 'Forecast · 95% CI';
       }
     }
   }
   requestAnimationFrame(frame);
+})();
+
+
+/* ===== K-MEANS LIVE CLUSTERING (skills section) ===== */
+(function initKMeans() {
+  const canvas = document.getElementById('kmeansViz');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const hint = document.getElementById('kmeansHint');
+
+  const COLORS = ['#00d4ff', '#00ff87', '#a78bfa'];
+  const GREY = 'rgba(255, 255, 255, 0.35)';
+  const K = 3;
+
+  let W, H;
+  function resize() {
+    const dpr = window.devicePixelRatio || 1;
+    const r = canvas.getBoundingClientRect();
+    W = r.width; H = r.height;
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Seeded RNG: same dataset every visit
+  let seed = 7;
+  function rand() { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }
+  function gauss() { return (rand() + rand() + rand() - 1.5) / 1.5; }
+
+  // Three latent blobs in unit coords
+  const CENTERS = [{ x: 0.26, y: 0.32 }, { x: 0.72, y: 0.28 }, { x: 0.5, y: 0.74 }];
+  const pts = [];
+  CENTERS.forEach((c) => {
+    for (let i = 0; i < 36; i++) {
+      pts.push({
+        x: Math.min(0.96, Math.max(0.04, c.x + gauss() * 0.11)),
+        y: Math.min(0.94, Math.max(0.06, c.y + gauss() * 0.11)),
+        cl: -1,
+      });
+    }
+  });
+
+  // Centroids animate between Lloyd iterations
+  let centroids = [];
+  let running = false;
+  let iterTimer = null;
+
+  function resetState() {
+    running = false;
+    clearTimeout(iterTimer);
+    pts.forEach((p) => { p.cl = -1; });
+    centroids = [];
+  }
+
+  function startKMeans() {
+    if (running) return;
+    running = true;
+    // Init centroids at random points
+    centroids = Array.from({ length: K }, () => {
+      const p = pts[Math.floor(Math.random() * pts.length)];
+      return { x: p.x, y: p.y, tx: p.x, ty: p.y };
+    });
+    let iter = 0;
+    function step() {
+      // Assign
+      pts.forEach((p) => {
+        let best = 0, bd = Infinity;
+        centroids.forEach((c, i) => {
+          const d = (p.x - c.x) ** 2 + (p.y - c.y) ** 2;
+          if (d < bd) { bd = d; best = i; }
+        });
+        p.cl = best;
+      });
+      // Update targets (centroids glide there in the draw loop)
+      centroids.forEach((c, i) => {
+        const mine = pts.filter((p) => p.cl === i);
+        if (mine.length) {
+          c.tx = mine.reduce((s, p) => s + p.x, 0) / mine.length;
+          c.ty = mine.reduce((s, p) => s + p.y, 0) / mine.length;
+        }
+      });
+      iter++;
+      if (iter < 7) iterTimer = setTimeout(step, 650);
+    }
+    step();
+  }
+
+  // Hover to cluster, leave to reset
+  canvas.addEventListener('mouseenter', () => { resetState(); startKMeans(); if (hint) hint.textContent = 'clustering…'; });
+  canvas.addEventListener('mouseleave', () => { resetState(); if (hint) hint.textContent = 'hover to cluster'; });
+  canvas.addEventListener('touchstart', () => { resetState(); startKMeans(); }, { passive: true });
+
+  // Auto-demo loop when idle and visible
+  let visible = false;
+  new IntersectionObserver((entries) => {
+    visible = entries[0].isIntersecting;
+  }, { threshold: 0.15 }).observe(canvas);
+
+  setInterval(() => {
+    if (!visible || running) return;
+    startKMeans();
+    setTimeout(() => { if (!canvas.matches(':hover')) resetState(); }, 6500);
+  }, 10000);
+
+  const X = (u) => 14 + (W - 28) * u;
+  const Y = (u) => 12 + (H - 24) * u;
+
+  function draw() {
+    requestAnimationFrame(draw);
+    if (!visible) return;
+    ctx.clearRect(0, 0, W, H);
+
+    // Points
+    pts.forEach((p) => {
+      ctx.beginPath();
+      ctx.arc(X(p.x), Y(p.y), 3, 0, Math.PI * 2);
+      ctx.fillStyle = p.cl === -1 ? GREY : COLORS[p.cl];
+      ctx.fill();
+    });
+
+    // Centroids glide toward their targets
+    centroids.forEach((c, i) => {
+      c.x += (c.tx - c.x) * 0.08;
+      c.y += (c.ty - c.y) * 0.08;
+      ctx.beginPath();
+      ctx.arc(X(c.x), Y(c.y), 7, 0, Math.PI * 2);
+      ctx.strokeStyle = COLORS[i];
+      ctx.lineWidth = 2.5;
+      ctx.shadowColor = COLORS[i];
+      ctx.shadowBlur = 10;
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+      // Cross in the middle
+      ctx.beginPath();
+      ctx.moveTo(X(c.x) - 3, Y(c.y)); ctx.lineTo(X(c.x) + 3, Y(c.y));
+      ctx.moveTo(X(c.x), Y(c.y) - 3); ctx.lineTo(X(c.x), Y(c.y) + 3);
+      ctx.strokeStyle = COLORS[i];
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    });
+  }
+  requestAnimationFrame(draw);
+})();
+
+
+/* ===== SIMULATED TRAINING LOG (skills section) ===== */
+(function initTrainingLog() {
+  const el = document.getElementById('trainingLog');
+  if (!el) return;
+
+  const MAX_LINES = 13;
+  let lines = [];
+  let epoch = 0;
+  const TOTAL = 40;
+  let loss, valLoss, bestVal, bestEpoch, plateau;
+
+  function resetRun() {
+    epoch = 0;
+    loss = 1.9 + Math.random() * 0.4;
+    valLoss = loss + 0.05;
+    bestVal = Infinity;
+    bestEpoch = 0;
+    plateau = 0;
+    lines = [
+      '<span class="t-dim">$</span> <span class="t-accent">python</span> train.py --model xgb_ensemble --folds 5',
+      '<span class="t-dim">Loading 41,732 samples · 86 features · device: cpu</span>',
+      '',
+    ];
+  }
+
+  function bar(p) {
+    const full = Math.round(p * 10);
+    return '<span class="t-accent">' + '▓'.repeat(full) + '</span><span class="t-dim">' + '░'.repeat(10 - full) + '</span>';
+  }
+
+  function render() {
+    el.innerHTML = lines.slice(-MAX_LINES).join('\n');
+  }
+
+  function tick() {
+    epoch++;
+    const decay = Math.exp(-epoch / 11);
+    loss = 0.21 + (loss - 0.21) * 0.88 + (Math.random() - 0.5) * 0.012;
+    valLoss = loss + 0.04 + Math.random() * 0.05;
+    if (valLoss < bestVal - 0.002) { bestVal = valLoss; bestEpoch = epoch; plateau = 0; } else { plateau++; }
+
+    const e = String(epoch).padStart(2, '0');
+    lines.push(
+      'epoch ' + e + '/' + TOTAL + '  ' + bar(epoch / TOTAL) +
+      '  loss <span class="t-accent">' + loss.toFixed(4) + '</span>' +
+      '  val <span class="t-green">' + valLoss.toFixed(4) + '</span>'
+    );
+
+    if (plateau >= 6 || epoch >= TOTAL) {
+      lines.push('');
+      lines.push('<span class="t-dim">Early stopping: val loss plateaued</span>');
+      lines.push('Best epoch <span class="t-green">' + bestEpoch + '</span> · val loss <span class="t-green">' + bestVal.toFixed(4) + '</span>');
+      lines.push('<span class="t-green">✓</span> model saved → <span class="t-accent">model_best.pt</span>');
+      render();
+      setTimeout(() => { resetRun(); render(); setTimeout(tick, 700); }, 4200);
+      return;
+    }
+    render();
+    setTimeout(tick, 380 + Math.random() * 180);
+  }
+
+  // Start when scrolled into view, once
+  let started = false;
+  new IntersectionObserver((entries, obs) => {
+    if (entries[0].isIntersecting && !started) {
+      started = true;
+      resetRun();
+      render();
+      setTimeout(tick, 600);
+      obs.disconnect();
+    }
+  }, { threshold: 0.2 }).observe(el);
 })();
 
 

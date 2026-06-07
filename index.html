@@ -126,19 +126,18 @@
 
         <div class="about-text fade-in">
           <p>
-            I'm an Irish Data Scientist and AI Engineer with an <strong>MSc (Distinction) in AI &amp; Data Science</strong>
-            from Goldsmiths, University of London, and a <strong>First Class BSc in Data Science &amp; Analytics</strong> from University College Cork.
-            My research on Alzheimer's disease classification was accepted and published at the
-            <strong>AIAI 2025 International Conference</strong>, featured in Springer's
-            <em>Artificial Intelligence Applications and Innovations</em> - a peer-reviewed venue at the
-            forefront of applied AI research.
+            I'm an AI Engineer at <strong>TurinTech</strong>, working on Artemis, a code optimisation product
+            that makes LLM inference faster and cheaper for engineering teams. Day to day I build auto-discovery
+            tooling that finds optimisation opportunities across codebases and LLM workloads, design multi-agent
+            systems with the <strong>Claude API</strong>, and run LLM benchmarking with rigorous statistical validation.
           </p>
           <p>
-            I'm currently an AI Engineer at <strong>TurinTech</strong>, working on Artemis, a code optimisation
-            product that makes LLM inference faster and cheaper for engineering teams. I build auto-discovery
-            tooling, multi-agent systems with the Claude API, and LLM benchmarking frameworks, and I specialise
-            in end-to-end ML systems: from feature engineering and rigorous validation to SHAP-based
-            interpretability and deployment.
+            I'm the lead author of peer-reviewed research on Alzheimer's disease classification, published in
+            Springer's <em>Artificial Intelligence Applications and Innovations</em> and presented at the
+            <strong>AIAI 2025 International Conference</strong>. I hold an <strong>MSc (Distinction) in AI &amp;
+            Data Science</strong> from Goldsmiths, University of London, and a <strong>First Class BSc in Data
+            Science &amp; Analytics</strong> from University College Cork, and I specialise in end-to-end ML
+            systems: from feature engineering and rigorous validation to SHAP-based interpretability and deployment.
           </p>
           <div class="about-links">
             <a href="https://github.com/EoinHoustoun" target="_blank" rel="noopener" class="about-link">
@@ -201,7 +200,7 @@
               <span class="edu-year">2024 – 2025</span>
             </div>
             <h3 class="edu-degree">MSc Artificial Intelligence &amp; Data Science</h3>
-            <div class="edu-institution">Goldsmiths, University of London</div>
+            <div class="edu-institution">Goldsmiths, University of London <img class="flag-icon" src="docs/assets/flag_gb.png" alt="Flag of the United Kingdom"></div>
           </div>
           <div class="edu-photo">
             <img src="docs/assets/goldsmiths_grad.jpg" alt="Eoin celebrating his MSc graduation in front of Big Ben, London" loading="lazy">
@@ -220,7 +219,7 @@
               <span class="edu-year">2020 – 2024</span>
             </div>
             <h3 class="edu-degree">BSc Data Science &amp; Analytics</h3>
-            <div class="edu-institution">University College Cork, Ireland</div>
+            <div class="edu-institution">University College Cork, Ireland <img class="flag-icon" src="docs/assets/flag_ie.png" alt="Flag of Ireland"></div>
           </div>
           <div class="edu-photo">
             <div class="slideshow slideshow--crossfade" data-interval="3500">
@@ -244,7 +243,7 @@
               <span class="edu-year">May - Jul 2025</span>
             </div>
             <h3 class="edu-degree">Machine Learning</h3>
-            <div class="edu-institution">MIT, Remote</div>
+            <div class="edu-institution">MIT, Remote <img class="flag-icon" src="docs/assets/flag_us.png" alt="Flag of the United States"></div>
           </div>
           <div class="edu-photo">
             <img src="docs/assets/mit_grounds.jpg" alt="Aerial view of the MIT campus and Great Dome, Cambridge MA" loading="lazy">
@@ -448,6 +447,26 @@
             <span class="skill-tag ai-eng">Prompt Engineering</span>
             <span class="skill-tag ai-eng">AI Benchmarking</span>
           </div>
+        </div>
+      </div>
+
+      <!-- Interactive demos: live k-means clustering + model training log -->
+      <div class="skills-live fade-in">
+        <div class="live-panel">
+          <div class="live-panel-header">
+            <span class="live-panel-title">K-Means Clustering</span>
+            <span class="live-panel-hint" id="kmeansHint">hover to cluster</span>
+          </div>
+          <canvas id="kmeansViz" aria-label="Interactive k-means clustering demo: hover to watch points organise into clusters"></canvas>
+        </div>
+        <div class="live-panel">
+          <div class="live-panel-header terminal-header">
+            <span class="terminal-dot terminal-dot-r"></span>
+            <span class="terminal-dot terminal-dot-y"></span>
+            <span class="terminal-dot terminal-dot-g"></span>
+            <span class="live-panel-title terminal-title">model_training.log</span>
+          </div>
+          <div class="terminal-body" id="trainingLog" aria-label="Simulated model training log with live epoch and loss readout"></div>
         </div>
       </div>
     </div>
