@@ -534,9 +534,9 @@
   const ctx = canvas.getContext('2d');
   const hint = document.getElementById('kmeansHint');
 
-  const COLORS = ['#00d4ff', '#00ff87', '#a78bfa'];
+  const COLORS = ['#00d4ff', '#00ff87', '#a78bfa', '#fbbf24', '#f472b6'];
   const GREY = 'rgba(255, 255, 255, 0.35)';
-  const K = 3;
+  const K = 5;
 
   let W, H;
   function resize() {
@@ -555,14 +555,23 @@
   function rand() { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }
   function gauss() { return (rand() + rand() + rand() - 1.5) / 1.5; }
 
-  // Three latent blobs in unit coords
-  const CENTERS = [{ x: 0.26, y: 0.32 }, { x: 0.72, y: 0.28 }, { x: 0.5, y: 0.74 }];
+  // Five latent blobs: varied size, spread, and one stretched diagonal cluster.
+  // Overlapping enough that the structure is NOT obvious until k-means finds it.
+  const BLOBS = [
+    { x: 0.24, y: 0.30, sx: 0.085, sy: 0.085, rot: 0,    n: 42 },
+    { x: 0.62, y: 0.22, sx: 0.16,  sy: 0.045, rot: 0.5,  n: 46 }, // stretched diagonal
+    { x: 0.78, y: 0.62, sx: 0.07,  sy: 0.11,  rot: 0,    n: 38 },
+    { x: 0.38, y: 0.68, sx: 0.13,  sy: 0.06,  rot: -0.4, n: 40 }, // wide and flat
+    { x: 0.52, y: 0.45, sx: 0.05,  sy: 0.05,  rot: 0,    n: 24 }, // tight core in the middle of everything
+  ];
   const pts = [];
-  CENTERS.forEach((c) => {
-    for (let i = 0; i < 36; i++) {
+  BLOBS.forEach((b) => {
+    const cos = Math.cos(b.rot), sin = Math.sin(b.rot);
+    for (let i = 0; i < b.n; i++) {
+      const u = gauss() * b.sx, v = gauss() * b.sy;
       pts.push({
-        x: Math.min(0.96, Math.max(0.04, c.x + gauss() * 0.11)),
-        y: Math.min(0.94, Math.max(0.06, c.y + gauss() * 0.11)),
+        x: Math.min(0.97, Math.max(0.03, b.x + cos * u - sin * v)),
+        y: Math.min(0.95, Math.max(0.05, b.y + sin * u + cos * v)),
         cl: -1,
       });
     }
@@ -578,26 +587,43 @@
     clearTimeout(iterTimer);
     pts.forEach((p) => { p.cl = -1; });
     centroids = [];
+    if (hint) hint.textContent = 'hover to cluster';
   }
 
   function startKMeans() {
     if (running) return;
     running = true;
-    // Init centroids at random points
-    centroids = Array.from({ length: K }, () => {
-      const p = pts[Math.floor(Math.random() * pts.length)];
-      return { x: p.x, y: p.y, tx: p.x, ty: p.y };
-    });
+
+    // k-means++ initialisation: spread the starting centroids apart
+    const first = pts[Math.floor(Math.random() * pts.length)];
+    centroids = [{ x: first.x, y: first.y, tx: first.x, ty: first.y }];
+    while (centroids.length < K) {
+      let bestP = null, bestD = -1;
+      // Sample candidates weighted toward points far from existing centroids
+      for (let t = 0; t < 24; t++) {
+        const p = pts[Math.floor(Math.random() * pts.length)];
+        let d = Infinity;
+        centroids.forEach((c) => {
+          d = Math.min(d, (p.x - c.x) ** 2 + (p.y - c.y) ** 2);
+        });
+        if (d > bestD) { bestD = d; bestP = p; }
+      }
+      centroids.push({ x: bestP.x, y: bestP.y, tx: bestP.x, ty: bestP.y });
+    }
+
     let iter = 0;
+    let prevInertia = Infinity;
     function step() {
-      // Assign
+      // Assign + accumulate inertia (within-cluster sum of squares)
+      let inertia = 0;
       pts.forEach((p) => {
         let best = 0, bd = Infinity;
         centroids.forEach((c, i) => {
-          const d = (p.x - c.x) ** 2 + (p.y - c.y) ** 2;
+          const d = (p.x - c.tx) ** 2 + (p.y - c.ty) ** 2;
           if (d < bd) { bd = d; best = i; }
         });
         p.cl = best;
+        inertia += bd;
       });
       // Update targets (centroids glide there in the draw loop)
       centroids.forEach((c, i) => {
@@ -608,13 +634,22 @@
         }
       });
       iter++;
-      if (iter < 7) iterTimer = setTimeout(step, 650);
+      if (hint) hint.textContent = 'iter ' + iter + ' · inertia ' + (inertia * 100).toFixed(2);
+
+      // Converge when inertia stops improving (or hard cap)
+      const improved = prevInertia - inertia > 5e-6;
+      prevInertia = inertia;
+      if (iter < 16 && (improved || iter < 6)) {
+        iterTimer = setTimeout(step, 300);
+      } else {
+        if (hint) hint.textContent = 'converged ✓ · k=' + K + ' · ' + iter + ' iters';
+      }
     }
     step();
   }
 
   // Hover to cluster, leave to reset
-  canvas.addEventListener('mouseenter', () => { resetState(); startKMeans(); if (hint) hint.textContent = 'clustering…'; });
+  canvas.addEventListener('mouseenter', () => { resetState(); startKMeans(); });
   canvas.addEventListener('mouseleave', () => { resetState(); if (hint) hint.textContent = 'hover to cluster'; });
   canvas.addEventListener('touchstart', () => { resetState(); startKMeans(); }, { passive: true });
 
@@ -648,8 +683,8 @@
 
     // Centroids glide toward their targets
     centroids.forEach((c, i) => {
-      c.x += (c.tx - c.x) * 0.08;
-      c.y += (c.ty - c.y) * 0.08;
+      c.x += (c.tx - c.x) * 0.16;
+      c.y += (c.ty - c.y) * 0.16;
       ctx.beginPath();
       ctx.arc(X(c.x), Y(c.y), 7, 0, Math.PI * 2);
       ctx.strokeStyle = COLORS[i];
