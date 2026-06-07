@@ -11,7 +11,7 @@
 
 ## Published Research
 
-> ### Classifying Cognitive Stages in Alzheimer's Disease Using Machine Learning on the Bio-Hermes Dataset
+> ### Classifying Cognitive States of Alzheimer's Disease with Machine Learning Using Digital Biomarkers from the Bio-Hermes Study Cohort
 >
 > **Eoin Houstoun et al.**
 > Published in **Springer's _Artificial Intelligence Applications and Innovations_** — AIAI 2025
@@ -21,7 +21,7 @@
 > [![Conference](https://img.shields.io/badge/Conference-AIAI%202025-7c3aed?style=flat-square)](https://ifipaiai.org/2025/)
 > [![Peer Reviewed](https://img.shields.io/badge/Peer%20Reviewed-%E2%9C%93-059669?style=flat-square)](https://link.springer.com/chapter/10.1007/978-3-031-96235-6_5)
 
-A machine learning study classifying individuals into cognitive stages of Alzheimer's disease using the Bio-Hermes digital biomarker dataset.
+A machine learning study classifying individuals into cognitive states of Alzheimer's disease using the Bio-Hermes digital biomarker dataset.
 Models: **XGBoost**, **Random Forest**, **Monte Carlo cross-validation**, rigorous feature selection.
 
 ---
@@ -46,7 +46,7 @@ Models: **XGBoost**, **Random Forest**, **Monte Carlo cross-validation**, rigoro
 
 ### 1. Alzheimer's Disease Classification — *Published at AIAI 2025, Springer*
 
-Classified individuals into cognitive stages of Alzheimer's disease using ML on the Bio-Hermes digital biomarker dataset. Lead author of peer-reviewed paper published in Springer's *Artificial Intelligence Applications and Innovations*.
+Classified individuals into cognitive states of Alzheimer's disease using ML on the Bio-Hermes digital biomarker dataset. Lead author of peer-reviewed paper published in Springer's *Artificial Intelligence Applications and Innovations*.
 
 - Models: XGBoost, Random Forest, Monte Carlo cross-validation, feature selection
 - [View Paper on Springer](https://link.springer.com/chapter/10.1007/978-3-031-96235-6_5) · [View Repo](https://github.com/EoinHoustoun/Alzheimers_Biohermes)
