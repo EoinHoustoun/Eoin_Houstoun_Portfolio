@@ -351,8 +351,73 @@ section:nth-child(even) {
 .hero-content {
   position: relative;
   z-index: 2;
-  max-width: 800px;
+  max-width: 1140px;
+  width: 100%;
   padding: 120px 24px 80px;
+}
+
+/* Split hero: text left, photo right */
+.hero-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 64px;
+}
+
+.hero-text {
+  max-width: 660px;
+  text-align: left;
+}
+
+.hero-photo {
+  flex-shrink: 0;
+  animation: heroFadeUp 0.9s ease 0.5s both;
+}
+
+.hero-photo-frame {
+  position: relative;
+  width: 310px;
+  height: 390px;
+  border-radius: 28px;
+  overflow: hidden;
+  border: 2px solid var(--accent-border);
+  box-shadow: 0 0 60px rgba(0, 212, 255, 0.14);
+}
+
+/* Inner hairline to lift the photo off the dark bg */
+.hero-photo-frame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 60% 25%;
+}
+
+@media (max-width: 900px) {
+  .hero-inner {
+    flex-direction: column-reverse;
+    gap: 36px;
+  }
+
+  .hero-text {
+    text-align: center;
+  }
+
+  /* Circular avatar on mobile */
+  .hero-photo-frame {
+    width: 190px;
+    height: 190px;
+    border-radius: 50%;
+  }
 }
 
 /* Published badge */
@@ -658,6 +723,30 @@ section:nth-child(even) {
 
 .edu-body {
   flex: 1;
+}
+
+/* Education card photo (static img or slideshow) */
+.edu-photo {
+  flex-shrink: 0;
+  width: 120px;
+  height: 150px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  align-self: center;
+}
+
+.edu-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Slides should fill the small frame, not letterbox */
+.edu-photo .slideshow .slide {
+  object-fit: cover;
+  padding: 0;
 }
 
 .edu-meta {
@@ -1436,6 +1525,28 @@ section:nth-child(even) {
   flex: 1;
 }
 
+/* Conference presentation photo */
+.pub-photo {
+  flex-shrink: 0;
+  width: 270px;
+  margin: 0;
+}
+
+.pub-photo img {
+  width: 100%;
+  display: block;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.pub-photo figcaption {
+  margin-top: 10px;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
 .pub-title {
   font-size: 1.35rem;
   font-weight: 800;
@@ -1757,6 +1868,23 @@ footer {
   }
 
   .pub-icon { display: none; }
+
+  .pub-photo {
+    width: 100%;
+    max-width: 340px;
+    margin: 0 auto;
+  }
+
+  /* Education photos go full-width banners on small screens */
+  .edu-card {
+    flex-wrap: wrap;
+  }
+
+  .edu-photo {
+    width: 100%;
+    height: 170px;
+    order: 10;
+  }
 
   .pub-actions {
     flex-direction: column;
