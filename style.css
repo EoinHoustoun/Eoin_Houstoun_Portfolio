@@ -402,10 +402,41 @@ section:nth-child(even) {
   object-position: 60% 25%;
 }
 
+/* "Currently" status line under hero CTAs */
+.hero-current {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 28px;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.01em;
+  animation: heroFadeUp 0.9s ease 0.7s both;
+}
+
+.hero-current strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.hero-current-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00ff87;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 0 rgba(0, 255, 135, 0.5);
+  animation: pulse 2s infinite;
+}
+
 @media (max-width: 900px) {
   .hero-inner {
     flex-direction: column-reverse;
     gap: 36px;
+  }
+
+  .hero-current {
+    margin-top: 22px;
   }
 
   .hero-text {
@@ -1426,6 +1457,23 @@ section:nth-child(even) {
 
 .secondary-card:hover {
   border-color: #2a2a2a;
+}
+
+/* Secondary card thumbnail */
+.secondary-img {
+  height: 130px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: #ffffff;
+}
+
+.secondary-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .secondary-card h4 {
