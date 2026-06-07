@@ -644,6 +644,39 @@ section:nth-child(even) {
   object-position: center top;
 }
 
+/* Animated data visualisation panel (replaces static headshot) */
+.viz-frame {
+  position: relative;
+  width: 300px;
+  height: 340px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--accent-border);
+  background: var(--bg-darkest);
+  box-shadow: 0 0 40px rgba(0, 212, 255, 0.1);
+  flex-shrink: 0;
+}
+
+#dataViz {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.viz-caption {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
 /* Text column */
 .about-text {
   display: flex;
@@ -859,7 +892,7 @@ section:nth-child(even) {
 
 .timeline {
   position: relative;
-  max-width: 780px;
+  max-width: 1020px;
   margin: 0 auto;
   padding-left: 32px;
 }
@@ -923,26 +956,27 @@ section:nth-child(even) {
   min-width: 0;
 }
 
-/* Experience card photo (static img or slideshow) */
+/* Experience card photo (static img or slideshow): contain so nothing is cropped */
 .timeline-photo {
   flex-shrink: 0;
-  width: 165px;
-  height: 185px;
+  width: 250px;
+  height: 210px;
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--bg-darkest);
   align-self: center;
 }
 
 .timeline-photo img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
 }
 
 .timeline-photo .slideshow .slide {
-  object-fit: cover;
+  object-fit: contain;
   padding: 0;
 }
 
@@ -1532,20 +1566,23 @@ section:nth-child(even) {
   line-height: 1;
 }
 
-/* Secondary card thumbnail */
+/* Secondary card thumbnail: contain so the full image is always visible */
 .secondary-img {
-  height: 130px;
+  height: 160px;
   border-radius: 10px;
   overflow: hidden;
   margin-bottom: 16px;
   border: 1px solid rgba(255, 255, 255, 0.07);
   background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .secondary-img img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
 }
 

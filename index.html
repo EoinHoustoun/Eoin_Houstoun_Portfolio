@@ -58,7 +58,7 @@
     <div class="hero-content">
       <div class="hero-inner">
         <div class="hero-text">
-          <!-- Published badge — lead credential -->
+          <!-- Published badge: lead credential -->
           <div class="published-badge">
             <span class="badge-pulse"></span>
             Published Researcher &nbsp;&middot;&nbsp; AIAI 2025 &nbsp;&middot;&nbsp; Springer
@@ -118,8 +118,9 @@
 
       <div class="about-grid">
         <div class="about-photo fade-in">
-          <div class="photo-frame">
-            <img src="docs/assets/headshot.png" alt="Eoin Houstoun" loading="lazy">
+          <div class="viz-frame">
+            <canvas id="dataViz" aria-label="Animated data visualisation: a forecast line with confidence intervals and points forming a normal distribution"></canvas>
+            <div class="viz-caption" id="vizCaption">Forecast &middot; 95% CI</div>
           </div>
         </div>
 
@@ -133,10 +134,10 @@
             forefront of applied AI research.
           </p>
           <p>
-            I'm currently an AI Engineer at <strong>TurinTech</strong>, working on Artemis — a code optimisation
-            product that makes LLM inference faster and cheaper for engineering teams — building auto-discovery
-            tooling, multi-agent systems with the Claude API, and LLM benchmarking frameworks. I specialise in
-            end-to-end ML systems: from feature engineering and rigorous validation to SHAP-based
+            I'm currently an AI Engineer at <strong>TurinTech</strong>, working on Artemis, a code optimisation
+            product that makes LLM inference faster and cheaper for engineering teams. I build auto-discovery
+            tooling, multi-agent systems with the Claude API, and LLM benchmarking frameworks, and I specialise
+            in end-to-end ML systems: from feature engineering and rigorous validation to SHAP-based
             interpretability and deployment.
           </p>
           <div class="about-links">
@@ -780,7 +781,7 @@
           </div>
           <div class="secondary-card">
             <div class="secondary-img">
-              <img src="docs/assets/customer_segmentation.jpg" alt="Customer segmentation scatter plot with coloured clusters" loading="lazy">
+              <img src="docs/assets/customer_segmentation.png" alt="Customer segmentation scatter plot with coloured clusters" loading="lazy">
             </div>
             <div class="secondary-badge-row"><span class="category-badge badge-ds">Data Science</span></div>
             <h4>Customer Segmentation</h4>

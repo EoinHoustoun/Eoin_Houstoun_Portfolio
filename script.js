@@ -239,6 +239,205 @@
 })();
 
 
+/* ===== ABOUT DATA VISUALISATION (canvas) =====
+   Loops two scenes:
+   A. A forecast line drawing left-to-right with a widening 95% CI band
+   B. Samples raining down and stacking into a normal distribution,
+      with the bell curve fading in over the histogram
+*/
+(function initDataViz() {
+  const canvas = document.getElementById('dataViz');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const caption = document.getElementById('vizCaption');
+
+  const ACCENT = '#00d4ff';
+  const GREEN  = '#00ff87';
+
+  let W, H;
+  function resize() {
+    const dpr = window.devicePixelRatio || 1;
+    const r = canvas.getBoundingClientRect();
+    W = r.width; H = r.height;
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Seeded RNG so the loop is deterministic
+  let seed = 42;
+  function rand() { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }
+  function gauss() { return (rand() + rand() + rand() + rand() + rand() + rand() - 3) / 3; }
+
+  // Scene A series (precomputed walk)
+  const N = 80;
+  const series = [];
+  let v = 0.5;
+  for (let i = 0; i < N; i++) {
+    v += Math.sin(i / 9) * 0.012 + gauss() * 0.02 + 0.002;
+    v = Math.max(0.18, Math.min(0.88, v));
+    series.push(v);
+  }
+
+  // Scene B state
+  const BINS = 21;
+  const TOTAL_SAMPLES = 240;
+  let bins, balls, spawned;
+  function resetB() { bins = new Array(BINS).fill(0); balls = []; spawned = 0; seed = 1337; }
+
+  let phase = 'A';
+  let t0 = null;
+  const A_DUR = 6000, A_HOLD = 1400, B_DUR = 7000, B_HOLD = 2000;
+
+  function drawAxes(pad) {
+    ctx.strokeStyle = 'rgba(255,255,255,0.12)';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(pad, pad / 2);
+    ctx.lineTo(pad, H - pad);
+    ctx.lineTo(W - pad / 2, H - pad);
+    ctx.stroke();
+  }
+
+  function drawA(p) {
+    const pad = 32;
+    drawAxes(pad);
+    const n = Math.max(2, Math.floor(p * N));
+    const xw = W - pad - 14;
+    const yh = H - pad * 1.9;
+    const X = (i) => pad + xw * (i / (N - 1));
+    const Y = (val) => (H - pad) - yh * val;
+
+    // Widening CI band
+    ctx.beginPath();
+    for (let i = 0; i < n; i++) {
+      const ci = 0.025 + 0.11 * (i / N);
+      const y = Y(Math.min(0.95, series[i] + ci));
+      i ? ctx.lineTo(X(i), y) : ctx.moveTo(X(i), y);
+    }
+    for (let i = n - 1; i >= 0; i--) {
+      const ci = 0.025 + 0.11 * (i / N);
+      ctx.lineTo(X(i), Y(Math.max(0.05, series[i] - ci)));
+    }
+    ctx.closePath();
+    ctx.fillStyle = 'rgba(0, 212, 255, 0.10)';
+    ctx.fill();
+
+    // Mean line with glow
+    ctx.beginPath();
+    for (let i = 0; i < n; i++) {
+      i ? ctx.lineTo(X(i), Y(series[i])) : ctx.moveTo(X(i), Y(series[i]));
+    }
+    ctx.strokeStyle = ACCENT;
+    ctx.lineWidth = 2;
+    ctx.shadowColor = 'rgba(0, 212, 255, 0.6)';
+    ctx.shadowBlur = 8;
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+
+    // Leading dot
+    ctx.beginPath();
+    ctx.arc(X(n - 1), Y(series[n - 1]), 3.5, 0, Math.PI * 2);
+    ctx.fillStyle = GREEN;
+    ctx.fill();
+  }
+
+  function drawB(p) {
+    const pad = 32;
+    drawAxes(pad);
+    const xw = W - pad - 14;
+    const binW = xw / BINS;
+    const floor = H - pad;
+    const unit = 4.4; // stacked-sample height in px
+
+    // Spawn new samples up to the target for this progress
+    const target = Math.floor(p * TOTAL_SAMPLES);
+    while (spawned < target) {
+      const g = Math.max(-1, Math.min(1, gauss()));
+      const bin = Math.round(((g + 1) / 2) * (BINS - 1));
+      balls.push({ bin, y: pad / 2, v: 1.6 + rand() * 1.4 });
+      spawned++;
+    }
+
+    // Falling samples
+    ctx.fillStyle = ACCENT;
+    for (let i = balls.length - 1; i >= 0; i--) {
+      const b = balls[i];
+      const restY = floor - bins[b.bin] * unit - 2;
+      b.y += b.v;
+      b.v += 0.28;
+      if (b.y >= restY) { bins[b.bin]++; balls.splice(i, 1); continue; }
+      ctx.beginPath();
+      ctx.arc(pad + binW * (b.bin + 0.5), b.y, 2.2, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // Histogram bars
+    for (let i = 0; i < BINS; i++) {
+      const h = bins[i] * unit;
+      if (!h) continue;
+      const x = pad + binW * i + 1;
+      const grad = ctx.createLinearGradient(0, floor - h, 0, floor);
+      grad.addColorStop(0, 'rgba(0, 212, 255, 0.85)');
+      grad.addColorStop(1, 'rgba(0, 212, 255, 0.22)');
+      ctx.fillStyle = grad;
+      ctx.fillRect(x, floor - h, binW - 2, h);
+    }
+
+    // Bell curve fades in once the histogram has shape
+    if (p > 0.45) {
+      const alpha = Math.min(1, (p - 0.45) / 0.3);
+      const sigma = 0.34;
+      const peak = TOTAL_SAMPLES * 0.155 * unit;
+      ctx.beginPath();
+      for (let x = 0; x <= 100; x++) {
+        const z = (x / 100) * 2 - 1;
+        const yv = Math.exp(-(z * z) / (2 * sigma * sigma));
+        const px = pad + xw * (x / 100);
+        const py = floor - yv * peak;
+        x ? ctx.lineTo(px, py) : ctx.moveTo(px, py);
+      }
+      ctx.strokeStyle = 'rgba(0, 255, 135, ' + (0.9 * alpha) + ')';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    }
+  }
+
+  resetB();
+
+  // Only animate while visible (saves battery, pauses offscreen)
+  let visible = false;
+  new IntersectionObserver((entries) => {
+    visible = entries[0].isIntersecting;
+  }, { threshold: 0.1 }).observe(canvas);
+
+  function frame(now) {
+    requestAnimationFrame(frame);
+    if (!visible) { t0 = null; return; }
+    if (t0 === null) t0 = now;
+    const el = now - t0;
+    ctx.clearRect(0, 0, W, H);
+
+    if (phase === 'A') {
+      drawA(Math.min(1, el / A_DUR));
+      if (el > A_DUR + A_HOLD) {
+        phase = 'B'; t0 = now; resetB();
+        if (caption) caption.textContent = 'Sampling · N(μ, σ²)';
+      }
+    } else {
+      drawB(Math.min(1, el / B_DUR));
+      if (el > B_DUR + B_HOLD) {
+        phase = 'A'; t0 = now;
+        if (caption) caption.textContent = 'Forecast · 95% CI';
+      }
+    }
+  }
+  requestAnimationFrame(frame);
+})();
+
+
 /* ===== ACTIVE NAV LINK HIGHLIGHTING ===== */
 (function initActiveNavLinks() {
   const sections = document.querySelectorAll('section[id]');

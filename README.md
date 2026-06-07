@@ -1,4 +1,4 @@
-# Eoin Houstoun — Data Scientist & AI Engineer
+# Eoin Houstoun | Data Scientist & AI Engineer
 
 [![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
 [![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)](https://pytorch.org)
@@ -14,7 +14,7 @@
 > ### Classifying Cognitive States of Alzheimer's Disease with Machine Learning Using Digital Biomarkers from the Bio-Hermes Study Cohort
 >
 > **Eoin Houstoun et al.**
-> Published in **Springer's _Artificial Intelligence Applications and Innovations_** — AIAI 2025
+> Published in **Springer's _Artificial Intelligence Applications and Innovations_**, AIAI 2025
 > IFIP Advances in Information and Communication Technology · Springer, Cham · 2025
 >
 > [![Springer](https://img.shields.io/badge/Published-Springer-00a0d2?style=flat-square&logo=springer&logoColor=white)](https://link.springer.com/chapter/10.1007/978-3-031-96235-6_5)
@@ -30,7 +30,7 @@ Models: **XGBoost**, **Random Forest**, **Monte Carlo cross-validation**, rigoro
 
 | Project | Category | Key Models / Techniques | Status |
 |---------|----------|------------------------|--------|
-| [Alzheimer's Disease Classification](https://github.com/EoinHoustoun/Alzheimers_Biohermes) | Research · Clinical AI | XGBoost, Random Forest, Monte Carlo CV, Feature Selection | **Published — AIAI 2025** |
+| [Alzheimer's Disease Classification](https://github.com/EoinHoustoun/Alzheimers_Biohermes) | Research · Clinical AI | XGBoost, Random Forest, Monte Carlo CV, Feature Selection | **Published at AIAI 2025** |
 | [Fever Prediction with Infrared Thermography](https://github.com/EoinHoustoun/Infrared_Thermography) | Clinical AI | PyTorch MLP, XGBoost, SHAP, Nested CV | Complete |
 | [Pediatric Appendicitis Prediction](https://github.com/EoinHoustoun/Pediatric_Appendicitis) | Clinical AI | XGBoost, MLP, SHAP, Gradio | **Live Demo** |
 | [Neural Style Transfer](https://github.com/EoinHoustoun/Generative_AI) | Computer Vision | VGG19, PyTorch CNN, Neural Rendering | Complete |
@@ -44,7 +44,7 @@ Models: **XGBoost**, **Random Forest**, **Monte Carlo cross-validation**, rigoro
 
 ## Project Highlights
 
-### 1. Alzheimer's Disease Classification — *Published at AIAI 2025, Springer*
+### 1. Alzheimer's Disease Classification: *Published at AIAI 2025, Springer*
 
 Classified individuals into cognitive states of Alzheimer's disease using ML on the Bio-Hermes digital biomarker dataset. Lead author of peer-reviewed paper published in Springer's *Artificial Intelligence Applications and Innovations*.
 
@@ -77,7 +77,7 @@ Clinical decision-support tool predicting pediatric appendicitis diagnosis and s
 
 ---
 
-### 4. Neural Style Transfer — Generative AI
+### 4. Neural Style Transfer: Generative AI
 
 Transforms celebrity photographs into comic book illustrations using deep neural artistic rendering, combining content and style loss functions.
 
@@ -176,4 +176,4 @@ Open to **data science**, **ML engineering**, and **AI research** roles.
 - GitHub: [EoinHoustoun](https://github.com/EoinHoustoun)
 - ePortfolio: [MIT Great Learning](https://www.mygreatlearning.com/eportfolio/eoin-houstoun)
 - Portfolio: [EoinHoustoun.github.io](https://EoinHoustoun.github.io)
-- Paper: [Springer — AIAI 2025](https://link.springer.com/chapter/10.1007/978-3-031-96235-6_5)
+- Paper: [Springer, AIAI 2025](https://link.springer.com/chapter/10.1007/978-3-031-96235-6_5)
