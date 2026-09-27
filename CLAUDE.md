@@ -100,6 +100,14 @@ Serve the repo (`python3 -m http.server 8765`), run `cd tests && npm test` (Play
 - Every animation respects `prefers-reduced-motion`; content must be visible if JS or GSAP fails.
 - Title is always "AI Engineer · Research & Data Science" (TurinTech). Contact is LinkedIn first; never publish the phone number.
 
+## Content Rules (Eoin, Sep 2026)
+
+- Never host or link a CV on the site. Contact is LinkedIn first, email second, never a phone number.
+- No money figures on the first screen. Model P&L (e.g. the match predictor) appears only inside that project's Details, described as a simulated paper portfolio.
+- No employer product metrics as headline stats. Describe what Eoin built at TurinTech (statistical validation, agents, benchmarking, client onboarding on Artemis and evoML).
+- Keep the MSc 87% average (ranked 1st) prominent and show start and end months for every role.
+- If a private file is ever committed on a branch, squash-merge so it never reaches public history.
+
 ## Existing Projects (do not duplicate)
 
 | Project | Repo | data-cat | Notes |
