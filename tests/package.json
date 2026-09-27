@@ -1,0 +1,3 @@
+{ "name": "portfolio-tests", "private": true, "type": "module",
+  "scripts": { "test": "node --test --test-concurrency=1 site.test.mjs" },
+  "devDependencies": { "playwright": "^1.55.0" } }

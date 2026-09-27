@@ -1,16 +1,16 @@
-# Claude Instructions — Eoin Houstoun Portfolio
+# Claude Instructions, Eoin Houstoun Portfolio
 
 This is Eoin Houstoun's personal portfolio repository, deployed as a GitHub Pages site at **https://EoinHoustoun.github.io**.
 
-The portfolio showcases data science and AI engineering projects. Eoin has a **published research paper at AIAI 2025 (Springer)** — this is his lead credential and must always be treated as the most prominent item.
+The portfolio showcases data science and AI engineering projects. Eoin has a **published research paper at AIAI 2025 (Springer)**, this is his lead credential and must always be treated as the most prominent item.
 
 ---
 
 ## How to Add a New Project (Autonomous Workflow)
 
-When Eoin gives you a new project folder or repo to add, do ALL of the following without asking — this is the full expected workflow:
+When Eoin gives you a new project folder or repo to add, do ALL of the following without asking, this is the full expected workflow:
 
-### Step 1 — Understand the project
+### Step 1: Understand the project
 Read the existing code, notebooks, and any existing README in the project folder/repo. Extract:
 - What problem it solves
 - What models/techniques were used
@@ -18,7 +18,7 @@ Read the existing code, notebooks, and any existing README in the project folder
 - What language/libraries were used
 - Whether there is a live demo (Gradio, Streamlit, etc.)
 
-### Step 2 — Write the project README
+### Step 2: Write the project README
 Write a professional README.md for the project repo following this exact template:
 
 ```markdown
@@ -54,53 +54,21 @@ Write a professional README.md for the project repo following this exact templat
 [brief file tree]
 
 ---
-*Part of Eoin Houstoun's Data Science Portfolio — [github.com/EoinHoustoun](https://github.com/EoinHoustoun)*
+*Part of Eoin Houstoun's Data Science Portfolio, [github.com/EoinHoustoun](https://github.com/EoinHoustoun)*
 ```
 
 Rules for the README:
 - Use shields.io badges at top for language and key libraries
 - If there's a live Gradio/Streamlit demo, add a badge at the very top
 - Keep language confident: "achieved", "demonstrated", "deployed"
-- Every sentence must add value — no filler
+- Every sentence must add value, no filler
 - Use real numbers from the code/results wherever possible
 
-### Step 3 — Add a project card to index.html
-Open `index.html` and add a new `<div class="project-card fade-in">` inside `.projects-grid`, before the secondary projects section.
+### Step 3: Add a project card to index.html
+Add an `<article class="project-card" data-cat="...">` inside `#projectsGrid` (before the `.extra` cards unless minor; minor projects get class `extra`).
+`data-cat` is a space-separated list of filter keys: `sports`, `clinical`, `nlpcv`, `research`. Copy an existing card: media, `.card-tags` badges (`badge-research|clinical|sports|nlp|ai|live|muted`), `h3`, one-line `.glance` with the headline metric in `<span class="hl">`, 2-3 `.chip`s, a Details expander (`.expander-toggle[aria-controls]` + `.expander-body`), `.card-actions`. If the "Show all" count changes, update the `(+N)` in both index.html and script.js.
 
-**Card template:**
-```html
-<div class="project-card fade-in">
-  <div class="card-header">
-    <span class="category-badge badge-[CATEGORY]">[Category Label]</span>
-    <!-- Add live-badge if there's a deployed demo -->
-  </div>
-  <h3>[Project Title]</h3>
-  <p>[2-3 sentence description. Use <em> tags for key library names.]</p>
-  <div class="tech-stack">
-    <span>[Tool]</span><span>[Tool]</span>
-  </div>
-  <div class="card-actions">
-    <a href="https://github.com/EoinHoustoun/[REPO]" target="_blank" rel="noopener" class="card-btn">View on GitHub →</a>
-  </div>
-</div>
-```
-
-**Category badge classes** — pick the most appropriate:
-| Badge class | Use for |
-|---|---|
-| `badge-research` | Academic / published work |
-| `badge-clinical` | Healthcare, medical, clinical AI |
-| `badge-cv` | Computer vision, image models |
-| `badge-nlp` | NLP, transformers, text models |
-| `badge-ds` | General data science, analytics |
-| `badge-ai-eng` | AI engineering, agents, APIs |
-
-**Live demo badge** (add inside `.card-header` if deployed):
-```html
-<span class="live-badge"><span class="live-dot"></span> Live Demo</span>
-```
-
-### Step 4 — Add the project to README.md
+### Step 4: Add the project to README.md
 Add a new row to the projects table in `README.md`:
 ```markdown
 | [Project Name](https://github.com/EoinHoustoun/REPO) | Category | Key Models | Status |
@@ -108,97 +76,45 @@ Add a new row to the projects table in `README.md`:
 
 Then add a project highlight section following the same pattern as existing ones (title, description, bullet points, image if available, repo link).
 
-### Step 5 — Push everything
-
-**Push to the portfolio GitHub Pages repo:**
-```bash
-# Stage and commit
-git add index.html README.md
-git commit -m "Add [project name] to portfolio"
-git push pages main
-```
-
-**Push the new project README** (if it's a separate repo) using the GitHub API:
-```bash
-TOKEN="[get from: git remote get-url pages]"
-
-# Get current SHA
-SHA=$(curl -s -H "Authorization: token $TOKEN" \
-  "https://api.github.com/repos/EoinHoustoun/[REPO]/contents/README.md" \
-  | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('sha',''))")
-
-# Push new README
-CONTENT=$(base64 -w 0 /tmp/new_readme.md)
-curl -s -X PUT \
-  -H "Authorization: token $TOKEN" \
-  -H "Content-Type: application/json" \
-  "https://api.github.com/repos/EoinHoustoun/[REPO]/contents/README.md" \
-  -d "{\"message\":\"Rewrite README — recruiter-optimised\",\"content\":\"$CONTENT\",\"sha\":\"$SHA\"}"
-```
-
-To get the token: `git remote get-url pages` — it's embedded in the URL.
+### Step 5: Test and push
+Serve the repo (`python3 -m http.server 8765`), run `cd tests && npm test` (Playwright, system Chrome), then commit and push to both `pages` and `origin`. Credentials come from the git credential helper or `gh auth`; never embed or copy a token.
 
 ---
 
-## Portfolio Structure
+## Portfolio Structure (v6, Sep 2026)
 
-```
-PORT/
-├── index.html        # Single-page portfolio site — all 6 sections
-├── style.css         # All styling — edit this for design changes
-├── script.js         # Typing effect, scroll animations, mobile nav
-├── README.md         # GitHub profile README (recruiter-facing)
-├── CLAUDE.md         # This file
-└── docs/
-    └── assets/
-        ├── headshot.png         # Eoin's photo (used in About section)
-        ├── Research_Image.png   # Alzheimer's project image
-        ├── infra.png            # Infrared thermography image
-        ├── poster.png           # Appendicitis project image
-        ├── ai_chef.png          # AI Chef project image
-        ├── int_val.png          # Validation procedures image
-        └── MIT_BADGE.png        # MIT certification badge
-```
-
----
+- `index.html`: nav, `#hero` (bento tiles + "Worked at / Studied at" logo strip), then `.body-grid` = `main` (`#projects`, `#artemis`, `#experience`, `#opensource`, `#contact`) + sticky `aside#rail` (Education, Models, Statistical toolkit, Stack). On <900px the rail folds into accordions and sits after Artemis.
+- `style.css`: tokens at the top (`--bg`, `--card`, `--text`, `--text-2`, `--cyan`, `--amber`, fonts), light theme under `[data-theme="light"]`, responsive blocks at the bottom.
+- `script.js`: one init function per feature (theme, nav, expanders, slideshows, project filters, rail, marquee, spotlight, constellation, GSAP motion).
+- `js/lib/`: vendored GSAP 3.15 (core, ScrollTrigger, ScrambleTextPlugin). Not `vendor/` (Jekyll excludes it).
+- `docs/assets/logos/` organisation logos (shown on light plates), `docs/assets/models/` AI model icons (inlined into the rail).
+- `tests/`: Playwright acceptance tests (fold contents, facts, phone layout, reduced motion, no-GSAP fallback, light contrast, keyboard filters).
+- Specs and plans live in `docs/superpowers/`.
 
 ## Design System
 
-**Colours:**
-- Background darkest: `#0a0a0a`
-- Background dark: `#111111`
-- Card background: `#161616`
-- Accent (electric blue): `#00d4ff`
-- Text primary: `#ffffff`
-- Text secondary: `#a0a0a0`
-
-**Font:** Inter (Google Fonts)
-
-**Key CSS classes:**
-- `.fade-in` — add to any new element that should animate in on scroll
-- `.project-card` — standard project card
-- `.project-card.featured` — full-width lead project card (Alzheimer's only)
-- `.card-btn` — primary GitHub link button
-- `.card-btn.card-btn-secondary` — secondary button (e.g. paper link)
-- `.tech-stack span` — grey pill tags for tools
-
----
+- Colours: bg `#0a0a0a`, card `#141518`, cyan `#00d4ff` (primary), amber `#ffb020` (metrics and highlights only). Secondary text never lighter than `#c9cdd3` on dark or darker than `#3a4654` on light: Eoin cannot read light grey.
+- Fonts: Space Grotesk (headings), Inter (body), JetBrains Mono (numbers, `.metric`).
+- Minimum font size 0.78rem. No em dashes anywhere.
+- Counters: `<span class="metric" data-count data-final="+107%" data-to="107" data-prefix="+" data-suffix="%">+107%</span>`. Text starts at the final value; JS animates only when motion is allowed.
+- Every animation respects `prefers-reduced-motion`; content must be visible if JS or GSAP fails.
+- Title is always "AI Engineer · Research & Data Science" (TurinTech). Contact is LinkedIn first; never publish the phone number.
 
 ## Existing Projects (do not duplicate)
 
-| # | Project | Repo | Category |
-|---|---------|------|----------|
-| 1 | Alzheimer's Disease Classification | Alzheimers_Biohermes | Research — LEAD (featured card, Springer badge) |
-| 2 | Fever Prediction with Infrared Thermography | Infrared_Thermography | Clinical AI |
-| 3 | Pediatric Appendicitis Prediction | Pediatric_Appendicitis | Clinical AI + Live Demo |
-| 4 | Neural Style Transfer | Generative_AI | Computer Vision |
-| 5 | AI Chef Chatbot | AI_Chef | NLP |
-| 6 | Validation Procedures Exploration | Final-Year-Project | Research |
-| 7 | Amazon Recommendation System | — | NLP/RecSys (secondary card) |
-| 8 | Retail Customer Prediction | — | Data Science (secondary card) |
-| 9 | Customer Segmentation | — | Data Science (secondary card) |
-
-Projects 1–6 are full cards in `.projects-grid`. Projects 7–9 are smaller cards in `.secondary-grid`. New projects should go into `.projects-grid` unless they are minor, in which case `.secondary-grid`.
+| Project | Repo | data-cat | Notes |
+|---|---|---|---|
+| Alzheimer's Disease Classification | Alzheimers_Biohermes | research clinical | LEAD, `featured` card, Springer badge |
+| Premier League Match Predictor | Football_Match_Predictor | sports | id `proj-fpred`, hero tile links here |
+| Fantasy Football AI Planner | Fantasy_Football_AI | sports | |
+| Football Transfer Intelligence Agent | Football_Transfer_Intelligence | sports | |
+| Validation Procedures in Machine Learning | Final-Year-Project | research sports | BSc dissertation |
+| Fever Prediction with Infrared Thermography | Infrared_Thermography | clinical | |
+| Pediatric Appendicitis Prediction | Pediatric_Appendicitis | clinical | Live demo |
+| YouTube Sentiment Analyser | YouTube_Sentiment_Analyser | nlpcv | `extra` |
+| Neural Style Transfer | Generative_AI | nlpcv | `extra` |
+| AI Chef Chatbot | AI_Chef | nlpcv | `extra` |
+| Amazon RecSys, Retail Prediction, Customer Segmentation | n/a | nlpcv research | "Also built" list (`.extra-mini`) |
 
 ---
 
@@ -218,6 +134,4 @@ Projects 1–6 are full cards in `.projects-grid`. Projects 7–9 are smaller ca
 | `origin` | https://github.com/EoinHoustoun/Eoin_Houstoun_Portfolio (source/backup) |
 | `pages` | https://github.com/EoinHoustoun/EoinHoustoun.github.io (live site) |
 
-Always push portfolio changes to `pages`. The personal access token is embedded in the `pages` remote URL — retrieve it with `git remote get-url pages`.
-
-**Note:** Eoin has two GitHub accounts. Work account is the VSCode default. Personal account is EoinHoustoun — credentials handled via PAT in the remote URL.
+Push portfolio changes to both. Use the personal account (EoinHoustoun); see the switching-github-accounts skill.

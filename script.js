@@ -1,488 +1,305 @@
-/* ============================================================
-   Eoin Houstoun, Portfolio JavaScript
-   - Typing animation (hero titles)
-   - Scroll-triggered fade-in (Intersection Observer)
-   - Navbar scroll state
-   - Mobile navigation toggle
-   - Smooth anchor scroll
-   ============================================================ */
+/* =========================================================
+   Eoin Houstoun portfolio, v6
+   Each feature is a small init function; one failing never
+   blocks the rest. Content is visible without JS or GSAP.
+   ========================================================= */
 
-/* ===== TYPING ANIMATION ===== */
-(function initTypingEffect() {
-  const titles = [
-    'Data Scientist',
-    'AI Engineer',
-    'Machine Learning Researcher',
-    'Published Researcher',
-  ];
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  const el = document.getElementById('typingText');
-  if (!el) return;
-
-  let titleIndex = 0;
-  let charIndex = 0;
-  let isDeleting = false;
-
-  // Timing constants (ms)
-  const TYPE_SPEED   = 75;
-  const DELETE_SPEED = 45;
-  const PAUSE_END    = 1800; // pause before deleting
-  const PAUSE_START  = 300;  // pause before typing next
-
-  function type() {
-    const current = titles[titleIndex];
-
-    if (isDeleting) {
-      // Remove a character
-      el.textContent = current.slice(0, charIndex - 1);
-      charIndex--;
-
-      if (charIndex === 0) {
-        isDeleting = false;
-        titleIndex = (titleIndex + 1) % titles.length;
-        setTimeout(type, PAUSE_START);
-        return;
-      }
-      setTimeout(type, DELETE_SPEED);
-
-    } else {
-      // Add a character
-      el.textContent = current.slice(0, charIndex + 1);
-      charIndex++;
-
-      if (charIndex === current.length) {
-        isDeleting = true;
-        setTimeout(type, PAUSE_END);
-        return;
-      }
-      setTimeout(type, TYPE_SPEED);
-    }
-  }
-
-  // Small initial delay so page has loaded
-  setTimeout(type, 800);
-})();
-
-
-/* ===== SCROLL FADE-IN (Intersection Observer) ===== */
-(function initScrollAnimations() {
-  const elements = document.querySelectorAll('.fade-in');
-  if (!elements.length) return;
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          // Only animate once
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    {
-      threshold: 0.12,
-      rootMargin: '0px 0px -40px 0px',
-    }
-  );
-
-  elements.forEach((el, i) => {
-    // Stagger sibling cards within the same grid
-    const parent = el.parentElement;
-    const siblings = parent ? parent.querySelectorAll('.fade-in') : [];
-    const siblingIndex = Array.from(siblings).indexOf(el);
-    if (siblingIndex > 0) {
-      el.style.transitionDelay = `${siblingIndex * 0.08}s`;
-    }
-
-    observer.observe(el);
+document.addEventListener('DOMContentLoaded', () => {
+  [initTheme, initNav, initExpanders, initSlideshows, initProjects, initRailAccordions,
+   initSpotlight, initConstellation, initMotion].forEach((fn) => {
+    try { fn(); } catch (e) { console.warn(fn.name, e); }
   });
-})();
+  const year = document.getElementById('year');
+  if (year) year.textContent = new Date().getFullYear();
+});
 
-
-/* ===== NAVBAR SCROLL BEHAVIOUR ===== */
-(function initNavbar() {
-  const navbar = document.getElementById('navbar');
-  if (!navbar) return;
-
-  let lastScroll = 0;
-
-  function onScroll() {
-    const scrollY = window.scrollY;
-
-    // Add 'scrolled' class to solidify background
-    if (scrollY > 40) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
-
-    lastScroll = scrollY;
-  }
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll(); // run once on load
-})();
-
-
-/* ===== MOBILE NAVIGATION TOGGLE ===== */
-(function initMobileNav() {
-  const toggle = document.getElementById('navToggle');
-  const links  = document.getElementById('navLinks');
-  if (!toggle || !links) return;
-
-  function openMenu() {
-    links.classList.add('open');
-    toggle.classList.add('open');
-    toggle.setAttribute('aria-expanded', 'true');
-    document.body.style.overflow = 'hidden'; // prevent background scroll
-  }
-
-  function closeMenu() {
-    links.classList.remove('open');
-    toggle.classList.remove('open');
-    toggle.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
-  }
-
-  toggle.addEventListener('click', () => {
-    const isOpen = links.classList.contains('open');
-    isOpen ? closeMenu() : openMenu();
-  });
-
-  // Close menu when any nav link is clicked
-  links.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', closeMenu);
-  });
-
-  // Close menu on outside click
-  document.addEventListener('click', (e) => {
-    if (!toggle.contains(e.target) && !links.contains(e.target)) {
-      closeMenu();
-    }
-  });
-
-  // Close menu on Escape key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeMenu();
-  });
-})();
-
-
-/* ===== SMOOTH ANCHOR SCROLL ===== */
-(function initSmoothScroll() {
-  // Accounts for fixed navbar height
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener('click', (e) => {
-      const targetId = anchor.getAttribute('href');
-      if (!targetId || targetId === '#') return;
-
-      const target = document.querySelector(targetId);
-      if (!target) return;
-
-      e.preventDefault();
-
-      const navHeight = document.getElementById('navbar')?.offsetHeight ?? 72;
-      const targetTop = target.getBoundingClientRect().top + window.scrollY - navHeight - 16;
-
-      window.scrollTo({ top: targetTop, behavior: 'smooth' });
-    });
-  });
-})();
-
-
-/* ===== IMAGE SLIDESHOWS ===== */
-(function initSlideshows() {
-  document.querySelectorAll('.slideshow').forEach((container) => {
-    const slides = container.querySelectorAll('.slide');
-    const dotsContainer = container.querySelector('.slide-dots');
-    if (slides.length < 2) return;
-
-    const interval = parseInt(container.dataset.interval) || 3500;
-    let current = 0;
-
-    // Build dot indicators
-    if (dotsContainer) {
-      slides.forEach((_, i) => {
-        const dot = document.createElement('span');
-        dot.className = 'dot' + (i === 0 ? ' active' : '');
-        dot.addEventListener('click', () => goTo(i));
-        dotsContainer.appendChild(dot);
-      });
-    }
-
-    const dots = dotsContainer ? dotsContainer.querySelectorAll('.dot') : [];
-
-    const isSlideType = container.classList.contains('slideshow--slide');
-
-    function goTo(index) {
-      const prev = current;
-      slides[prev].classList.remove('active');
-      if (dots[prev]) dots[prev].classList.remove('active');
-
-      // For slide-from-right: outgoing slide exits left
-      if (isSlideType) {
-        slides[prev].classList.add('exit-left');
-        setTimeout(() => slides[prev].classList.remove('exit-left'), 650);
-      }
-
-      current = index;
-      slides[current].classList.add('active');
-      if (dots[current]) dots[current].classList.add('active');
-    }
-
-    function next() {
-      goTo((current + 1) % slides.length);
-    }
-
-    // Auto-advance, but pause while the visitor is hovering the slideshow
-    let timer = setInterval(next, interval);
-    container.addEventListener('mouseenter', () => clearInterval(timer));
-    container.addEventListener('mouseleave', () => { timer = setInterval(next, interval); });
-  });
-})();
-
-
-
-/* ===== ACTIVE NAV LINK HIGHLIGHTING ===== */
-(function initActiveNavLinks() {
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks  = document.querySelectorAll('.nav-link');
-  if (!sections.length || !navLinks.length) return;
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const id = entry.target.getAttribute('id');
-          navLinks.forEach((link) => {
-            link.style.color = '';
-            if (link.getAttribute('href') === `#${id}`) {
-              link.style.color = 'var(--text-primary)';
-            }
-          });
-        }
-      });
-    },
-    { threshold: 0.4 }
-  );
-
-  sections.forEach((section) => observer.observe(section));
-})();
-
-
-/* ===== THEME TOGGLE (light / dark) ===== */
-(function initThemeToggle() {
-  const KEY = 'eh-theme';
+/* ===== THEME TOGGLE ===== */
+function initTheme() {
   const root = document.documentElement;
   const btn = document.getElementById('themeToggle');
   const meta = document.querySelector('meta[name="theme-color"]');
-
-  function apply(theme) {
+  const apply = (theme) => {
     root.setAttribute('data-theme', theme);
-    if (meta) meta.setAttribute('content', theme === 'light' ? '#f6f8fb' : '#0a0a0a');
-    if (btn) btn.setAttribute('aria-label',
-      theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode');
-  }
-
-  // Inline <head> script already set the initial attribute; mirror it here.
+    if (meta) meta.setAttribute('content', theme === 'light' ? '#f5f7fa' : '#0a0a0a');
+    if (btn) btn.setAttribute('aria-label', theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode');
+  };
   apply(root.getAttribute('data-theme') === 'light' ? 'light' : 'dark');
-
-  if (btn) {
-    btn.addEventListener('click', () => {
-      const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-      try { localStorage.setItem(KEY, next); } catch (e) {}
-      apply(next);
-    });
-  }
-})();
-
-
-/* ===== PROJECTS SHOW MORE / LESS ===== */
-(function initProjectsToggle() {
-  const grid = document.getElementById('projectsGrid');
-  const btn = document.getElementById('projectsToggle');
-  const secondary = document.getElementById('secondaryProjects');
-  if (!grid || !btn) return;
-
-  const label = btn.querySelector('.projects-toggle-label');
-  const extraCount = grid.querySelectorAll('.project-card.extra').length +
-    (secondary ? secondary.querySelectorAll('.secondary-card').length : 0);
-
-  function setLabel(expanded) {
-    if (label) label.textContent = expanded ? 'Show fewer projects' : `Show all projects (+${extraCount})`;
-    btn.setAttribute('aria-expanded', String(expanded));
-  }
-  setLabel(false);
-
-  btn.addEventListener('click', () => {
-    const expanding = grid.classList.contains('collapsed');
-    grid.classList.toggle('collapsed', !expanding);
-    if (secondary) secondary.hidden = !expanding;
-    // Make sure revealed fade-in blocks are shown even if the observer already ran
-    if (expanding) {
-      grid.querySelectorAll('.project-card.extra').forEach((c) => c.classList.add('visible'));
-      if (secondary) secondary.classList.add('visible');
-    } else {
-      // Scroll back up to the projects section so "show fewer" isn't disorienting
-      const nav = document.getElementById('navbar');
-      const top = document.getElementById('projects').getBoundingClientRect().top +
-        window.scrollY - (nav ? nav.offsetHeight : 72) - 16;
-      window.scrollTo({ top, behavior: 'smooth' });
-    }
-    setLabel(expanding);
+  if (btn) btn.addEventListener('click', () => {
+    const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    try { localStorage.setItem('eh-theme', next); } catch (e) {}
+    apply(next);
   });
-})();
+}
+
+/* ===== MOBILE NAV ===== */
+function initNav() {
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  if (!toggle || !links) return;
+  const set = (open) => {
+    links.classList.toggle('open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  };
+  toggle.addEventListener('click', () => set(!links.classList.contains('open')));
+  links.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => set(false)));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') set(false); });
+  document.addEventListener('click', (e) => {
+    if (links.classList.contains('open') && !links.contains(e.target) && !toggle.contains(e.target)) set(false);
+  });
+}
+
+/* ===== DETAILS EXPANDERS ===== */
+function initExpanders() {
+  document.querySelectorAll('.expander-toggle').forEach((btn) => {
+    const body = document.getElementById(btn.getAttribute('aria-controls'));
+    if (!body) return;
+    btn.addEventListener('click', () => {
+      const open = btn.getAttribute('aria-expanded') !== 'true';
+      btn.setAttribute('aria-expanded', String(open));
+      body.classList.toggle('open', open);
+      const label = btn.querySelector('span');
+      if (label) label.textContent = open ? 'Less' : 'Details';
+    });
+  });
+}
+
+/* ===== IMAGE SLIDESHOWS ===== */
+function initSlideshows() {
+  document.querySelectorAll('.slideshow').forEach((box) => {
+    const slides = [...box.querySelectorAll('.slide')];
+    const dotsBox = box.querySelector('.slide-dots');
+    if (slides.length < 2) return;
+    let current = 0;
+    const dots = slides.map((_, i) => {
+      if (!dotsBox) return null;
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.setAttribute('aria-label', `Show image ${i + 1} of ${slides.length}`);
+      dot.addEventListener('click', () => goTo(i));
+      dotsBox.appendChild(dot);
+      return dot;
+    });
+    function goTo(i) {
+      slides[current].classList.remove('active');
+      dots[current]?.classList.remove('active');
+      current = i;
+      slides[current].classList.add('active');
+      dots[current]?.classList.add('active');
+    }
+    goTo(0);
+    if (reduceMotion) return;
+    const every = parseInt(box.dataset.interval, 10) || 4000;
+    let timer = setInterval(() => goTo((current + 1) % slides.length), every);
+    box.addEventListener('mouseenter', () => clearInterval(timer));
+    box.addEventListener('mouseleave', () => { timer = setInterval(() => goTo((current + 1) % slides.length), every); });
+  });
+}
+
+/* ===== PROJECT FILTERS + SHOW ALL ===== */
+function initProjects() {
+  const grid = document.getElementById('projectsGrid');
+  if (!grid) return;
+  const chips = [...document.querySelectorAll('.filter-chip')];
+  const items = [...grid.querySelectorAll('.project-card, .extra-mini')];
+  const more = document.getElementById('projectsToggle');
+
+  chips.forEach((chip) => chip.addEventListener('click', () => {
+    const f = chip.dataset.filter;
+    chips.forEach((c) => c.setAttribute('aria-pressed', String(c === chip)));
+    grid.classList.toggle('filtered', f !== 'all');
+    items.forEach((el) => { el.hidden = f !== 'all' && !el.dataset.cat.split(' ').includes(f); });
+    if (window.ScrollTrigger) ScrollTrigger.refresh();
+  }));
+
+  if (more) more.addEventListener('click', () => {
+    const open = !grid.classList.contains('expanded');
+    grid.classList.toggle('expanded', open);
+    more.setAttribute('aria-expanded', String(open));
+    more.innerHTML = open ? 'Show fewer projects' : 'Show all projects <span class="count">(+4)</span>';
+    if (!open) document.getElementById('projects').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
+    if (window.ScrollTrigger) ScrollTrigger.refresh();
+  });
+}
+
+/* ===== SIDE RAIL: accordions on narrow screens ===== */
+function initRailAccordions() {
+  const blocks = [...document.querySelectorAll('.rail-block')];
+  const mq = window.matchMedia('(max-width: 900px)');
+  const rail = document.getElementById('rail');
+  const apply = () => blocks.forEach((b, i) => { b.open = !mq.matches || i === 0; });
+  // Rail taller than the viewport: stick by its bottom edge instead of hiding the end
+  const setTop = () => {
+    if (!rail) return;
+    const nav = document.getElementById('navbar')?.offsetHeight || 64;
+    const top = Math.min(nav + 16, window.innerHeight - rail.offsetHeight - 16);
+    rail.style.setProperty('--rail-top', `${top}px`);
+  };
+  apply(); setTop();
+  mq.addEventListener('change', () => { apply(); setTop(); });
+  window.addEventListener('resize', setTop);
+  rail?.addEventListener('toggle', setTop, true);
+}
+
+/* ===== CURSOR SPOTLIGHT + CARD TILT ===== */
+function initSpotlight() {
+  if (reduceMotion || window.matchMedia('(hover: none)').matches) return;
+  document.querySelectorAll('.tile, .project-card').forEach((el) => {
+    const tilt = el.classList.contains('project-card');
+    el.addEventListener('pointermove', (e) => {
+      const r = el.getBoundingClientRect();
+      const x = e.clientX - r.left, y = e.clientY - r.top;
+      el.style.setProperty('--mx', `${x}px`);
+      el.style.setProperty('--my', `${y}px`);
+      if (tilt) {
+        const rx = (y / r.height - 0.5) * -3, ry = (x / r.width - 0.5) * 3;
+        el.style.transform = `perspective(1000px) rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg)`;
+      }
+    });
+    el.addEventListener('pointerleave', () => { if (tilt) el.style.transform = ''; });
+  });
+}
 
 /* ===== NEURAL CONSTELLATION BACKGROUND =====
    Drifting nodes linked by faint lines; the cursor gently attracts
-   nodes and draws temporary links. Disabled for reduced motion,
-   paused when the tab is hidden, dimmed in light mode. */
-(function initConstellation() {
+   nodes. Off for reduced motion, paused when the tab is hidden. */
+function initConstellation() {
   const canvas = document.getElementById('constellation');
   if (!canvas) return;
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    canvas.remove();
-    return;
-  }
-
+  if (reduceMotion) { canvas.remove(); return; }
   const ctx = canvas.getContext('2d');
   let W, H, nodes = [], linkDist;
   const mouse = { x: null, y: null };
-  const MOUSE_RANGE = 160;
-
-  function isLight() {
-    return document.documentElement.getAttribute('data-theme') === 'light';
-  }
+  const RANGE = 160;
+  const isLight = () => document.documentElement.getAttribute('data-theme') === 'light';
 
   function build() {
     const dpr = window.devicePixelRatio || 1;
-    W = window.innerWidth;
-    H = window.innerHeight;
-    canvas.width = W * dpr;
-    canvas.height = H * dpr;
+    W = window.innerWidth; H = window.innerHeight;
+    canvas.width = W * dpr; canvas.height = H * dpr;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-    const count = Math.min(70, Math.max(28, Math.round((W * H) / 22000)));
-    linkDist = Math.min(170, Math.max(110, W / 9));
-    nodes = [];
-    for (let i = 0; i < count; i++) {
-      nodes.push({
-        x: Math.random() * W,
-        y: Math.random() * H,
-        vx: (Math.random() - 0.5) * 0.22,
-        vy: (Math.random() - 0.5) * 0.22,
-        r: 1 + Math.random() * 1.6,
-      });
-    }
+    const count = Math.min(60, Math.max(24, Math.round((W * H) / 26000)));
+    linkDist = Math.min(160, Math.max(100, W / 9));
+    nodes = Array.from({ length: count }, () => ({
+      x: Math.random() * W, y: Math.random() * H,
+      vx: (Math.random() - 0.5) * 0.2, vy: (Math.random() - 0.5) * 0.2,
+      r: 1 + Math.random() * 1.4,
+    }));
   }
-
   let resizeTimer;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(build, 200);
-  });
-  window.addEventListener('mousemove', (e) => {
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
-  }, { passive: true });
+  window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(build, 200); });
+  window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; }, { passive: true });
   document.addEventListener('mouseleave', () => { mouse.x = null; });
-
   let running = true;
   document.addEventListener('visibilitychange', () => {
-    const wasRunning = running;
-    running = !document.hidden;
-    if (running && !wasRunning) requestAnimationFrame(frame);
+    const was = running; running = !document.hidden;
+    if (running && !was) requestAnimationFrame(frame);
   });
 
   function frame() {
     if (!running) return;
     requestAnimationFrame(frame);
     ctx.clearRect(0, 0, W, H);
-
     const light = isLight();
-    const rgb = light ? '8,145,178' : '0,212,255';
-    const nodeAlpha = light ? 0.30 : 0.70;
-    const lineBase = light ? 0.09 : 0.20;
+    const rgb = light ? '0,111,138' : '0,212,255';
+    const nodeAlpha = light ? 0.3 : 0.55;
+    const lineBase = light ? 0.08 : 0.15;
     const maxD2 = linkDist * linkDist;
-
-    // Move nodes (gentle cursor attraction + drift + bounce)
     for (const n of nodes) {
       if (mouse.x !== null) {
-        const dx = mouse.x - n.x, dy = mouse.y - n.y;
-        const d2 = dx * dx + dy * dy;
-        if (d2 > 1 && d2 < MOUSE_RANGE * MOUSE_RANGE) {
-          const f = 0.012 / Math.sqrt(d2);
-          n.vx += dx * f;
-          n.vy += dy * f;
-        }
+        const dx = mouse.x - n.x, dy = mouse.y - n.y, d2 = dx * dx + dy * dy;
+        if (d2 > 1 && d2 < RANGE * RANGE) { const f = 0.01 / Math.sqrt(d2); n.vx += dx * f; n.vy += dy * f; }
       }
-      n.vx = Math.max(-0.4, Math.min(0.4, n.vx));
-      n.vy = Math.max(-0.4, Math.min(0.4, n.vy));
-      n.x += n.vx;
-      n.y += n.vy;
+      n.vx = Math.max(-0.35, Math.min(0.35, n.vx));
+      n.vy = Math.max(-0.35, Math.min(0.35, n.vy));
+      n.x += n.vx; n.y += n.vy;
       if (n.x < 0 || n.x > W) { n.vx *= -1; n.x = Math.max(0, Math.min(W, n.x)); }
       if (n.y < 0 || n.y > H) { n.vy *= -1; n.y = Math.max(0, Math.min(H, n.y)); }
     }
-
-    // Node-to-node links
     ctx.lineWidth = 1;
     for (let i = 0; i < nodes.length; i++) {
       for (let j = i + 1; j < nodes.length; j++) {
-        const dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y;
-        const d2 = dx * dx + dy * dy;
+        const dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y, d2 = dx * dx + dy * dy;
         if (d2 < maxD2) {
-          ctx.strokeStyle = 'rgba(' + rgb + ',' + (lineBase * (1 - d2 / maxD2)).toFixed(3) + ')';
-          ctx.beginPath();
-          ctx.moveTo(nodes[i].x, nodes[i].y);
-          ctx.lineTo(nodes[j].x, nodes[j].y);
-          ctx.stroke();
+          ctx.strokeStyle = `rgba(${rgb},${(lineBase * (1 - d2 / maxD2)).toFixed(3)})`;
+          ctx.beginPath(); ctx.moveTo(nodes[i].x, nodes[i].y); ctx.lineTo(nodes[j].x, nodes[j].y); ctx.stroke();
         }
       }
     }
-
-    // Cursor links (slightly brighter)
-    if (mouse.x !== null) {
-      for (const n of nodes) {
-        const dx = n.x - mouse.x, dy = n.y - mouse.y;
-        const d2 = dx * dx + dy * dy;
-        if (d2 < maxD2) {
-          ctx.strokeStyle = 'rgba(' + rgb + ',' + ((lineBase + 0.10) * (1 - d2 / maxD2)).toFixed(3) + ')';
-          ctx.beginPath();
-          ctx.moveTo(n.x, n.y);
-          ctx.lineTo(mouse.x, mouse.y);
-          ctx.stroke();
-        }
-      }
-    }
-
-    // Nodes
-    ctx.fillStyle = 'rgba(' + rgb + ',' + nodeAlpha + ')';
-    for (const n of nodes) {
-      ctx.beginPath();
-      ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
-      ctx.fill();
-    }
+    ctx.fillStyle = `rgba(${rgb},${nodeAlpha})`;
+    for (const n of nodes) { ctx.beginPath(); ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2); ctx.fill(); }
   }
-
   build();
   requestAnimationFrame(frame);
-})();
+}
 
-/* ===== GLANCE EXPANDERS (experience + project details) =====
-   Content is in the DOM by default (works without JS); JS hides it
-   on load and toggles it per-card. */
-(function initExpanders() {
-  document.querySelectorAll('.expander-body').forEach((body) => { body.hidden = true; });
+/* ===== MOTION (GSAP) =====
+   Everything starts visible with final values. Only when motion is
+   allowed and GSAP loaded do we animate, and every tween ends by
+   restoring the final state. */
+function initMotion() {
+  const bar = document.querySelector('.scroll-progress');
+  if (bar) {
+    const update = () => {
+      const h = document.documentElement;
+      bar.style.transform = `scaleX(${h.scrollTop / ((h.scrollHeight - window.innerHeight) || 1)})`;
+    };
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+  }
+  if (reduceMotion || !window.gsap || !window.ScrollTrigger) return;
+  gsap.registerPlugin(ScrollTrigger);
+  if (window.ScrambleTextPlugin) gsap.registerPlugin(ScrambleTextPlugin);
 
-  document.querySelectorAll('.expander-toggle').forEach((btn) => {
-    const body = document.getElementById(btn.getAttribute('aria-controls'));
-    if (!body) return;
-    const label = btn.querySelector('.expander-label');
-    btn.addEventListener('click', () => {
-      const isOpen = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', String(!isOpen));
-      body.hidden = isOpen;
-      if (label) label.textContent = isOpen ? 'Details' : 'Hide details';
+  gsap.from('.bento > .tile', {
+    y: 18, opacity: 0, duration: 0.55, stagger: 0.07, ease: 'power2.out', clearProps: 'opacity,transform',
+  });
+
+  const name = document.querySelector('[data-scramble]');
+  if (name && window.ScrambleTextPlugin) {
+    const text = name.textContent;
+    gsap.to(name, { duration: 1.1, delay: 0.15, scrambleText: { text, chars: 'upperCase', speed: 0.6, revealDelay: 0.2 },
+      onComplete: () => { name.textContent = text; } });
+  }
+
+  document.querySelectorAll('[data-count]').forEach((el) => {
+    const to = parseFloat(el.dataset.to);
+    if (Number.isNaN(to)) return;
+    const dec = parseInt(el.dataset.decimals || '0', 10);
+    const fmt = (v) => `${el.dataset.prefix || ''}${v.toFixed(dec)}${el.dataset.suffix || ''}`;
+    const state = { v: 0 };
+    el.textContent = fmt(0);
+    ScrollTrigger.create({
+      trigger: el, start: 'top 92%', once: true,
+      onEnter: () => gsap.to(state, {
+        v: to, duration: 1.3, ease: 'power2.out',
+        onUpdate: () => { el.textContent = fmt(state.v); },
+        onComplete: () => { el.textContent = el.dataset.final; },
+      }),
     });
   });
-})();
+
+  // Deep links (/#contact): skip scroll reveals and re-land on the target once layout settles
+  if (location.hash && document.querySelector(location.hash)) {
+    let userMoved = false;
+    ['wheel', 'touchstart', 'keydown'].forEach((ev) => window.addEventListener(ev, () => { userMoved = true; }, { once: true, passive: true }));
+    const land = () => { if (!userMoved) document.querySelector(location.hash).scrollIntoView({ behavior: 'auto' }); };
+    window.addEventListener('load', () => {
+      ScrollTrigger.refresh();
+      land();
+      document.fonts?.ready.then(land);   // web fonts can reflow the page above the target
+      setTimeout(land, 700);
+    });
+    return;
+  }
+
+  gsap.utils.toArray('.section-head, .project-card, .contrib-card, .people-card, .xp-row, .oss-card, .contact-card, .rail-block').forEach((el) => {
+    if (el.getBoundingClientRect().top < window.innerHeight) return; // already on screen: leave it be
+    gsap.from(el, {
+      y: 22, opacity: 0, duration: 0.55, ease: 'power2.out', clearProps: 'opacity,transform',
+      scrollTrigger: { trigger: el, start: 'top 94%', once: true },
+    });
+  });
+}

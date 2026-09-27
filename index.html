@@ -3,1024 +3,547 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Eoin Houstoun - Data Scientist & AI Engineer. Published researcher at AIAI 2025 (Springer). Expert in machine learning, clinical AI, NLP, and AI engineering.">
-  <meta property="og:title" content="Eoin Houstoun | Data Scientist & AI Engineer">
-  <meta property="og:description" content="Published researcher (AIAI 2025 / Springer) specialising in machine learning, clinical AI, and AI engineering.">
+  <title>Eoin Houstoun | AI Engineer · Machine Learning &amp; Statistics</title>
+  <meta name="description" content="Eoin Houstoun, AI Engineer on TurinTech's Research and Data Science team. Springer-published machine learning researcher, MSc AI and Data Science with Distinction (ranked 1st). Statistical modelling, probability and sports analytics.">
+  <meta property="og:title" content="Eoin Houstoun | AI Engineer · Machine Learning &amp; Statistics">
+  <meta property="og:description" content="AI Engineer at TurinTech building statistically validated code optimisation. Springer-published ML researcher, MSc Distinction (ranked 1st), First Class BSc. Probability models for football.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://eoinhoustoun.github.io/">
-  <meta property="og:image" content="https://eoinhoustoun.github.io/docs/assets/og_image.png">
+  <meta property="og:image" content="https://eoinhoustoun.github.io/docs/assets/og_image.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://eoinhoustoun.github.io/docs/assets/og_image.png">
-
-  <!-- CNAME: To use a custom domain, create a file named CNAME in the repo root with your domain (e.g. eoinhoustoun.com) -->
-
-  <title>Eoin Houstoun | Data Scientist & AI Engineer</title>
-
-  <!-- Favicon: EH monogram (inline SVG, no extra request) -->
+  <meta name="twitter:image" content="https://eoinhoustoun.github.io/docs/assets/og_image.jpg">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230a0a0a'/%3E%3Ctext x='50' y='70' font-family='Arial,Helvetica,sans-serif' font-size='54' font-weight='bold' text-anchor='middle' fill='%2300d4ff'%3EEH%3C/text%3E%3C/svg%3E">
   <meta name="theme-color" content="#0a0a0a">
-  <!-- Set theme before paint to avoid a flash of the wrong mode -->
-  <script>try{var t=localStorage.getItem('eh-theme')||'dark';document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
-
+  <script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('eh-theme')||'dark';document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','dark');}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=10">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=11">
 </head>
 <body>
 
-  <!-- Neural constellation background (decorative) -->
   <canvas id="constellation" aria-hidden="true"></canvas>
+  <a class="skip-link" href="#projects">Skip to projects</a>
 
   <!-- ===== NAVIGATION ===== -->
-  <nav id="navbar">
-    <div class="nav-container">
-      <a href="#hero" class="nav-logo">EH</a>
-      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light and dark mode" title="Toggle theme">
-        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
-          <circle cx="12" cy="12" r="4.2"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>
-        </svg>
-        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>
-        </svg>
-      </button>
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+  <nav id="navbar" aria-label="Main">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo" aria-label="Back to top">EH</a>
       <ul class="nav-links" id="navLinks">
-        <li><a href="#snapshot" class="nav-link">About</a></li>
-        <li><a href="#experience" class="nav-link">Experience</a></li>
-        <li><a href="#opensource" class="nav-link">Open Source</a></li>
-        <li><a href="#projects" class="nav-link">Projects</a></li>
-        <li><a href="#contact" class="nav-link contact-nav">Contact Me</a></li>
+        <li><a href="#projects">Work</a></li>
+        <li><a href="#turintech">TurinTech</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#rail">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light and dark mode">
+          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+        <a class="nav-cta" href="https://www.linkedin.com/in/eoin-houstoun-b0322b231/" target="_blank" rel="noopener">LinkedIn</a>
+        <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
+      </div>
     </div>
+    <div class="scroll-progress" aria-hidden="true"></div>
   </nav>
 
-  <!-- ===== HERO SECTION ===== -->
-  <section id="hero">
-    <!-- Animated background grid -->
-    <div class="hero-bg">
-      <div class="hero-grid"></div>
-      <div class="hero-orb hero-orb-1"></div>
-      <div class="hero-orb hero-orb-2"></div>
-    </div>
-
-    <div class="hero-content">
-      <div class="hero-inner">
-        <div class="hero-text">
-          <!-- Published badge: lead credential -->
-          <a class="published-badge" href="https://link.springer.com/chapter/10.1007/978-3-031-96235-6_5" target="_blank" rel="noopener">
-            <span class="badge-pulse"></span>
-            Published Researcher &nbsp;&middot;&nbsp; AIAI 2025 &nbsp;&middot;&nbsp; Springer
-          </a>
-
-          <h1 class="hero-name">Eoin Houstoun</h1>
-
-          <!-- Typing animation cycles through titles -->
-          <h2 class="hero-title">
-            <span id="typingText"></span><span class="cursor" aria-hidden="true">|</span>
-          </h2>
-
-          <p class="hero-sub">
-            AI Engineer building agentic code optimisation and the statistics that prove it works. Published machine learning researcher.
-          </p>
-
-          <div class="chip-row hero-chips">
-            <span class="chip">AI Engineer @ TurinTech</span>
-            <span class="chip">MSc AI &amp; Data Science &middot; Distinction</span>
-            <span class="chip">BSc Data Science &amp; Analytics &middot; First Class Honours</span>
-          </div>
-
+  <!-- ===== HERO: everything that matters, in one screen ===== -->
+  <header id="hero">
+    <div class="bento">
+      <article class="tile tile-id">
+        <img class="hero-photo" src="docs/assets/me_hero.jpg" alt="Eoin Houstoun" width="574" height="1100" fetchpriority="high">
+        <div class="id-text">
+          <p class="eyebrow"><img class="flag" src="docs/assets/flag_ie.png" alt="" width="20" height="14"> Irish · Based in London</p>
+          <h1 class="hero-name" data-scramble>Eoin Houstoun</h1>
+          <p class="hero-role">AI Engineer · Research &amp; Data Science</p>
+          <p class="hero-pitch">I build machine learning and statistical models, and the evidence that proves they work. At <strong>TurinTech</strong> I build AI agents and the statistics behind them, and onboard the clients who use them.</p>
           <div class="hero-ctas">
-            <a href="#projects" class="btn btn-primary">View My Work</a>
-            <a href="https://link.springer.com/chapter/10.1007/978-3-031-96235-6_5" target="_blank" rel="noopener" class="btn btn-secondary">Read My Paper</a>
-          </div>
-
-          <div class="hero-current">
-            <span class="hero-current-dot"></span>
-            Currently: building <strong>Artemis</strong> at TurinTech, an agentic code optimisation platform
-          </div>
-        </div>
-
-        <!-- Hero photo -->
-        <div class="hero-photo">
-          <div class="hero-photo-frame">
-            <img src="docs/assets/me_hero.jpg" alt="Eoin Houstoun" fetchpriority="high">
-          </div>
-          <div class="hero-flag">
-            <img src="docs/assets/flag_ie.png" alt="Flag of Ireland">
-            <span>Irish &middot; Based in London</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Scroll indicator -->
-    <div class="scroll-indicator">
-      <span>Scroll</span>
-      <div class="scroll-arrow"></div>
-    </div>
-  </section>
-
-  <!-- ===== SNAPSHOT SECTION (about + education + skills) ===== -->
-  <section id="snapshot">
-    <div class="container">
-      <div class="about-grid">
-        <div class="about-text fade-in">
-          <p>
-            AI Engineer on the Research and Data Science team at <strong>TurinTech</strong>, building
-            Artemis, a code optimisation platform whose agents explore a codebase, hypothesise changes,
-            benchmark them and select the best improvement. I build the agentic system behind that loop
-            and brought <strong>statistical testing, confidence intervals and A/B validation</strong> to
-            the platform, so every reported gain is proven real rather than noise.
-          </p>
-          <p>
-            Lead author of peer-reviewed Alzheimer's research published by
-            <strong>Springer (AIAI 2025)</strong>.
-          </p>
-          <p>
-            Outside work I build statistical models and prediction apps for the questions I find
-            interesting, from Premier League forecasting to clinical decision support. Everything
-            below is a project you can open, run or read.
-          </p>
-          <div class="about-links">
-            <a href="https://github.com/EoinHoustoun" target="_blank" rel="noopener" class="about-link">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
-              </svg>
-              GitHub
+            <a class="btn btn-primary" href="https://www.linkedin.com/in/eoin-houstoun-b0322b231/" target="_blank" rel="noopener">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              Message me on LinkedIn
             </a>
-            <a href="https://www.mygreatlearning.com/eportfolio/eoin-houstoun" target="_blank" rel="noopener" class="about-link">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-              </svg>
-              ePortfolio &amp; Certificate
-            </a>
+            <a class="btn btn-ghost btn-icon" href="https://github.com/EoinHoustoun" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></a>
           </div>
         </div>
+      </article>
 
-        <div class="about-stats fade-in">
-          <div class="stat-card">
-            <div class="stat-number">13+</div>
-            <div class="stat-label">Machine Learning<br>Projects</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number">1</div>
-            <div class="stat-label">Springer<br>Publication</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number">2</div>
-            <div class="stat-label">Clinical AI<br>Tools Deployed</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number">6</div>
-            <div class="stat-label">Open Source<br>PRs Merged</div>
-          </div>
-        </div>
-      </div>
+      <a class="tile tile-paper on-dark" href="https://link.springer.com/chapter/10.1007/978-3-031-96235-6_5" target="_blank" rel="noopener">
+        <p class="eyebrow">Springer · AIAI 2025</p>
+        <p class="tile-title">Lead author: Alzheimer's classification with ML</p>
+        <p class="tile-text">Presented in Limassol, Cyprus <span aria-hidden="true">→</span></p>
+      </a>
 
-      <!-- Education: three compact cards -->
-      <h3 class="snapshot-subhead fade-in">Education</h3>
-      <div class="snapshot-edu">
-        <div class="edu-card edu-card--compact fade-in">
-          <div class="edu-photo edu-photo--compact">
-            <img src="docs/assets/goldsmiths_grad.jpg" alt="Eoin celebrating his MSc graduation in front of Big Ben, London" style="object-position: center 26%;" loading="lazy">
-          </div>
-          <div class="edu-body">
-            <div class="edu-meta">
-              <span class="edu-badge">Distinction &middot; 87%</span>
-              <span class="edu-year">2024 – 2025</span>
-            </div>
-            <h3 class="edu-degree">MSc Artificial Intelligence &amp; Data Science</h3>
-            <div class="edu-institution">Goldsmiths, University of London <img class="flag-icon" src="docs/assets/flag_gb.png" alt="Flag of the United Kingdom"></div>
-          </div>
-        </div>
+      <a class="tile tile-edu" href="#rail">
+        <p class="eyebrow">Education</p>
+        <span class="metric" data-count data-final="87%" data-to="87" data-suffix="%">87%</span>
+        <p class="tile-text"><strong>MSc AI &amp; Data Science</strong> average<br><span class="hl">Distinction · ranked 1st</span> · Goldsmiths</p>
+        <p class="tile-text"><strong>BSc Data Science &amp; Analytics</strong><br><span class="hl">First Class Honours</span> · UCC</p>
+      </a>
 
-        <div class="edu-card edu-card--compact fade-in">
-          <div class="edu-photo edu-photo--compact">
-            <div class="slideshow slideshow--crossfade" data-interval="3500">
-              <img src="docs/assets/ucc_grad.jpg" alt="Eoin's BSc graduation portrait, University College Cork" class="slide active" style="object-position: center 26%;" loading="lazy">
-              <img src="docs/assets/ucc_hats.jpg" alt="Eoin and classmates throwing graduation caps at UCC" class="slide" style="object-position: center 42%;" loading="lazy">
-              <div class="slide-dots"></div>
-            </div>
-          </div>
-          <div class="edu-body">
-            <div class="edu-meta">
-              <span class="edu-badge">First Class Honours</span>
-              <span class="edu-year">2020 – 2024</span>
-            </div>
-            <h3 class="edu-degree">BSc Data Science &amp; Analytics</h3>
-            <div class="edu-institution">University College Cork, Ireland <img class="flag-icon" src="docs/assets/flag_ie.png" alt="Flag of Ireland"></div>
-          </div>
-        </div>
-
-        <div class="edu-card edu-card--compact fade-in">
-          <div class="edu-photo edu-photo--compact edu-photo--badge">
-            <img src="docs/assets/MIT_BADGE.png" alt="Massachusetts Institute of Technology logo" loading="lazy">
-          </div>
-          <div class="edu-body">
-            <div class="edu-meta">
-              <span class="edu-badge edu-badge-cert">Scholarship</span>
-              <span class="edu-year">May – Jul 2025</span>
-            </div>
-            <h3 class="edu-degree">Machine Learning</h3>
-            <div class="edu-institution">MIT, Remote <img class="flag-icon" src="docs/assets/flag_us.png" alt="Flag of the United States"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Skills: icon tiles per category -->
-      <div class="snapshot-skills fade-in">
-        <div class="skill-cat">
-          <h3 class="skill-cat-title">Languages &amp; Core</h3>
-          <div class="skill-tiles">
-            <div class="skill-tile"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14.25.18l.9.2.73.26.59.3.45.32.34.34.25.34.16.33.1.3.04.26.02.2-.01.13V8.5l-.05.63-.13.55-.21.46-.26.38-.3.31-.33.25-.35.19-.35.14-.33.1-.3.07-.26.04-.21.02H8.77l-.69.05-.59.14-.5.22-.41.27-.33.32-.27.35-.2.36-.15.37-.1.35-.07.32-.04.27-.02.21v3.06H3.17l-.21-.03-.28-.07-.32-.12-.35-.18-.36-.26-.36-.36-.35-.46-.32-.59-.28-.73-.21-.88-.14-1.05-.05-1.23.06-1.22.16-1.04.24-.87.32-.71.36-.57.4-.44.42-.33.42-.24.4-.16.36-.1.32-.05.24-.01h.16l.06.01h8.16v-.83H6.18l-.01-2.75-.02-.37.05-.34.11-.31.17-.28.25-.26.31-.23.38-.2.44-.18.51-.15.58-.12.64-.1.71-.06.77-.04.84-.02 1.27.05zm-6.3 1.98l-.23.33-.08.41.08.41.23.34.33.22.41.09.41-.09.33-.22.23-.34.08-.41-.08-.41-.23-.33-.33-.22-.41-.09-.41.09zm13.09 3.95l.28.06.32.12.35.18.36.27.36.35.35.47.32.59.28.73.21.88.14 1.04.05 1.23-.06 1.23-.16 1.04-.24.86-.32.71-.36.57-.4.45-.42.33-.42.24-.4.16-.36.09-.32.05-.24.02-.16-.01h-8.22v.82h5.84l.01 2.76.02.36-.05.34-.11.31-.17.29-.25.25-.31.24-.38.2-.44.17-.51.15-.58.13-.64.09-.71.07-.77.04-.84.01-1.27-.04-1.07-.14-.9-.2-.73-.25-.59-.3-.45-.33-.34-.34-.25-.34-.16-.33-.1-.3-.04-.25-.02-.2.01-.13v-5.34l.05-.64.13-.54.21-.46.26-.38.3-.32.33-.24.35-.2.35-.14.33-.1.3-.06.26-.04.21-.02.13-.01h5.84l.69-.05.59-.14.5-.21.41-.28.33-.32.27-.35.2-.36.15-.36.1-.35.07-.32.04-.28.02-.21V6.07h2.09l.14.01zm-6.47 14.25l-.23.33-.08.41.08.41.23.33.33.23.41.08.41-.08.33-.23.23-.33.08-.41-.08-.41-.23-.33-.33-.23-.41-.08-.41.08z"/></svg><span>Python</span></div>
-            <div class="skill-tile"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.746c-6.627 0-12 3.599-12 8.037 0 3.897 4.144 7.144 9.64 7.88V16.26c-2.924-.915-4.925-2.755-4.925-4.877 0-3.035 4.084-5.494 9.12-5.494 5.038 0 8.757 1.683 8.757 5.494 0 1.976-.999 3.379-2.662 4.272.09.066.174.128.258.216.169.149.25.363.372.544 2.128-1.45 3.44-3.437 3.44-5.631 0-4.44-5.373-8.038-12-8.038zm-2.111 4.99v13.516l4.093-.002-.002-5.291h1.1c.225 0 .321.066.549.25.272.22.715.982.715.982l2.164 4.063 4.627-.002-2.864-4.826s-.086-.193-.265-.383a2.22 2.22 0 00-.582-.416c-.422-.214-1.149-.434-1.149-.434s3.578-.264 3.578-3.826c0-3.562-3.744-3.63-3.744-3.63zm4.127 2.93l2.478.002s1.149-.062 1.149 1.127c0 1.165-1.149 1.17-1.149 1.17h-2.478zm1.754 6.119c-.494.049-1.012.079-1.54.088v1.807a16.622 16.622 0 002.37-.473l-.471-.891s-.108-.183-.248-.394c-.039-.054-.08-.098-.111-.137z"/></svg><span>R</span></div>
-            <div class="skill-tile"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.405 5.501c-.115 0-.193.014-.274.033v.013h.014c.054.104.146.18.214.273.054.107.1.214.154.32l.014-.015c.094-.066.14-.172.14-.333-.04-.047-.046-.094-.08-.14-.04-.067-.126-.1-.18-.153zM5.77 18.695h-.927a50.854 50.854 0 00-.27-4.41h-.008l-1.41 4.41H2.45l-1.4-4.41h-.01a72.892 72.892 0 00-.195 4.41H0c.055-1.966.192-3.81.41-5.53h1.15l1.335 4.064h.008l1.347-4.064h1.095c.242 2.015.384 3.86.428 5.53zm4.017-4.08c-.378 2.045-.876 3.533-1.492 4.46-.482.716-1.01 1.073-1.583 1.073-.153 0-.34-.046-.566-.138v-.494c.11.017.24.026.386.026.268 0 .483-.075.647-.222.197-.18.295-.382.295-.605 0-.155-.077-.47-.23-.944L6.23 14.615h.91l.727 2.36c.164.536.233.91.205 1.123.4-1.064.678-2.227.835-3.483zm12.325 4.08h-2.63v-5.53h.885v4.85h1.745zm-3.32.135l-1.016-.5c.09-.076.177-.158.255-.25.433-.506.648-1.258.648-2.253 0-1.83-.718-2.746-2.155-2.746-.704 0-1.254.232-1.65.697-.43.508-.646 1.256-.646 2.245 0 .972.19 1.686.574 2.14.35.41.877.615 1.583.615.264 0 .506-.033.725-.098l1.325.772.36-.622zM15.5 17.588c-.225-.36-.337-.94-.337-1.736 0-1.393.424-2.09 1.27-2.09.443 0 .77.167.977.5.224.362.336.936.336 1.723 0 1.404-.424 2.108-1.27 2.108-.445 0-.77-.167-.978-.5zm-1.658-.425c0 .47-.172.856-.516 1.156-.344.3-.803.45-1.384.45-.543 0-1.064-.172-1.573-.515l.237-.476c.438.22.833.328 1.19.328.332 0 .593-.073.783-.22a.754.754 0 00.3-.615c0-.33-.23-.61-.648-.845-.388-.213-1.163-.657-1.163-.657-.422-.307-.632-.636-.632-1.177 0-.45.157-.81.47-1.085.315-.278.72-.415 1.22-.415.512 0 .98.136 1.4.41l-.213.476a2.726 2.726 0 00-1.064-.23c-.283 0-.502.068-.654.206a.685.685 0 00-.248.524c0 .328.234.61.666.85.393.215 1.187.67 1.187.67.433.305.648.63.648 1.168zm9.382-5.852c-.535-.014-.95.04-1.297.188-.1.04-.26.04-.274.167.055.053.063.14.11.214.08.134.218.313.346.407.14.11.28.216.427.31.26.16.555.255.81.416.145.094.293.213.44.313.073.05.12.14.214.172v-.02c-.046-.06-.06-.147-.105-.214-.067-.067-.134-.127-.2-.193a3.223 3.223 0 00-.695-.675c-.214-.146-.682-.35-.77-.595l-.013-.014c.146-.013.32-.066.46-.106.227-.06.435-.047.67-.106.106-.027.213-.06.32-.094v-.06c-.12-.12-.21-.283-.334-.395a8.867 8.867 0 00-1.104-.823c-.21-.134-.476-.22-.697-.334-.08-.04-.214-.06-.26-.127-.12-.146-.19-.34-.275-.514a17.69 17.69 0 01-.547-1.163c-.12-.262-.193-.523-.34-.763-.69-1.137-1.437-1.826-2.586-2.5-.247-.14-.543-.2-.856-.274-.167-.008-.334-.02-.5-.027-.11-.047-.216-.174-.31-.235-.38-.24-1.364-.76-1.644-.072-.18.434.267.862.422 1.082.115.153.26.328.34.5.047.116.06.235.107.356.106.294.207.622.347.897.073.14.153.287.247.413.054.073.146.107.167.227-.094.136-.1.334-.154.5-.24.757-.146 1.693.194 2.25.107.166.362.534.703.393.3-.12.234-.5.32-.835.02-.08.007-.133.048-.187v.015c.094.188.188.367.274.555.206.328.566.668.867.895.16.12.287.328.487.402v-.02h-.015c-.043-.058-.1-.086-.154-.133a3.445 3.445 0 01-.35-.4 8.76 8.76 0 01-.747-1.218c-.11-.21-.202-.436-.29-.643-.04-.08-.04-.2-.107-.24-.1.146-.247.273-.32.453-.127.288-.14.642-.188 1.01-.027.007-.014 0-.027.014-.214-.052-.287-.274-.367-.46-.2-.475-.233-1.238-.06-1.785.047-.14.247-.582.167-.716-.042-.127-.174-.2-.247-.303a2.478 2.478 0 01-.24-.427c-.16-.374-.24-.788-.414-1.162-.08-.173-.22-.354-.334-.513-.127-.18-.267-.307-.368-.52-.033-.073-.08-.194-.027-.274.014-.054.042-.075.094-.09.088-.072.335.022.422.062.247.1.455.194.662.334.094.066.195.193.315.226h.14c.214.047.455.014.655.073.355.114.675.28.962.46a5.953 5.953 0 012.085 2.286c.08.154.115.295.188.455.14.33.313.663.455.982.14.315.275.636.476.897.1.14.502.213.682.286.133.06.34.115.46.188.23.14.454.3.67.454.11.076.443.243.463.378z"/></svg><span>SQL</span></div>
-            <div class="skill-tile"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.546 10.93 13.067.452c-.604-.603-1.582-.603-2.188 0L8.708 2.627l2.76 2.76c.645-.215 1.379-.07 1.889.441.516.515.658 1.258.438 1.9l2.658 2.66c.645-.223 1.387-.078 1.9.435.721.72.721 1.884 0 2.604-.719.719-1.881.719-2.6 0-.539-.541-.674-1.337-.404-1.996L12.86 8.955v6.525c.176.086.342.203.488.348.713.721.713 1.883 0 2.6-.719.721-1.889.721-2.609 0-.719-.719-.719-1.879 0-2.598.182-.18.387-.316.605-.406V8.835c-.217-.091-.424-.222-.6-.401-.545-.545-.676-1.342-.396-2.009L7.636 3.7.45 10.881c-.6.605-.6 1.584 0 2.189l10.48 10.477c.604.604 1.582.604 2.186 0l10.43-10.43c.605-.603.605-1.582 0-2.187"/></svg><span>Git</span></div>
-            <div class="skill-tile"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.185.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.185.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.185.186.186m5.893 2.715h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.184-.186h-2.12a.186.186 0 00-.186.186v1.887c0 .102.084.185.186.185m-2.92 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.082.185.185.185M23.763 9.89c-.065-.051-.672-.51-1.954-.51-.338.001-.676.03-1.01.087-.248-1.7-1.653-2.53-1.716-2.566l-.344-.199-.226.327c-.284.438-.49.922-.612 1.43-.23.97-.09 1.882.403 2.661-.595.332-1.55.413-1.744.42H.751a.751.751 0 00-.75.748 11.376 11.376 0 00.692 4.062c.545 1.428 1.355 2.48 2.41 3.124 1.18.723 3.1 1.137 5.275 1.137.983.003 1.963-.086 2.93-.266a12.248 12.248 0 003.823-1.389c.98-.567 1.86-1.288 2.61-2.136 1.252-1.418 1.998-2.997 2.553-4.4h.221c1.372 0 2.215-.549 2.68-1.009.309-.293.55-.65.707-1.046l.098-.288Z"/></svg><span>Docker</span></div>
-          </div>
-        </div>
-
-        <div class="skill-cat">
-          <h3 class="skill-cat-title">Machine Learning</h3>
-          <div class="skill-tiles">
-            <div class="skill-tile"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15.601 5.53c-1.91.035-3.981.91-5.63 2.56-2.93 2.93-2.083 8.53-1.088 9.525.805.804 6.595 1.843 9.526-1.088a9.74 9.74 0 0 0 .584-.643c.043-.292.205-.66.489-1.106a1.848 1.848 0 0 1-.537.176c-.144.265-.37.55-.676.855-.354.335-.607.554-.76.656a.795.795 0 0 1-.437.152c-.35 0-.514-.308-.494-.924-.22.316-.425.549-.612.7a.914.914 0 0 1-.578.224c-.194 0-.36-.09-.496-.273a1.03 1.03 0 0 1-.193-.507 4.016 4.016 0 0 1-.726.583c-.224.132-.47.197-.74.197-.3 0-.543-.096-.727-.288a.978.978 0 0 1-.257-.524v.004c-.3.276-.564.48-.79.611a1.295 1.295 0 0 1-.649.197.693.693 0 0 1-.571-.275c-.145-.183-.218-.43-.218-.739 0-.464.101-1.02.302-1.67.201-.65.445-1.25.733-1.797l.842-.312a.21.21 0 0 1 .06-.013c.063 0 .116.047.157.14.04.095.061.221.061.38 0 .451-.104.888-.312 1.31-.207.422-.532.873-.974 1.352-.018.23-.027.388-.027.474 0 .193.036.345.106.458.071.113.165.169.282.169a.71.71 0 0 0 .382-.13c.132-.084.333-.26.602-.523.028-.418.187-.798.482-1.142.324-.38.685-.569 1.08-.569.206 0 .37.054.494.16a.524.524 0 0 1 .186.417c0 .458-.486.829-1.459 1.114.088.43.32.646.693.646a.807.807 0 0 0 .417-.117c.129-.076.321-.243.575-.497.032-.252.118-.495.259-.728.182-.3.416-.544.701-.73.285-.185.537-.278.756-.278.276 0 .47.127.58.381l.677-.374h.186l-.292.971c-.15.488-.226.823-.226 1.004 0 .19.067.285.202.285.086 0 .181-.045.285-.137.104-.092.25-.232.437-.42v.001c.143-.155.274-.32.392-.494-.19-.084-.285-.21-.285-.375 0-.17.058-.352.174-.545.116-.194.275-.29.479-.29.172 0 .258.088.258.265 0 .139-.05.338-.149.596.367-.04.687-.32.961-.842l.228-.01c1.059-2.438.828-5.075-.83-6.732-1.019-1.02-2.408-1.5-3.895-1.471zm4.725 8.203a8.938 8.938 0 0 1-1.333 2.151 1.09 1.09 0 0 0-.012.147c0 .168.047.309.14.423.092.113.206.17.34.17.296 0 .714-.264 1.254-.787-.001.04-.003.08-.003.121 0 .146.012.368.036.666l.733-.172c0-.2.003-.357.01-.474.01-.157.033-.33.066-.517.02-.11.07-.216.152-.315l.186-.216a5.276 5.276 0 0 1 .378-.397c.062-.055.116-.099.162-.13a.26.26 0 0 1 .123-.046c.055 0 .083.035.083.106 0 .07-.052.236-.156.497-.194.486-.292.848-.292 1.084 0 .175.046.314.136.418a.45.45 0 0 0 .358.155c.365 0 .803-.269 1.313-.808v-.381c-.361.426-.623.64-.784.64-.109 0-.163-.067-.163-.2 0-.1.065-.316.195-.65.19-.486.285-.836.285-1.048a.464.464 0 0 0-.112-.319.36.36 0 0 0-.282-.127c-.165 0-.354.077-.567.233-.213.156-.5.436-.863.84.053-.262.165-.622.335-1.08l-.809.156a6.54 6.54 0 0 0-.399 1.074c-.04.156-.07.316-.092.48a7.447 7.447 0 0 1-.49.45.38.38 0 0 1-.229.08.208.208 0 0 1-.174-.082.352.352 0 0 1-.064-.222c0-.1.019-.214.056-.343.038-.13.12-.373.249-.731l.308-.849zm-17.21-2.927c-.863-.016-1.67.263-2.261.854-1.352 1.352-1.07 3.827.631 5.527 1.7 1.701 4.95 1.21 5.527.632.467-.466 1.07-3.827-.631-5.527-.957-.957-2.158-1.465-3.267-1.486zm12.285.358h.166v.21H15.4zm.427 0h.166v.865l.46-.455h.195l-.364.362.428.684h-.198l-.357-.575-.164.166v.41h-.166zm1.016 0h.166v.21h-.166zm.481.122h.166v.288h.172v.135h-.172v.717c0 .037.006.062.02.075.012.013.037.02.074.02a.23.23 0 0 0 .078-.01v.141a.802.802 0 0 1-.136.014.23.23 0 0 1-.15-.043.15.15 0 0 1-.052-.123v-.79h-.141v-.136h.141zm-3.562.258c.081 0 .15.012.207.038.057.024.1.061.13.11s.045.106.045.173h-.176c-.006-.111-.075-.167-.208-.167a.285.285 0 0 0-.164.041.134.134 0 0 0-.06.117c0 .035.015.065.045.088.03.024.08.044.15.06l.16.039a.47.47 0 0 1 .224.105c.047.046.07.108.07.186a.3.3 0 0 1-.052.175.327.327 0 0 1-.152.116.585.585 0 0 1-.226.041c-.136 0-.24-.03-.309-.088-.069-.059-.105-.149-.109-.269h.176c.004.037.01.065.017.084a.166.166 0 0 0 .034.054c.044.043.112.065.204.065a.31.31 0 0 0 .177-.045.139.139 0 0 0 .067-.119.116.116 0 0 0-.038-.09.287.287 0 0 0-.124-.055l-.156-.038a1.248 1.248 0 0 1-.159-.05.359.359 0 0 1-.098-.061.22.22 0 0 1-.058-.083.32.32 0 0 1-.016-.108c0-.096.036-.174.109-.232a.45.45 0 0 1 .29-.087zm1.035 0a.46.46 0 0 1 .202.043.351.351 0 0 1 .187.212.577.577 0 0 1 .023.126h-.168a.256.256 0 0 0-.078-.168.242.242 0 0 0-.17-.06.248.248 0 0 0-.155.05.306.306 0 0 0-.1.144.662.662 0 0 0-.034.224.58.58 0 0 0 .035.214.299.299 0 0 0 .101.135.261.261 0 0 0 .157.048c.142 0 .227-.084.256-.252h.167a.519.519 0 0 1-.065.22.35.35 0 0 1-.146.138.464.464 0 0 1-.216.048.448.448 0 0 1-.246-.066.441.441 0 0 1-.161-.192.703.703 0 0 1-.057-.293c0-.085.01-.163.032-.233a.522.522 0 0 1 .095-.182.403.403 0 0 1 .15-.117.453.453 0 0 1 .191-.04zm.603.03h.166v1.046H15.4zm1.443 0h.166v1.046h-.166zm-5.05.618c-.08 0-.2.204-.356.611-.155.407-.308.977-.459 1.71.281-.312.509-.662.683-1.05.175-.387.262-.72.262-.999a.455.455 0 0 0-.036-.197c-.025-.05-.056-.075-.093-.075zm4.662 1.797c-.221 0-.431.188-.629.563-.197.376-.296.722-.296 1.038 0 .12.029.216.088.29a.273.273 0 0 0 .223.111c.221 0 .43-.188.625-.565.196-.377.294-.725.294-1.043a.457.457 0 0 0-.083-.29.269.269 0 0 0-.222-.104zm-2.848.007c-.146 0-.285.11-.417.333-.133.222-.2.51-.2.866.566-.159.849-.452.849-.881 0-.212-.077-.318-.232-.318Z"/></svg><span>scikit-learn</span></div>
-            <div class="skill-tile"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.005 0L4.952 7.053a9.865 9.865 0 000 14.022 9.866 9.866 0 0014.022 0c3.984-3.9 3.986-10.205.085-14.023l-1.744 1.743c2.904 2.905 2.904 7.634 0 10.538s-7.634 2.904-10.538 0-2.904-7.634 0-10.538l4.647-4.646.582-.665zm3.568 3.899a1.327 1.327 0 00-1.327 1.327 1.327 1.327 0 001.327 1.328A1.327 1.327 0 0016.9 5.226 1.327 1.327 0 0015.573 3.9z"/></svg><span>PyTorch</span></div>
-            <div class="skill-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3v4M12 17v4M5 12H3m18 0h-2M7 7 5.5 5.5m13 13L17 17M7 17l-1.5 1.5m13-13L17 7"/><circle cx="12" cy="12" r="3.5"/></svg><span>XGBoost</span></div>
-            <div class="skill-tile"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M1.4446 11.5059c0 1.1021.1673 2.1585.4847 3.1563-.0378-.0028-.0691-.0058-.1058-.0058-.4209 0-.8015.16-1.0704.4512-.3454.3737-.4984.8335-.4316 1.293a1.576 1.576 0 0 0 .2148.5978c-.2319.1864-.4018.4456-.4844.7578-.0646.2448-.131.7543.2149 1.2794a1.4552 1.4552 0 0 0-.0625.1055c-.208.3923-.2207.8372-.0371 1.25.2783.6258.9696 1.1175 2.3126 1.6467.8356.3292 1.5988.5411 1.6056.543 1.1046.2847 2.104.4277 2.969.4277 1.4173 0 2.4754-.3849 3.1525-1.1446 1.538.2651 2.791.1403 3.592.006.6773.7555 1.7332 1.1387 3.1467 1.1387.8649 0 1.8643-.143 2.969-.4278.0068-.0019.77-.2138 1.6056-.543 1.343-.5292 2.0343-1.0208 2.3126-1.6466.1836-.4129.171-.8577-.037-1.25a1.4685 1.4685 0 0 0-.0626-.1056c.346-.525.2795-1.0346.2149-1.2793-.0826-.3122-.2525-.5714-.4844-.7579.11-.1816.1831-.3788.2148-.5977.0669-.4595-.0862-.9193-.4316-1.293-.2688-.2913-.6495-.4513-1.0704-.4513-.0209 0-.0376.0008-.0588.0018.3162-.9966.4846-2.0518.4846-3.1523 0-5.807-4.7362-10.5144-10.5789-10.5144-5.8426 0-10.5788 4.7073-10.5788 10.5144Zm10.5788-9.4831c5.2727 0 9.5476 4.246 9.5476 9.483a9.4201 9.4201 0 0 1-.2696 2.2365c-.0039-.0047-.0079-.011-.0117-.0156-.274-.3255-.6679-.5059-1.1075-.5059-.352 0-.714.1155-1.0763.3438-.2403.1517-.5058.422-.7793.7598-.2534-.3492-.608-.5832-1.0137-.6465a1.5174 1.5174 0 0 0-.2344-.0176c-.9263 0-1.4828.7993-1.6935 1.5177-.1046.2426-.6065 1.3482-1.3614 2.0978-1.1681 1.1601-1.4458 2.3534-.8396 3.6382-.843.1029-1.5836.0927-2.365-.006.5906-1.212.3626-2.4388-.8426-3.6322-.755-.7496-1.2568-1.8552-1.3614-2.0978-.2107-.7184-.7673-1.5177-1.6935-1.5177-.078 0-.1568.0054-.2344.0176-.4057.0633-.7604.2973-1.0137.6465-.2735-.3379-.539-.6081-.7794-.7598-.3622-.2283-.7243-.3438-1.0762-.3438-.4266 0-.8094.171-1.0821.4786a9.4208 9.4208 0 0 1-.2598-2.1936c0-5.237 4.2749-9.483 9.5475-9.483zM8.6443 7.0036c-.4838.0043-.9503.2667-1.1934.7227-.3536.6633-.1006 1.4873.5645 1.84.351.1862.4883-.5261.836-.6485.3107-.1095.841.399 1.0078.086.3536-.6634.1025-1.4874-.5625-1.84a1.3659 1.3659 0 0 0-.6524-.1602Zm6.8403 0c-.2199-.002-.4426.05-.6504.1602-.665.3526-.9181 1.1766-.5645 1.84.1669.313.6971-.1955 1.0079-.086.3476.1224.4867.8347.838.6485.6649-.3527.916-1.1767.5624-1.84-.243-.456-.7096-.7184-1.1934-.7227Zm-9.7565 1.418a.8768.8768 0 0 0-.877.877c0 .4846.3925.877.877.877a.8768.8768 0 0 0 .877-.877.8768.8768 0 0 0-.877-.877zm12.6434 0c-.4845 0-.879.3925-.879.877 0 .4846.3945.877.879.877a.8768.8768 0 0 0 .877-.877.8768.8768 0 0 0-.877-.877zM8.7927 11.459c-.179-.003-.2793.1107-.2793.416 0 .8097.3874 2.125 1.4279 2.924.207-.7123 1.3453-1.2832 1.5079-1.2012.2315.1167.2191.4417.6074.7266.3884-.285.374-.6098.6056-.7266.1627-.082 1.3009.4889 1.5079 1.2012 1.0404-.799 1.4278-2.1144 1.4278-2.924 0-1.2212-1.583.6402-3.5413.6485-1.4686-.0061-2.7266-1.0558-3.2639-1.0645zM4.312 14.4768c.5792.365 1.6964 2.2751 2.1056 3.0177.1371.2488.371.3536.582.3536.4188 0 .7465-.4138.0391-.9395-1.0636-.791-.6914-2.0846-.1836-2.1642a.4302.4302 0 0 1 .0664-.004c.4616 0 .666.7892.666.7892s.5959 1.4898 1.6213 2.508c.942.9356 1.062 1.703.4961 2.6661-.0164-.004-.0159.0236-.1484.2149-.1853.2673-.4322.4688-.7188.6152-.5062.2269-1.1397.2696-1.7833.2696-1.037 0-2.1017-.1824-2.6975-.336-.0293-.0075-3.6505-.9567-3.1916-1.8224.0771-.1454.2033-.2031.3633-.2031.6463 0 1.823.9551 2.3283.9551.113 0 .196-.0865.2285-.2031.2249-.8045-3.2787-1.0522-2.9846-2.1642.0519-.1967.193-.2757.3907-.2754.854 0 2.7704 1.4923 3.172 1.4923.0307 0 .0525-.0085.0645-.0274.2012-.3227.1096-.5865-1.3087-1.4395-1.4182-.8533-2.4315-1.329-1.8653-1.9416.0651-.0707.1574-.1015.2695-.1015.8611.0002 2.8948 1.84 2.8948 1.84s.5487.5683.8809.5683c.0762 0 .1416-.0315.1855-.1054.2355-.3946-2.1858-2.2183-2.3224-2.971-.0926-.51.0641-.7676.3555-.7676-.0006.008.1701-.0285.4942.1759zm16.2257.5918c-.1366.7526-2.5579 2.5764-2.3224 2.9709.044.074.1092.1055.1855.1055.3321 0 .881-.5684.881-.5684s2.0336-1.8397 2.8947-1.84c.1121 0 .2044.0308.2695.1016.5662.6125-.447 1.0882-1.8653 1.9415-1.4183.853-1.51 1.1168-1.3087 1.4396.012.0188.0337.0273.0644.0273.4016 0 2.3181-1.4923 3.1721-1.4923.1977-.0002.3388.0787.3907.2754.294 1.112-3.2095 1.3597-2.9846 2.1642.0325.1166.1156.2032.2285.2032.5054 0 1.682-.9552 2.3283-.9552.16 0 .2862.0577.3633.2032.459.8656-3.1623 1.8149-3.1916 1.8224-.5958.1535-1.6605.336-2.6975.336-.6351 0-1.261-.0409-1.7638-.2599-.2949-.1472-.5488-.3516-.7383-.625-.0411-.0682-.1026-.1476-.1426-.205-.5726-.9679-.455-1.7371.4903-2.676 1.0254-1.0182 1.6212-2.508 1.6212-2.508s.2044-.7891.666-.7891a.4318.4318 0 0 1 .0665.0039c.5078.0796.88 1.3732-.1836 2.1642-.7074.5257-.3797.9395.039.9395.211 0 .445-.1047.5821-.3535.4092-.7426 1.5264-2.6527 2.1056-3.0178.5588-.3524.99-.1816.8497.5918z"/></svg><span>Transformers</span></div>
-            <div class="skill-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 17l4-6 4 3 5-8 5 9"/><path d="M3 21h18"/></svg><span>SHAP</span></div>
-          </div>
-        </div>
-
-        <div class="skill-cat">
-          <h3 class="skill-cat-title">AI Engineering</h3>
-          <div class="skill-tiles">
-            <div class="skill-tile"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z"/></svg><span>Claude API</span></div>
-            <div class="skill-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="5" r="2.2"/><circle cx="5" cy="19" r="2.2"/><circle cx="19" cy="19" r="2.2"/><path d="M12 7.2 6 17m6-9.8L18 17M7.2 19h9.6"/></svg><span>Multi-Agent Systems</span></div>
-            <div class="skill-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h9"/><path d="M8 8h6M8 12h4"/><circle cx="16.5" cy="16.5" r="3.5"/><path d="m19 19 2.5 2.5"/></svg><span>RAG</span></div>
-            <div class="skill-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg><span>Prompt Engineering</span></div>
-            <div class="skill-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 17V9m5 8V5m5 12v-6m5 6V8"/><path d="M3 21h18"/></svg><span>LLM Benchmarking</span></div>
-          </div>
-        </div>
-
-        <div class="skill-cat">
-          <h3 class="skill-cat-title">Data Science &amp; Delivery</h3>
-          <div class="skill-tiles">
-            <div class="skill-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 19c3 0 4-11 10-11s7 11 10 11"/><path d="M2 21h20"/></svg><span>Statistical Modelling</span></div>
-            <div class="skill-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3v18M3 21h18"/><path d="M5 17v-5m4 5V8m6 9v-7m4 7V6"/></svg><span>A/B Testing</span></div>
-            <div class="skill-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3v9l6.5 6.2M12 12l8.7-2.3"/></svg><span>Data Visualisation</span></div>
-            <div class="skill-tile"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.673 11.32l6.862-3.618c.233-.136.554.12.442.387L20.463 17.1zm-8.556-.229l3.473-5.187c.203-.328.578-.316.793-.028l7.886 11.75zm-3.375 7.25c-.28 0-.835-.284-.993-.716l-3.72-9.46c-.118-.331.139-.614.48-.464l19.474 10.306c-.149.147-.453.337-.72.334z"/></svg><span>Streamlit</span></div>
-          </div>
-        </div>
-      </div>
+      <a class="tile tile-xp" href="#experience">
+        <p class="eyebrow">Experience</p>
+        <ul class="xp-glance">
+          <li><span class="plate"><img class="logo-tall" src="docs/assets/logos/turintech.png" alt="TurinTech" height="34"></span><span class="xpg-text"><strong>AI Engineer · Research &amp; Data Science</strong><span>TurinTech · London</span></span><span class="xpg-date">Feb 2026 to Present</span></li>
+          <li><span class="plate"><img src="docs/assets/logos/goldsmiths.svg" alt="Goldsmiths, University of London" height="22"></span><span class="xpg-text"><strong>AI Researcher</strong><span>Goldsmiths, University of London</span></span><span class="xpg-date">Jan 2025 to Dec 2025</span></li>
+          <li><span class="plate"><img src="docs/assets/logos/abinbev.svg" alt="AB InBev" height="20"></span><span class="xpg-text"><strong>Data Scientist</strong><span>AB InBev · Leuven, Belgium</span></span><span class="xpg-date">Mar 2023 to Sep 2023</span></li>
+        </ul>
+      </a>
     </div>
-  </section>
+  </header>
 
-  <!-- ===== EXPERIENCE SECTION ===== -->
-  <section id="experience">
-    <div class="container">
-      <div class="section-header fade-in">
-        <span class="section-label">Experience</span>
-        <h2>Work History</h2>
-      </div>
+  <div class="body-grid">
+    <main id="main">
 
-      <div class="timeline">
-
-        <!-- Turintech -->
-        <div class="timeline-item fade-in">
-          <div class="timeline-marker">
-            <div class="timeline-dot current"></div>
-          </div>
-          <div class="timeline-card">
-            <div class="timeline-body">
-              <div class="timeline-meta">
-                <span class="timeline-badge timeline-badge-current">Current</span>
-                <span class="timeline-date">Feb 2026 - Present</span>
-              </div>
-              <h3 class="timeline-role">AI Engineer</h3>
-              <div class="timeline-company">TurinTech &middot; London, UK <img class="flag-icon" src="docs/assets/flag_gb.png" alt="Flag of the United Kingdom"></div>
-              <p class="timeline-glance">Building <strong>Artemis</strong>, a code optimisation platform whose agents explore a codebase, hypothesise changes, benchmark them and select the best improvement.</p>
-              <div class="chip-row">
-                <span class="chip">Statistical validation layer</span>
-                <span class="chip">Autonomous coding agents</span>
-                <span class="chip">A/B-verified optimisations</span>
-              </div>
-              <button class="expander-toggle" type="button" aria-expanded="false" aria-controls="exp-turintech">
-                <span class="expander-label">Details</span>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-              </button>
-              <div class="expander-body" id="exp-turintech">
-                <ul class="timeline-bullets">
-                  <li><strong>Statistical validation:</strong> designed and delivered the platform's validation layer: Welch confidence intervals, significance-gated verdicts, an empirical Bayes scoring model and a power-based run planner.</li>
-                  <li><strong>Agent engineering:</strong> built and hardened autonomous coding agents, plus subagents that guide users through benchmark setup. Cut per-campaign token cost by 25%.</li>
-                  <li><strong>Inference optimisation:</strong> A/B-verified campaigns across vLLM, OpenVINO and ONNX Runtime: +9.8% generation throughput on a 1.58-bit LLM, -49% CPU on a benchmark harness, +107% on a simulation workload.</li>
-                  <li><strong>Open source:</strong> drove the optimisation agent at public codebases and shipped merged fixes in major AI projects (see below).</li>
-                  <li><strong>Clients and product:</strong> deployed the platform with client engineering teams, multi-agent systems with the Claude API, and technical pre-sales.</li>
-                </ul>
-              </div>
-            </div>
-            <div class="timeline-photo">
-              <img src="docs/assets/artemis_benchmark.jpg" alt="Artemis LLM inference benchmarking results infographic" loading="lazy">
-            </div>
-          </div>
+      <!-- ===== PROJECTS ===== -->
+      <section id="projects" aria-labelledby="projects-title">
+        <div class="section-head">
+          <p class="eyebrow">Selected work</p>
+          <h2 id="projects-title">Projects</h2>
+        </div>
+        <div class="filter-bar" role="group" aria-label="Filter projects">
+          <button class="filter-chip" type="button" data-filter="all" aria-pressed="true">All</button>
+          <button class="filter-chip" type="button" data-filter="sports" aria-pressed="false">Sports modelling</button>
+          <button class="filter-chip" type="button" data-filter="clinical" aria-pressed="false">Clinical AI</button>
+          <button class="filter-chip" type="button" data-filter="nlpcv" aria-pressed="false">NLP &amp; vision</button>
+          <button class="filter-chip" type="button" data-filter="research" aria-pressed="false">Research</button>
         </div>
 
-        <!-- Goldsmiths AI Researcher -->
-        <div class="timeline-item fade-in">
-          <div class="timeline-marker">
-            <div class="timeline-dot"></div>
-          </div>
-          <div class="timeline-card">
-            <div class="timeline-body">
-              <div class="timeline-meta">
-                <span class="timeline-badge">Research</span>
-                <span class="timeline-date">Jan 2025 - Dec 2025</span>
-              </div>
-              <h3 class="timeline-role">AI Researcher</h3>
-              <div class="timeline-company">University of London, Goldsmiths &middot; London, UK <img class="flag-icon" src="docs/assets/flag_gb.png" alt="Flag of the United Kingdom"></div>
-              <p class="timeline-glance">Published <strong>Alzheimer's classification research</strong> with Springer at AIAI 2025.</p>
-              <div class="chip-row">
-                <span class="chip">Springer publication</span>
-                <span class="chip">SHAP + FDR feature selection</span>
-                <span class="chip">Presented in Cyprus</span>
-              </div>
-              <button class="expander-toggle" type="button" aria-expanded="false" aria-controls="exp-goldsmiths">
-                <span class="expander-label">Details</span>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-              </button>
-              <div class="expander-body" id="exp-goldsmiths">
-                <ul class="timeline-bullets">
-                  <li>Built classification pipelines on blood-based biomarkers using nested cross-validation and calibration, improving accuracy over baselines.</li>
-                  <li>Applied FDR-controlled feature selection and SHAP to identify protein importance, delivering clinician-readable reports.</li>
-                  <li>Published in Springer (AIAI 2025) and presented findings at the AIAI 2025 conference in Cyprus.</li>
-                </ul>
-              </div>
-            </div>
-            <div class="timeline-photo">
-              <img src="docs/assets/Research_Image.png" alt="Overview figure from Eoin's published Alzheimer's classification research" loading="lazy">
-            </div>
-          </div>
-        </div>
+        <div class="projects-grid" id="projectsGrid">
 
-        <!-- AB InBev -->
-        <div class="timeline-item fade-in">
-          <div class="timeline-marker">
-            <div class="timeline-dot"></div>
-          </div>
-          <div class="timeline-card">
-            <div class="timeline-body">
-              <div class="timeline-meta">
-                <span class="timeline-badge">Industry</span>
-                <span class="timeline-date">Mar 2023 - Sept 2023</span>
-              </div>
-              <h3 class="timeline-role">Data Scientist</h3>
-              <div class="timeline-company">AB InBev &middot; Leuven, Belgium <img class="flag-icon" src="docs/assets/flag_be.png" alt="Flag of Belgium"></div>
-              <p class="timeline-glance">Statistical analysis and NLP across <strong>16+ global consumer-data projects</strong>.</p>
-              <div class="chip-row">
-                <span class="chip">16+ projects</span>
-                <span class="chip">NLP survey pipelines</span>
-                <span class="chip">Reporting: 5 days &rarr; 3</span>
-              </div>
-              <button class="expander-toggle" type="button" aria-expanded="false" aria-controls="exp-abinbev">
-                <span class="expander-label">Details</span>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-              </button>
-              <div class="expander-body" id="exp-abinbev">
-                <ul class="timeline-bullets">
-                  <li>Delivered statistical analysis across 16+ projects on consumer and sensory data, informing global product decisions.</li>
-                  <li>Designed NLP pipelines for survey responses (translation, tokenisation, sentiment), cutting manual review time significantly.</li>
-                  <li>Built predictive models to forecast purchase intent from sensory and chemical attributes, supporting faster prototype iteration.</li>
-                  <li>Automated reporting workflows including a PowerPoint generator, reducing project setup time from 5 days to 3.</li>
-                </ul>
-              </div>
-            </div>
-            <div class="timeline-photo">
-              <div class="slideshow slideshow--crossfade" data-interval="4000">
-                <img src="docs/assets/abinbev_data.jpg" alt="AB InBev data analysis bar chart" class="slide active" loading="lazy">
-                <img src="docs/assets/abinbev_map.jpg" alt="AB InBev world map of 500+ beer brands in 100 countries" class="slide" loading="lazy">
+          <!-- Lead project -->
+          <article class="project-card featured" data-cat="research clinical" id="proj-alzheimers">
+            <div class="card-media card-media--split">
+              <img src="docs/assets/conference.jpg" alt="Eoin presenting at the AIAI 2025 conference in Limassol, Cyprus" loading="lazy">
+              <div class="slideshow" data-interval="4000">
+                <img src="docs/assets/Research_Image.jpg" alt="Research overview figure" class="slide active contain" loading="lazy">
+                <img src="docs/assets/alz_roc.jpg" alt="ROC curves" class="slide contain" loading="lazy">
+                <img src="docs/assets/alz_confusion.png" alt="Mean confusion matrix" class="slide contain" loading="lazy">
+                <img src="docs/assets/alz_calib.jpg" alt="Calibration curves" class="slide contain" loading="lazy">
+                <img src="docs/assets/alz_volcano.png" alt="MCI to AD volcano plot" class="slide contain" loading="lazy">
                 <div class="slide-dots"></div>
               </div>
             </div>
+            <div class="card-body">
+              <div class="card-tags"><span class="badge badge-research">Research</span><span class="badge badge-springer">★ Springer published</span></div>
+              <h3>Alzheimer's Disease Classification</h3>
+              <p class="glance">Lead-author Springer paper: classifying cognitive states of Alzheimer's disease from digital biomarkers in the Bio-Hermes cohort.</p>
+              <div class="chip-row"><span class="chip">Springer · AIAI 2025</span><span class="chip">Nested Monte Carlo CV</span><span class="chip">Calibrated probabilities</span></div>
+              <button class="expander-toggle" type="button" aria-expanded="false" aria-controls="exp-alzheimers"><span>Details</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+              <div class="expander-body" id="exp-alzheimers">
+                <p>Classified cognitively normal, mild cognitive impairment and Alzheimer's participants from digital biomarkers (cognitive test scores, motor performance, completion times) with XGBoost and Random Forest, nested Monte Carlo cross-validation, FDR-controlled feature selection, probability calibration and SHAP. Travelled to Limassol, Cyprus to present the work at AIAI 2025.</p>
+                <blockquote class="citation">Houstoun, E. et al. (2025). Classifying Cognitive States of Alzheimer's Disease with Machine Learning Using Digital Biomarkers from the Bio-Hermes Study Cohort. In: <em>Artificial Intelligence Applications and Innovations</em>. AIAI 2025. IFIP AICT, vol 758, pp. 55-68. Springer, Cham.</blockquote>
+                <div class="tech-stack"><span>XGBoost</span><span>Random Forest</span><span>Monte Carlo CV</span><span>FDR selection</span><span>SHAP</span><span>Python</span></div>
+              </div>
+              <div class="card-actions">
+                <a href="https://link.springer.com/chapter/10.1007/978-3-031-96235-6_5" target="_blank" rel="noopener" class="card-btn">Springer paper →</a>
+                <a href="https://github.com/EoinHoustoun/Alzheimers_Biohermes" target="_blank" rel="noopener" class="card-btn card-btn-ghost">GitHub →</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Premier League Match Predictor -->
+          <article class="project-card" data-cat="sports" id="proj-fpred">
+            <div class="card-media">
+              <div class="slideshow" data-interval="4200">
+                <img src="docs/assets/fpred_app.png" alt="Match predictor app overview" class="slide active" loading="lazy">
+                <img src="docs/assets/fpred.jpg" alt="Mock portfolio backtest" class="slide" loading="lazy">
+                <img src="docs/assets/fpred_heatmap.jpg" alt="League position probability heatmap" class="slide" loading="lazy">
+                <img src="docs/assets/fpred_markets.jpg" alt="Score matrix and markets" class="slide" loading="lazy">
+                <div class="slide-dots"></div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="card-tags"><span class="badge badge-sports">Sports modelling</span><span class="badge badge-live">● Live model</span></div>
+              <h3>Premier League Match Predictor</h3>
+              <p class="glance">Calibrated win, draw and loss probabilities for every Premier League match, validated walk-forward and tested against the betting market over two seasons.</p>
+              <div class="chip-row"><span class="chip">Elo + market anchor</span><span class="chip">Draw calibration</span><span class="chip">Walk-forward validated</span></div>
+              <button class="expander-toggle" type="button" aria-expanded="false" aria-controls="exp-fpred"><span>Details</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+              <div class="expander-body" id="exp-fpred">
+                <p>Team ratings anchored to market prices, calibrated outcome probabilities with a draw correction and walk-forward backtests. The market is the toughest benchmark there is, so I track closing-line value against it; a simulated paper portfolio with fractional Kelly sizing returned +£8.2k across 2025-26.</p>
+                <div class="tech-stack"><span>Python</span><span>Poisson</span><span>Elo</span><span>Isotonic calibration</span><span>Kelly criterion</span><span>Monte Carlo</span><span>Streamlit</span></div>
+              </div>
+              <div class="card-actions"><a href="https://github.com/EoinHoustoun/Football_Match_Predictor" target="_blank" rel="noopener" class="card-btn">GitHub →</a></div>
+            </div>
+          </article>
+
+          <!-- Fantasy Football -->
+          <article class="project-card" data-cat="sports" id="proj-fpl">
+            <div class="card-media">
+              <div class="slideshow" data-interval="4600">
+                <img src="docs/assets/fpl.png" alt="Fantasy football planner" class="slide active" loading="lazy">
+                <img src="docs/assets/fpl_points_history.png" alt="Points history" class="slide" loading="lazy">
+                <img src="docs/assets/fpl_gw_history.jpg" alt="Gameweek history" class="slide" loading="lazy">
+                <div class="slide-dots"></div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="card-tags"><span class="badge badge-sports">Sports modelling</span></div>
+              <h3>Fantasy Football AI Planner</h3>
+              <p class="glance">An expected-points engine and optimiser behind every FPL decision: transfers, captaincy and chips.</p>
+              <div class="chip-row"><span class="chip">Component xP model</span><span class="chip">MILP squad optimiser</span><span class="chip">Monte Carlo risk</span></div>
+              <button class="expander-toggle" type="button" aria-expanded="false" aria-controls="exp-fpl"><span>Details</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+              <div class="expander-body" id="exp-fpl">
+                <p>Projects each player's points from minutes, goals, assists, clean sheets, bonus and defensive contributions, blends consensus projections, then solves a multi-week transfer plan as a mixed-integer programme with hit costs. Monte Carlo simulation gives each plan a floor and a ceiling.</p>
+                <div class="tech-stack"><span>Python</span><span>MILP</span><span>Monte Carlo</span><span>Poisson</span><span>Streamlit</span></div>
+              </div>
+              <div class="card-actions"><a href="https://github.com/EoinHoustoun/Fantasy_Football_AI" target="_blank" rel="noopener" class="card-btn">GitHub →</a></div>
+            </div>
+          </article>
+
+          <!-- Transfer Intelligence -->
+          <article class="project-card" data-cat="sports" id="proj-fti">
+            <div class="card-media"><img src="docs/assets/fscout.png" alt="Football transfer intelligence scouting app" loading="lazy"></div>
+            <div class="card-body">
+              <div class="card-tags"><span class="badge badge-sports">Sports modelling</span><span class="badge badge-ai">AI agent</span></div>
+              <h3>Football Transfer Intelligence Agent</h3>
+              <p class="glance">0-100 within-position scouting grades across 8 leagues, with LLM-written scouting reports.</p>
+              <div class="chip-row"><span class="chip">League-adjusted grading</span><span class="chip">Minutes shrinkage</span><span class="chip">LLM reports</span></div>
+              <button class="expander-toggle" type="button" aria-expanded="false" aria-controls="exp-fti"><span>Details</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+              <div class="expander-body" id="exp-fti">
+                <p>Grades players against their positional peers with league-strength adjustment and shrinkage for low minutes, predicts adaptation to a new league with a stacked XGBoost and LightGBM ensemble (Optuna-tuned, xG and xA features), and writes a scouting report for each shortlist.</p>
+                <div class="tech-stack"><span>XGBoost</span><span>LightGBM</span><span>Stacking</span><span>Optuna</span><span>xG / xA</span><span>LLM agent</span></div>
+              </div>
+              <div class="card-actions"><a href="https://github.com/EoinHoustoun/Football_Transfer_Intelligence" target="_blank" rel="noopener" class="card-btn">GitHub →</a></div>
+            </div>
+          </article>
+
+          <!-- Validation Procedures -->
+          <article class="project-card" data-cat="research sports" id="proj-validation">
+            <div class="card-media card-media--light"><img src="docs/assets/int_val.jpg" alt="Internal-external validation diagram" class="contain" loading="lazy"></div>
+            <div class="card-body">
+              <div class="card-tags"><span class="badge badge-research">Research</span><span class="badge badge-muted">BSc dissertation · First</span></div>
+              <h3>Validation Procedures in Machine Learning</h3>
+              <p class="glance">10 validation methods compared on 1,316 football transfers; the final model beat the baseline by <span class="hl">43%</span>.</p>
+              <div class="chip-row"><span class="chip">Bootstrap vs k-fold vs LOO</span><span class="chip">Internal-external validation</span><span class="chip">R² 0.70</span></div>
+              <button class="expander-toggle" type="button" aria-expanded="false" aria-controls="exp-validation"><span>Details</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+              <div class="expander-body" id="exp-validation">
+                <p>Fuzzy-matched FIFA player data (106k players, 2017-21) to Transfermarkt fees for 1,316 top-five-league transfers. Compared split-sample, k-fold, repeated k-fold, Monte Carlo CV, leave-one-out, bootstrap and internal-external validation. Bootstrap matched the best error with higher precision from fewer iterations, leave-one-out was optimistic and high-variance, and validation exposed an overfitting random forest, so the simpler log-linear model (R² 0.70) was chosen.</p>
+                <div class="tech-stack"><span>R</span><span>Regression</span><span>Bootstrap</span><span>Cross-validation</span><span>Random Forest</span><span>GBM</span></div>
+              </div>
+              <div class="card-actions"><a href="https://github.com/EoinHoustoun/Final-Year-Project" target="_blank" rel="noopener" class="card-btn">GitHub →</a></div>
+            </div>
+          </article>
+
+          <!-- Fever -->
+          <article class="project-card" data-cat="clinical" id="proj-fever">
+            <div class="card-media card-media--light"><img src="docs/assets/infra.jpg" alt="Infrared thermography facial regions" class="contain" loading="lazy"></div>
+            <div class="card-body">
+              <div class="card-tags"><span class="badge badge-clinical">Clinical AI</span></div>
+              <h3>Fever Prediction with Infrared Thermography</h3>
+              <p class="glance"><span class="hl">0.86 F1</span> fever detection and 0.22°C oral-temperature estimation from non-contact infrared data.</p>
+              <div class="chip-row"><span class="chip">Custom PyTorch MLPs</span><span class="chip">SHAP</span><span class="chip">Nested CV</span></div>
+              <button class="expander-toggle" type="button" aria-expanded="false" aria-controls="exp-fever"><span>Details</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+              <div class="expander-body" id="exp-fever">
+                <p>Estimates oral temperature and detects fever from infrared thermal sensor readings of facial regions, with custom PyTorch MLPs, XGBoost baselines, nested cross-validation and SHAP-based interpretability.</p>
+                <div class="tech-stack"><span>PyTorch</span><span>XGBoost</span><span>SHAP</span><span>Nested CV</span></div>
+              </div>
+              <div class="card-actions"><a href="https://github.com/EoinHoustoun/Infrared_Thermography" target="_blank" rel="noopener" class="card-btn">GitHub →</a></div>
+            </div>
+          </article>
+
+          <!-- Appendicitis -->
+          <article class="project-card" data-cat="clinical" id="proj-appendicitis">
+            <div class="card-media card-media--light"><img src="docs/assets/poster.jpg" alt="Pediatric appendicitis research poster" class="contain" loading="lazy"></div>
+            <div class="card-body">
+              <div class="card-tags"><span class="badge badge-clinical">Clinical AI</span><span class="badge badge-live">● Live demo</span></div>
+              <h3>Pediatric Appendicitis Prediction</h3>
+              <p class="glance"><span class="hl">96%</span> accurate appendicitis diagnosis, deployed as live clinical decision support.</p>
+              <div class="chip-row"><span class="chip">Diagnosis + severity</span><span class="chip">XGBoost + MLP</span><span class="chip">Gradio app</span></div>
+              <button class="expander-toggle" type="button" aria-expanded="false" aria-controls="exp-appendicitis"><span>Details</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+              <div class="expander-body" id="exp-appendicitis">
+                <p>Classifies appendicitis diagnosis and severity from patient data and serves the model as an interactive Gradio application for real-time use.</p>
+                <div class="tech-stack"><span>XGBoost</span><span>MLP</span><span>SHAP</span><span>Gradio</span></div>
+              </div>
+              <div class="card-actions"><a href="https://github.com/EoinHoustoun/Pediatric_Appendicitis" target="_blank" rel="noopener" class="card-btn">GitHub →</a></div>
+            </div>
+          </article>
+
+          <!-- Extra projects -->
+          <article class="project-card extra" data-cat="nlpcv" id="proj-yt">
+            <div class="card-media"><img src="docs/assets/yt.png" alt="YouTube sentiment dashboard" loading="lazy"></div>
+            <div class="card-body">
+              <div class="card-tags"><span class="badge badge-nlp">NLP</span></div>
+              <h3>YouTube Sentiment Analyser</h3>
+              <p class="glance">Comment sentiment and six-emotion detection with an engagement health score.</p>
+              <div class="chip-row"><span class="chip">RoBERTa + DistilRoBERTa</span><span class="chip">6 emotions</span><span class="chip">PDF/CSV export</span></div>
+              <div class="card-actions"><a href="https://github.com/EoinHoustoun/YouTube_Sentiment_Analyser" target="_blank" rel="noopener" class="card-btn">GitHub →</a></div>
+            </div>
+          </article>
+
+          <article class="project-card extra" data-cat="nlpcv" id="proj-nst">
+            <div class="card-media"><img src="docs/assets/style_transfer.gif" alt="Neural style transfer demo" loading="lazy"></div>
+            <div class="card-body">
+              <div class="card-tags"><span class="badge badge-nlp">Vision</span></div>
+              <h3>Neural Style Transfer</h3>
+              <p class="glance">Faces re-rendered as comic-book art with VGG19 content and style losses.</p>
+              <div class="chip-row"><span class="chip">VGG19</span><span class="chip">PyTorch</span></div>
+              <div class="card-actions"><a href="https://github.com/EoinHoustoun/Generative_AI" target="_blank" rel="noopener" class="card-btn">GitHub →</a></div>
+            </div>
+          </article>
+
+          <article class="project-card extra" data-cat="nlpcv" id="proj-chef">
+            <div class="card-media"><img src="docs/assets/ai_chef.jpg" alt="AI Chef chatbot" loading="lazy"></div>
+            <div class="card-body">
+              <div class="card-tags"><span class="badge badge-nlp">NLP</span></div>
+              <h3>AI Chef Chatbot</h3>
+              <p class="glance">Ingredient-aware recipe chatbot with DistilBERT similarity and TF-IDF retrieval.</p>
+              <div class="chip-row"><span class="chip">DistilBERT</span><span class="chip">TF-IDF</span><span class="chip">Web scraping</span></div>
+              <div class="card-actions"><a href="https://github.com/EoinHoustoun/AI_Chef" target="_blank" rel="noopener" class="card-btn">GitHub →</a></div>
+            </div>
+          </article>
+
+          <div class="extra extra-mini" data-cat="nlpcv research">
+            <h3 class="mini-title">Also built</h3>
+            <ul class="mini-list">
+              <li><strong>Amazon recommendation system</strong> · collaborative and content-based filtering</li>
+              <li><strong>Retail customer prediction</strong> · purchase-propensity classification ensembles</li>
+              <li><strong>Customer segmentation</strong> · unsupervised clustering into personas</li>
+            </ul>
           </div>
         </div>
 
-      </div>
-    </div>
-  </section>
+        <div class="projects-more">
+          <button class="projects-toggle" id="projectsToggle" type="button" aria-expanded="false" aria-controls="projectsGrid">Show all projects <span class="count">(+4)</span></button>
+        </div>
+      </section>
 
-  <!-- ===== OPEN SOURCE SECTION ===== -->
-  <section id="opensource">
-    <div class="container">
-      <div class="section-header fade-in">
-        <span class="section-label">Open Source</span>
-        <h2>Upstream Contributions</h2>
-        <p class="section-sub">Fixes merged into major open source AI projects through my work at TurinTech: found with the Artemis agent, then reviewed, tested and defended in review by hand. Over 200,000 combined GitHub stars.</p>
-      </div>
+      <!-- ===== TURINTECH: what I build ===== -->
+      <section id="turintech" aria-labelledby="turintech-title">
+        <div class="section-head">
+          <p class="eyebrow"><span class="plate plate-sm"><img src="docs/assets/logos/turintech.png" alt="" height="16"></span> TurinTech · Research &amp; Data Science team</p>
+          <h2 id="turintech-title">What I build at TurinTech</h2>
+        </div>
+        <p class="lede">I'm an AI Engineer working across TurinTech's two platforms: <strong>Artemis</strong>, where AI agents explore a codebase, test changes and keep the ones that genuinely improve it, and <strong>evoML</strong>, which automatically builds machine learning pipelines and delivers their complete source code to the user. My part is the statistics that decide whether a result is real, the agents that do the work, and the clients who use them.</p>
+        <div class="contrib-grid">
+          <article class="contrib-card">
+            <p class="contrib-kicker">Statistics</p>
+            <h3>The evidence layer</h3>
+            <p>I designed and shipped the statistical validation behind every reported result: Welch confidence intervals, significance-gated verdicts, power analysis that plans how many benchmark runs a result needs, empirical Bayes shrinkage for scoring and a Gaussian process model for machine drift.</p>
+            <div class="chip-row"><span class="chip">Welch CIs</span><span class="chip">Power analysis</span><span class="chip">Empirical Bayes</span><span class="chip">Gaussian processes</span></div>
+          </article>
+          <article class="contrib-card">
+            <p class="contrib-kicker">AI engineering</p>
+            <h3>Agents and subagents</h3>
+            <p>I build and harden the autonomous agents that run optimisation campaigns, plus an in-product assistant of subagents that walks users through setting up benchmarks. Multi-agent systems on the Claude API; I cut per-campaign token cost by 25%.</p>
+            <div class="chip-row"><span class="chip">Multi-agent systems</span><span class="chip">Claude API</span><span class="chip">Prompt design</span><span class="chip">Cost modelling</span></div>
+          </article>
+          <article class="contrib-card">
+            <p class="contrib-kicker">Research</p>
+            <h3>LLM benchmarking</h3>
+            <p>I benchmark LLMs and ML models for the research team and run controlled A/B experiments on inference across vLLM, OpenVINO and ONNX Runtime, from quantisation down to GPU kernel fusion.</p>
+            <div class="chip-row"><span class="chip">vLLM</span><span class="chip">OpenVINO</span><span class="chip">ONNX Runtime</span><span class="chip">Quantisation</span></div>
+          </article>
+          <article class="contrib-card">
+            <p class="contrib-kicker">Clients</p>
+            <h3>Onboarding Artemis and evoML clients</h3>
+            <p>I onboard client engineering teams onto Artemis and evoML, lead technical walkthroughs on client calls, and turn what I hear into fixes and features back in the product.</p>
+            <div class="chip-row"><span class="chip">Client onboarding</span><span class="chip">Technical pre-sales</span><span class="chip">Product feedback</span></div>
+          </article>
+        </div>
+      </section>
 
-      <div class="projects-grid oss-grid">
-        <div class="project-card oss-card fade-in">
+      <!-- ===== EXPERIENCE ===== -->
+      <section id="experience" aria-labelledby="experience-title">
+        <div class="section-head">
+          <p class="eyebrow">Experience</p>
+          <h2 id="experience-title">Where I've worked</h2>
+        </div>
+        <ol class="xp-list">
+          <li class="xp-row">
+            <span class="plate xp-logo"><img class="logo-tall" src="docs/assets/logos/turintech.png" alt="TurinTech" height="42"></span>
+            <div class="xp-main">
+              <div class="xp-top"><h3>AI Engineer</h3><span class="xp-date">Feb 2026 to Present</span></div>
+              <p class="xp-org">TurinTech · Research &amp; Data Science team · London</p>
+              <p class="xp-line">AI agents, statistical validation and client onboarding across Artemis and evoML (see <a href="#turintech">what I build</a>).</p>
+              <div class="chip-row"><span class="chip">Statistical validation</span><span class="chip">Multi-agent systems</span><span class="chip">Client onboarding</span></div>
+              <button class="expander-toggle" type="button" aria-expanded="false" aria-controls="exp-tt"><span>Details</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+              <div class="expander-body" id="exp-tt">
+                <ul>
+                  <li><strong>Statistical validation:</strong> designed and delivered the validation layer: Welch confidence intervals, significance-gated verdicts, an empirical Bayes scoring model and a power-based run planner.</li>
+                  <li><strong>Agent engineering:</strong> built and hardened autonomous coding agents and subagents that guide users through benchmark setup; cut per-campaign token cost by 25%.</li>
+                  <li><strong>Research:</strong> benchmark LLMs and ML models and run A/B-verified inference experiments across vLLM, OpenVINO and ONNX Runtime.</li>
+                  <li><strong>Clients:</strong> onboard client engineering teams onto Artemis and evoML (automated ML pipelines with full source code) and lead technical walkthroughs on client calls.</li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="xp-row">
+            <span class="plate xp-logo"><img src="docs/assets/logos/goldsmiths.svg" alt="Goldsmiths" height="26"></span>
+            <div class="xp-main">
+              <div class="xp-top"><h3>AI Researcher</h3><span class="xp-date">Jan 2025 to Dec 2025</span></div>
+              <p class="xp-org">Goldsmiths, University of London · London</p>
+              <p class="xp-line">Clinical machine learning research, published by <strong>Springer at AIAI 2025</strong>.</p>
+              <div class="chip-row"><span class="chip">Springer publication</span><span class="chip">SHAP + FDR selection</span><span class="chip">Presented in Cyprus</span></div>
+              <button class="expander-toggle" type="button" aria-expanded="false" aria-controls="exp-gold"><span>Details</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+              <div class="expander-body" id="exp-gold">
+                <ul>
+                  <li>Built classification pipelines on blood-based biomarkers with nested Monte Carlo cross-validation, probability calibration and FDR-controlled feature selection on a small clinical cohort.</li>
+                  <li>Used SHAP to explain protein importance and delivered clinician-readable reports.</li>
+                  <li>Lead author of the Springer paper and travelled to Limassol, Cyprus to present it at AIAI 2025.</li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="xp-row">
+            <span class="plate xp-logo"><img src="docs/assets/logos/abinbev.svg" alt="AB InBev" height="22"></span>
+            <div class="xp-main">
+              <div class="xp-top"><h3>Data Scientist</h3><span class="xp-date">Mar 2023 to Sep 2023</span></div>
+              <p class="xp-org">AB InBev · Global Innovation Centre · Leuven, Belgium</p>
+              <p class="xp-line">Consumer statistics, predictive tools and automation across <strong>16+ global beer innovation projects</strong>.</p>
+              <div class="chip-row"><span class="chip">Hypothesis testing</span><span class="chip">PCA purchase-intent tool</span><span class="chip">Reporting automation</span></div>
+              <button class="expander-toggle" type="button" aria-expanded="false" aria-controls="exp-abi"><span>Details</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+              <div class="expander-body" id="exp-abi">
+                <ul>
+                  <li>Ran head-to-head consumer taste studies with hundreds of respondents each: ANOVA, proportion z-tests, preference and Just-About-Right penalty analysis, and delivered the results to internal clients.</li>
+                  <li>Built a PCA-based purchase-intent simulator that predicts intent from sensory and chemical attributes, shipped as an interactive tool for product developers.</li>
+                  <li>Automated reporting with a Python PowerPoint generator that removed manual table building, and a script that flags significant penalty effects automatically.</li>
+                  <li>Text analytics on open-ended survey answers: tokenisation, stop-word removal and frequency visualisation.</li>
+                  <li>Consolidated 21 studies into the core consumer database and trained two new data science consultants on the pipeline.</li>
+                  <li>Caught a weighting error in a shared analysis (dividing by the count of weights, not their sum) before results went out.</li>
+                </ul>
+              </div>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <!-- ===== BEYOND THE CODE ===== -->
+      <section id="people" aria-labelledby="people-title">
+        <div class="section-head">
+          <p class="eyebrow">Beyond the code</p>
+          <h2 id="people-title">How I work with people</h2>
+        </div>
+        <div class="people-grid">
+          <article class="people-card"><span class="people-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><h3>Client-facing</h3><p>I onboard client engineering teams onto Artemis and evoML and lead the technical walkthroughs on client calls.</p></article>
+          <article class="people-card"><span class="people-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4M7 12l3-3 2 2 4-4"/></svg></span><h3>Explaining the maths</h3><p>I presented my research at AIAI 2025 in Cyprus and turn models into reports clinicians, product teams and clients can act on.</p></article>
+          <article class="people-card"><span class="people-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7l10-4 10 4-10 4z"/><path d="M6 9v5c0 1.7 2.7 3 6 3s6-1.3 6-3V9"/></svg></span><h3>Mentoring</h3><p>At AB InBev I trained two new data science consultants on our pipeline and delivered consumer studies directly to internal clients.</p></article>
+          <article class="people-card"><span class="people-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7l3 2.2-1.1 3.6h-3.8L9 9.2z"/><path d="M12 3v4M21 12l-6 0.2M3 12l6 0.2M16.5 20l-2.6-7.2M7.5 20l2.6-7.2"/></svg></span><h3>Leadership and teamwork</h3><p>Captained the university football teams at UCC and Goldsmiths (two Player of the Year awards) and was elected class representative at both.</p></article>
+          <article class="people-card"><span class="people-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg></span><h3>Drive</h3><p>Raised €4,000 for Pieta by running 5 km every day for a month.</p></article>
+        </div>
+      </section>
+
+      <!-- ===== OPEN SOURCE ===== -->
+      <section id="opensource" aria-labelledby="oss-title">
+        <div class="section-head">
+          <p class="eyebrow">Open source</p>
+          <h2 id="oss-title">Upstream contributions</h2>
+        </div>
+        <div class="oss-card">
+          <p class="oss-lede">Fixes I took from candidate to merged in major AI projects: starting from a candidate produced by our optimisation agent, I reviewed every line, wrote or repaired the tests, ran the validation and defended each change in review. <strong>4 merged</strong> into projects with <strong>190k+ combined stars</strong>.</p>
           <ul class="oss-list">
-            <li class="oss-row">
-              <a href="https://github.com/vllm-project/vllm/pull/51703" target="_blank" rel="noopener" class="oss-name">vLLM</a>
-              <span class="chip oss-stars">90k stars</span>
-              <span class="oss-desc">Engine initialisation robustness fix</span>
-              <span class="category-badge badge-oss">Merged</span>
-            </li>
-            <li class="oss-row">
-              <a href="https://github.com/unslothai/unsloth/pull/8464" target="_blank" rel="noopener" class="oss-name">unsloth</a>
-              <span class="chip oss-stars">75k stars</span>
-              <span class="oss-desc">Learning-rate warmup scheduler fix</span>
-              <span class="category-badge badge-oss">Merged</span>
-            </li>
-            <li class="oss-row">
-              <a href="https://github.com/NVIDIA-NeMo/Speech/pull/16063" target="_blank" rel="noopener" class="oss-name">NVIDIA NeMo Speech</a>
-              <span class="chip oss-stars">18k stars</span>
-              <span class="oss-desc">Diarization config and word-confidence fixes</span>
-              <span class="category-badge badge-oss">Merged</span>
-            </li>
-            <li class="oss-row">
-              <a href="https://github.com/k2-fsa/sherpa-onnx/pull/3857" target="_blank" rel="noopener" class="oss-name">sherpa-onnx</a>
-              <span class="chip oss-stars">14k stars</span>
-              <span class="oss-desc">Float32 numerical stability fix in feature normalisation</span>
-              <span class="category-badge badge-oss">Merged</span>
-            </li>
-            <li class="oss-row">
-              <a href="https://github.com/QuentinFuxa/WhisperLiveKit/pull/391" target="_blank" rel="noopener" class="oss-name">WhisperLiveKit</a>
-              <span class="chip oss-stars">11k stars</span>
-              <span class="oss-desc">Streaming ASR optimisation, -51.9% compute</span>
-              <span class="category-badge badge-oss">Merged</span>
-            </li>
+            <li class="oss-row"><a href="https://github.com/vllm-project/vllm/pull/51703" target="_blank" rel="noopener" class="oss-name">vLLM</a><span class="oss-stars">90k ★</span><span class="oss-desc">Engine initialisation robustness fix</span><span class="status status-merged">Merged</span></li>
+            <li class="oss-row"><a href="https://github.com/unslothai/unsloth/pull/8464" target="_blank" rel="noopener" class="oss-name">unsloth</a><span class="oss-stars">75k ★</span><span class="oss-desc">Learning-rate warmup scheduler fix</span><span class="status status-merged">Merged</span></li>
+            <li class="oss-row"><a href="https://github.com/k2-fsa/sherpa-onnx/pull/3857" target="_blank" rel="noopener" class="oss-name">sherpa-onnx</a><span class="oss-stars">14k ★</span><span class="oss-desc">Float32 numerical stability in feature normalisation</span><span class="status status-merged">Merged</span></li>
+            <li class="oss-row"><a href="https://github.com/QuentinFuxa/WhisperLiveKit/pull/391" target="_blank" rel="noopener" class="oss-name">WhisperLiveKit</a><span class="oss-stars">11k ★</span><span class="oss-desc">Streaming ASR optimisation, -51.9% compute</span><span class="status status-merged">Merged</span></li>
+            <li class="oss-row"><a href="https://github.com/NVIDIA-NeMo/Speech/pull/16063" target="_blank" rel="noopener" class="oss-name">NVIDIA NeMo</a><span class="oss-stars">18k ★</span><span class="oss-desc">Diarization config and word-confidence fixes (2 PRs)</span><span class="status status-review">In review</span></li>
           </ul>
         </div>
-      </div>
-    </div>
-  </section>
+      </section>
 
-  <!-- ===== PROJECTS SECTION ===== -->
-  <section id="projects">
-    <div class="container">
-      <div class="section-header fade-in">
-        <span class="section-label">Projects</span>
-        <h2>Featured Work</h2>
-      </div>
-
-      <div class="projects-grid collapsed" id="projectsGrid">
-
-        <!-- 1. LEAD PROJECT: Alzheimer's -->
-        <div class="project-card featured fade-in">
-          <div class="featured-ribbon">Lead Project</div>
-          <div class="card-img" style="display:flex;gap:4px;">
-            <img src="docs/assets/conference.jpg" alt="AIAI 2025 Conference Presentation" loading="lazy" style="width:50%;object-fit:contain;">
-            <div class="slideshow slideshow--flip" data-interval="4000" style="width:50%;position:relative;overflow:hidden;">
-              <img src="docs/assets/Research_Image.png" alt="Research Overview" class="slide active" loading="lazy">
-              <img src="docs/assets/alz_roc.png" alt="ROC Curve (OvO)" class="slide" loading="lazy">
-              <img src="docs/assets/alz_confusion.png" alt="Mean Confusion Matrix" class="slide" loading="lazy">
-              <img src="docs/assets/alz_volcano.png" alt="MCI to AD Volcano Plot" class="slide" loading="lazy">
-              <img src="docs/assets/alz_boxplots.png" alt="Biomarker Distributions" class="slide" loading="lazy">
-              <img src="docs/assets/alz_prec_rec.png" alt="Precision-Recall-F1 Curves" class="slide" loading="lazy">
-              <img src="docs/assets/alz_calib.png" alt="Calibration Curves" class="slide" loading="lazy">
-              <div class="slide-dots"></div>
-            </div>
-          </div>
-          <div class="card-header">
-            <span class="category-badge badge-research">Research</span>
-            <span class="springer-badge">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-              Springer Published
-            </span>
-          </div>
-          <h3>Alzheimer's Disease Classification</h3>
-          <p class="project-glance">Machine learning classification of Alzheimer's cognitive states from digital biomarkers, peer-reviewed and published by Springer.</p>
-          <div class="chip-row">
-            <span class="chip">Springer &middot; AIAI 2025</span>
-            <span class="chip">Presented in Limassol, Cyprus</span>
-            <span class="chip">Bio-Hermes cohort</span>
-          </div>
-          <button class="expander-toggle" type="button" aria-expanded="false" aria-controls="exp-alzheimers">
-            <span class="expander-label">Details</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
-          <div class="expander-body" id="exp-alzheimers">
-            <p>
-              Classified individuals into cognitive states of Alzheimer's disease using machine learning on the
-              Bio-Hermes dataset. Employing XGBoost, Random Forest, and Monte Carlo cross-validation with rigorous
-              feature selection, the work demonstrates high-accuracy classification from digital biomarker data,
-              advancing clinical AI decision-support for neurodegenerative conditions. Invited to present at the
-              AIAI 2025 International Conference in Limassol, Cyprus.
-            </p>
-            <figure class="pub-photo pub-photo--card">
-              <img src="docs/assets/aiai_presenting.jpg" alt="Eoin presenting his research at the AIAI 2025 conference in Limassol, Cyprus" loading="lazy">
-              <figcaption>Presenting at AIAI 2025 &middot; Limassol, Cyprus</figcaption>
-            </figure>
-            <div class="pub-citation">
-              <span class="citation-label">Cite as</span>
-              <blockquote class="citation-text">
-                Houstoun, E. et al. (2025). Classifying Cognitive States of Alzheimer's Disease with Machine
-                Learning Using Digital Biomarkers from the Bio-Hermes Study Cohort. In: <em>Artificial Intelligence
-                Applications and Innovations</em>. AIAI 2025. IFIP Advances in Information and Communication
-                Technology, vol 758, pp. 55–68. Springer, Cham. https://doi.org/10.1007/978-3-031-96235-6_5
-              </blockquote>
-            </div>
-            <div class="tech-stack">
-              <span>XGBoost</span>
-              <span>Random Forest</span>
-              <span>Monte Carlo CV</span>
-              <span>Feature Selection</span>
-              <span>Python</span>
-            </div>
-          </div>
-          <div class="card-actions">
-            <a href="https://github.com/EoinHoustoun/Alzheimers_Biohermes" target="_blank" rel="noopener" class="card-btn">View on GitHub →</a>
-            <a href="https://link.springer.com/chapter/10.1007/978-3-031-96235-6_5" target="_blank" rel="noopener" class="card-btn card-btn-secondary">Springer Paper →</a>
+      <!-- ===== CONTACT ===== -->
+      <section id="contact" aria-labelledby="contact-title">
+        <div class="contact-card">
+          <p class="eyebrow">Contact</p>
+          <h2 id="contact-title">Let's talk</h2>
+          <p class="contact-sub">Open to machine learning, data science and sports modelling roles in London. The fastest way to reach me is LinkedIn.</p>
+          <div class="contact-actions">
+            <a class="btn btn-primary" href="https://www.linkedin.com/in/eoin-houstoun-b0322b231/" target="_blank" rel="noopener">Message me on LinkedIn</a>
+            <a class="btn btn-ghost" href="mailto:eoinhoustoun@hotmail.com">eoinhoustoun@hotmail.com</a>
+            <a class="btn btn-ghost" href="https://github.com/EoinHoustoun" target="_blank" rel="noopener">GitHub</a>
           </div>
         </div>
+      </section>
+    </main>
 
-        <!-- 2. Fever Prediction -->
-        <div class="project-card fade-in">
-          <div class="card-img">
-            <img src="docs/assets/infra.png" alt="Fever Prediction with Infrared Thermography" loading="lazy">
-          </div>
-          <div class="card-header">
-            <span class="category-badge badge-clinical">Clinical AI</span>
-          </div>
-          <h3>Fever Prediction with Infrared Thermography</h3>
-          <p class="project-glance">0.86 F1 fever detection and 0.22&deg;C oral-temperature estimation from non-contact infrared data.</p>
-          <div class="chip-row">
-            <span class="chip">Custom PyTorch MLPs</span>
-            <span class="chip">SHAP interpretability</span>
-            <span class="chip">Nested CV</span>
-          </div>
-          <button class="expander-toggle" type="button" aria-expanded="false" aria-controls="exp-fever">
-            <span class="expander-label">Details</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
-          <div class="expander-body" id="exp-fever">
-            <p>
-              Estimates oral temperature and detects fever from non-contact infrared thermal sensor data.
-              Features custom PyTorch MLPs and rigorous SHAP-based model interpretability.
-            </p>
-            <div class="tech-stack">
-              <span>PyTorch</span>
-              <span>XGBoost</span>
-              <span>SHAP</span>
-              <span>Nested CV</span>
-              <span>MLP</span>
+    <!-- ===== SIDE RAIL ===== -->
+    <aside id="rail" aria-label="Education, models and skills">
+      <details class="rail-block" open>
+        <summary><span>Education</span></summary>
+        <div class="edu-list">
+          <details class="edu-row">
+            <summary>
+              <span class="plate edu-logo"><img src="docs/assets/logos/goldsmiths.svg" alt="" height="18"></span>
+              <span class="edu-text"><strong>MSc Artificial Intelligence &amp; Data Science</strong><span>Goldsmiths, University of London · 2024-25</span><span class="tag tag-amber">87% average · Distinction · ranked 1st</span></span>
+            </summary>
+            <div class="edu-more">
+              <img src="docs/assets/goldsmiths_grad.jpg" alt="Eoin at his MSc graduation in London" loading="lazy">
+              <p>Dissertation 92%. Led to the Springer-published Alzheimer's research.</p>
             </div>
-          </div>
-          <div class="card-actions">
-            <a href="https://github.com/EoinHoustoun/Infrared_Thermography" target="_blank" rel="noopener" class="card-btn">View on GitHub →</a>
-          </div>
-        </div>
-
-        <!-- 3. Pediatric Appendicitis -->
-        <div class="project-card fade-in">
-          <div class="card-img">
-            <img src="docs/assets/poster.png" alt="Pediatric Appendicitis Prediction" loading="lazy">
-          </div>
-          <div class="card-header">
-            <span class="category-badge badge-clinical">Clinical AI</span>
-            <span class="live-badge">
-              <span class="live-dot"></span> Live Demo
-            </span>
-          </div>
-          <h3>Pediatric Appendicitis Prediction</h3>
-          <p class="project-glance">96% accurate appendicitis diagnosis with live, interactive clinical decision support.</p>
-          <div class="chip-row">
-            <span class="chip">Live Gradio demo</span>
-            <span class="chip">Diagnosis + severity</span>
-            <span class="chip">XGBoost + MLP</span>
-          </div>
-          <button class="expander-toggle" type="button" aria-expanded="false" aria-controls="exp-appendicitis">
-            <span class="expander-label">Details</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
-          <div class="expander-body" id="exp-appendicitis">
-            <p>
-              Clinical decision-support tool classifying appendicitis diagnosis and severity from patient data.
-              Deployed as a live, interactive Gradio web application for real-time clinical use.
-            </p>
-            <div class="tech-stack">
-              <span>XGBoost</span>
-              <span>MLP</span>
-              <span>SHAP</span>
-              <span>Gradio</span>
-              <span>Python</span>
+          </details>
+          <details class="edu-row">
+            <summary>
+              <span class="plate edu-logo"><img src="docs/assets/logos/ucc.png" alt="" height="18"></span>
+              <span class="edu-text"><strong>BSc Data Science &amp; Analytics</strong><span>University College Cork · 2020-24</span><span class="tag tag-amber">First Class Honours</span></span>
+            </summary>
+            <div class="edu-more">
+              <img src="docs/assets/ucc_hats.jpg" alt="Eoin and classmates throwing graduation caps at UCC" loading="lazy">
+              <p>College Scholar (Year 1). Dissertation on ML validation procedures (First).</p>
+              <p class="mini-title">Mathematical core</p>
+              <div class="chip-row chip-row--tight">
+                <span class="chip">Calculus <b>90</b></span><span class="chip">Estimation Theory <b>88</b></span><span class="chip">Hypothesis Testing <b>83</b></span><span class="chip">Computational ML <b>83</b></span><span class="chip">Multivariate Methods <b>80</b></span>
+                <span class="chip">Probability &amp; Mathematical Statistics</span><span class="chip">Stochastic Modelling</span><span class="chip">Regression</span><span class="chip">Survival Analysis</span><span class="chip">Time Series</span><span class="chip">Statistical Methods for ML</span><span class="chip">Linear Algebra</span><span class="chip">Mathematical Modelling</span><span class="chip">Algorithm Analysis</span>
+              </div>
             </div>
-          </div>
-          <div class="card-actions">
-            <a href="https://github.com/EoinHoustoun/Pediatric_Appendicitis" target="_blank" rel="noopener" class="card-btn">View on GitHub →</a>
-          </div>
-        </div>
-
-        <!-- 4. Premier League Match Predictor -->
-        <div class="project-card fade-in">
-          <div class="card-img">
-            <div class="slideshow slideshow--flip" data-interval="4000" style="width:100%;height:100%;position:relative;overflow:hidden;">
-              <img src="docs/assets/fpred.png" alt="Portfolio Backtest" class="slide active" loading="lazy">
-              <img src="docs/assets/fpred_app.png" alt="App Overview" class="slide" loading="lazy">
-              <img src="docs/assets/fpred_heatmap.png" alt="Position Probability Heatmap" class="slide" loading="lazy">
-              <img src="docs/assets/fpred_markets.png" alt="Score Matrix and Markets" class="slide" loading="lazy">
-              <img src="docs/assets/fpred_backtest.png" alt="Backtest Results" class="slide" loading="lazy">
-              <div class="slide-dots"></div>
-            </div>
-          </div>
-          <div class="card-header">
-            <span class="category-badge badge-sports">Sports Analytics</span>
-          </div>
-          <h3>Premier League Match Predictor</h3>
-          <p class="project-glance">+&pound;8.2k mock-portfolio profit across 2025-26 from an ensemble match-outcome predictor with Kelly-sized stakes.</p>
-          <div class="chip-row">
-            <span class="chip">Dixon-Coles ensemble</span>
-            <span class="chip">Kelly criterion sizing</span>
-            <span class="chip">Live odds integration</span>
-          </div>
-          <button class="expander-toggle" type="button" aria-expanded="false" aria-controls="exp-fpred">
-            <span class="expander-label">Details</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
-          <div class="expander-body" id="exp-fpred">
-            <p>
-              Predicts Premier League match outcomes using a Dixon-Coles, Poisson, XGBoost, and
-              draw specialist ensemble. Includes a mock betting portfolio with Kelly criterion
-              sizing and live odds integration.
-            </p>
-            <div class="tech-stack">
-              <span>Dixon-Coles MLE</span>
-              <span>XGBoost</span>
-              <span>Draw Specialist</span>
-              <span>Kelly Criterion</span>
-              <span>Monte Carlo</span>
-              <span>Streamlit</span>
-              <span>Plotly</span>
-            </div>
-          </div>
-          <div class="card-actions">
-            <a href="https://github.com/EoinHoustoun/Football_Match_Predictor" target="_blank" rel="noopener" class="card-btn">View on GitHub →</a>
-          </div>
-        </div>
-
-        <!-- 5. Fantasy Football AI Planner -->
-        <div class="project-card fade-in">
-          <div class="card-img">
-            <div class="slideshow slideshow--flip" data-interval="4000" style="width:100%;height:100%;position:relative;overflow:hidden;">
-              <img src="docs/assets/fpl.png" alt="Fantasy Football AI Planner" class="slide active" loading="lazy">
-              <img src="docs/assets/fpl_points_history.png" alt="FPL Points History" class="slide" loading="lazy">
-              <img src="docs/assets/fpl_gw_history.png" alt="FPL Gameweek History" class="slide" loading="lazy">
-              <div class="slide-dots"></div>
-            </div>
-          </div>
-          <div class="card-header">
-            <span class="category-badge badge-sports">Sports Analytics</span>
-          </div>
-          <h3>Fantasy Football AI Planner</h3>
-          <p class="project-glance">FPL analytics platform driving transfer, captain and chip decisions.</p>
-          <div class="chip-row">
-            <span class="chip">XGBoost point predictions</span>
-            <span class="chip">Dixon-Coles team strength</span>
-            <span class="chip">EWM player form</span>
-          </div>
-          <button class="expander-toggle" type="button" aria-expanded="false" aria-controls="exp-fpl">
-            <span class="expander-label">Details</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
-          <div class="expander-body" id="exp-fpl">
-            <p>
-              FPL analytics platform combining Dixon-Coles team strength modelling, exponentially
-              weighted player form, and XGBoost point predictions to drive data-driven transfer, captain,
-              and chip decisions.
-            </p>
-            <div class="tech-stack">
-              <span>Dixon-Coles</span>
-              <span>XGBoost</span>
-              <span>Poisson Regression</span>
-              <span>EWM Form</span>
-              <span>Streamlit</span>
-              <span>Plotly</span>
-            </div>
-          </div>
-          <div class="card-actions">
-            <a href="https://github.com/EoinHoustoun/Fantasy_Football_AI" target="_blank" rel="noopener" class="card-btn">View on GitHub →</a>
-          </div>
-        </div>
-
-        <!-- 6. Football Transfer Intelligence Agent -->
-        <div class="project-card fade-in">
-          <div class="card-img">
-            <img src="docs/assets/fscout.png" alt="Football Transfer Intelligence Agent" loading="lazy">
-          </div>
-          <div class="card-header">
-            <span class="category-badge badge-sports">Sports Analytics</span>
-          </div>
-          <h3>Football Transfer Intelligence Agent</h3>
-          <p class="project-glance">Stacked ensemble predicting EPL transfer adaptation, served via a Flask API.</p>
-          <div class="chip-row">
-            <span class="chip">XGBoost + LightGBM stack</span>
-            <span class="chip">Optuna HPO</span>
-            <span class="chip">xG / xA features</span>
-          </div>
-          <button class="expander-toggle" type="button" aria-expanded="false" aria-controls="exp-fti">
-            <span class="expander-label">Details</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
-          <div class="expander-body" id="exp-fti">
-            <p>
-              Predicts EPL transfer adaptation scores using a stacked ensemble of XGBoost and LightGBM
-              base learners with a Ridge meta-learner. Features Optuna hyperparameter optimisation,
-              xG/xA feature engineering, and a Flask API for real-time predictions.
-            </p>
-            <div class="tech-stack">
-              <span>XGBoost</span>
-              <span>LightGBM</span>
-              <span>Stacking Ensemble</span>
-              <span>Optuna</span>
-              <span>xG / xA Features</span>
-              <span>Flask API</span>
-            </div>
-          </div>
-          <div class="card-actions">
-            <a href="https://github.com/EoinHoustoun/Football_Transfer_Intelligence" target="_blank" rel="noopener" class="card-btn">View on GitHub →</a>
-          </div>
-        </div>
-
-        <!-- 7. Validation Procedures -->
-        <div class="project-card fade-in">
-          <div class="card-img">
-            <img src="docs/assets/int_val.png" alt="Validation Procedures Exploration" loading="lazy">
-          </div>
-          <div class="card-header">
-            <span class="category-badge badge-sports">Sports Analytics</span>
-          </div>
-          <h3>Validation Procedures Exploration</h3>
-          <p class="project-glance">Transfer fees predicted within &plusmn;&euro;8M RMSE, exposing how random cross-validation flatters results.</p>
-          <div class="chip-row">
-            <span class="chip">CV variants compared</span>
-            <span class="chip">Temporal validation</span>
-            <span class="chip">Bootstrapping</span>
-          </div>
-          <button class="expander-toggle" type="button" aria-expanded="false" aria-controls="exp-validation">
-            <span class="expander-label">Details</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
-          <div class="expander-body" id="exp-validation">
-            <p>
-              Football player transfer fee prediction as a rigorous case study in validation methodology.
-              Systematically compares cross-validation variants, temporal validation, and bootstrapping.
-            </p>
-            <div class="tech-stack">
-              <span>Regression</span>
-              <span>Cross-Validation</span>
-              <span>Bootstrapping</span>
-              <span>XGBoost</span>
-              <span>R</span>
-            </div>
-          </div>
-          <div class="card-actions">
-            <a href="https://github.com/EoinHoustoun/Final-Year-Project" target="_blank" rel="noopener" class="card-btn">View on GitHub →</a>
-          </div>
-        </div>
-
-        <!-- 8. Neural Style Transfer -->
-        <div class="project-card fade-in extra">
-          <div class="card-img">
-            <img src="https://github.com/EoinHoustoun/Eoin_Houstoun/blob/master/style_transfer6.gif?raw=true" alt="Neural Style Transfer Demo" loading="lazy">
-          </div>
-          <div class="card-header">
-            <span class="category-badge badge-cv">Computer Vision</span>
-          </div>
-          <h3>Neural Style Transfer</h3>
-          <p class="project-glance">Celebrity faces re-rendered as comic-book art with deep neural style transfer.</p>
-          <div class="chip-row">
-            <span class="chip">VGG19</span>
-            <span class="chip">Content + style loss</span>
-          </div>
-          <button class="expander-toggle" type="button" aria-expanded="false" aria-controls="exp-nst">
-            <span class="expander-label">Details</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
-          <div class="expander-body" id="exp-nst">
-            <p>
-              Transforms celebrity faces into comic book illustrations using deep neural artistic rendering.
-              Combines content and style loss functions for visually striking photorealistic stylisation.
-            </p>
-            <div class="tech-stack">
-              <span>VGG19</span>
-              <span>PyTorch</span>
-              <span>CNN</span>
-              <span>Neural Rendering</span>
-            </div>
-          </div>
-          <div class="card-actions">
-            <a href="https://github.com/EoinHoustoun/Generative_AI" target="_blank" rel="noopener" class="card-btn">View on GitHub →</a>
-          </div>
-        </div>
-
-        <!-- 9. AI Chef Chatbot -->
-        <div class="project-card fade-in extra">
-          <div class="card-img">
-            <img src="docs/assets/ai_chef.png" alt="AI Chef Chatbot" loading="lazy">
-          </div>
-          <div class="card-header">
-            <span class="category-badge badge-nlp">NLP</span>
-          </div>
-          <h3>AI Chef Chatbot</h3>
-          <p class="project-glance">Ingredient-aware recipe chatbot with semantic search.</p>
-          <div class="chip-row">
-            <span class="chip">DistilBERT similarity</span>
-            <span class="chip">TF-IDF retrieval</span>
-            <span class="chip">Live web scraping</span>
-          </div>
-          <button class="expander-toggle" type="button" aria-expanded="false" aria-controls="exp-chef">
-            <span class="expander-label">Details</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
-          <div class="expander-body" id="exp-chef">
-            <p>
-              Recipe recommendation chatbot with a Tkinter desktop GUI. Uses DistilBERT for semantic
-              similarity and TF-IDF retrieval, enhanced with web scraping for live ingredient-aware suggestions.
-            </p>
-            <div class="tech-stack">
-              <span>DistilBERT</span>
-              <span>TF-IDF</span>
-              <span>NLP</span>
-              <span>Web Scraping</span>
-              <span>Tkinter</span>
-            </div>
-          </div>
-          <div class="card-actions">
-            <a href="https://github.com/EoinHoustoun/AI_Chef" target="_blank" rel="noopener" class="card-btn">View on GitHub →</a>
-          </div>
-        </div>
-
-        <!-- 10. YouTube Sentiment Analyser -->
-        <div class="project-card fade-in extra">
-          <div class="card-img">
-            <img src="docs/assets/yt.png" alt="YouTube Sentiment Analyser" loading="lazy">
-          </div>
-          <div class="card-header">
-            <span class="category-badge badge-nlp">NLP</span>
-          </div>
-          <h3>YouTube Sentiment Analyser</h3>
-          <p class="project-glance">Comment sentiment and six-emotion detection with an engagement health score.</p>
-          <div class="chip-row">
-            <span class="chip">RoBERTa + DistilRoBERTa</span>
-            <span class="chip">6-emotion detection</span>
-            <span class="chip">PDF/CSV export</span>
-          </div>
-          <button class="expander-toggle" type="button" aria-expanded="false" aria-controls="exp-yt">
-            <span class="expander-label">Details</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
-          <div class="expander-body" id="exp-yt">
-            <p>
-              Deep learning NLP pipeline that classifies YouTube comment sentiment and detects six
-              emotions using RoBERTa and DistilRoBERTa transformer models. Outputs an engagement
-              health score with word clouds, timelines, and PDF/CSV export.
-            </p>
-            <div class="tech-stack">
-              <span>RoBERTa</span>
-              <span>DistilRoBERTa</span>
-              <span>HuggingFace Transformers</span>
-              <span>PyTorch</span>
-              <span>Sentiment Analysis</span>
-              <span>Flask</span>
-            </div>
-          </div>
-          <div class="card-actions">
-            <a href="https://github.com/EoinHoustoun/YouTube_Sentiment_Analyser" target="_blank" rel="noopener" class="card-btn">View on GitHub →</a>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Secondary projects row (revealed by the toggle below) -->
-      <div class="secondary-projects fade-in extra-block" id="secondaryProjects" hidden>
-        <h3 class="secondary-title">Additional Projects</h3>
-        <div class="secondary-grid">
-          <div class="secondary-card">
-            <div class="secondary-img">
-              <img src="docs/assets/amazon_rec.jpg" alt="Graph neural network neighbour-aggregation diagram for recommendation link prediction" loading="lazy">
-            </div>
-            <div class="secondary-badge-row"><span class="category-badge badge-nlp">NLP / RecSys</span></div>
-            <h4>Amazon Recommendation System</h4>
-            <p>Collaborative and content-based filtering for personalised product recommendations at scale.</p>
-            <a href="https://github.com/EoinHoustoun" target="_blank" rel="noopener" class="secondary-link">GitHub →</a>
-          </div>
-          <div class="secondary-card">
-            <div class="secondary-img">
-              <img src="docs/assets/retail_prediction.jpg" alt="Retail sales growth bar chart with forecast" loading="lazy">
-            </div>
-            <div class="secondary-badge-row"><span class="category-badge badge-ds">Data Science</span></div>
-            <h4>Retail Customer Prediction</h4>
-            <p>Customer purchase propensity modelling using classification ensembles for a retail environment.</p>
-            <a href="https://github.com/EoinHoustoun" target="_blank" rel="noopener" class="secondary-link">GitHub →</a>
-          </div>
-          <div class="secondary-card">
-            <div class="secondary-img">
-              <img src="docs/assets/customer_segmentation.png" alt="Customer segmentation scatter plot with coloured clusters" loading="lazy">
-            </div>
-            <div class="secondary-badge-row"><span class="category-badge badge-ds">Data Science</span></div>
-            <h4>Customer Segmentation</h4>
-            <p>Unsupervised clustering to identify distinct customer personas for targeted marketing strategy.</p>
-            <a href="https://github.com/EoinHoustoun" target="_blank" rel="noopener" class="secondary-link">GitHub →</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Show more / less toggle: always sits at the bottom of the section -->
-      <div class="projects-toggle-wrap">
-        <button class="projects-toggle" id="projectsToggle" type="button" aria-expanded="false" aria-controls="projectsGrid">
-          <span class="projects-toggle-label">Show all projects</span>
-          <svg class="projects-toggle-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== CONTACT SECTION ===== -->
-  <section id="contact">
-    <div class="container">
-      <div class="section-header fade-in">
-        <span class="section-label">Contact</span>
-        <h2>Get In Touch</h2>
-      </div>
-
-      <div class="contact-content fade-in">
-        <p class="contact-sub">
-          Always open to discussing anything data, AI, or machine learning.<br>
-          Let's build something together.
-        </p>
-
-        <div class="contact-cards">
-          <!-- GitHub -->
-          <a href="https://github.com/EoinHoustoun" target="_blank" rel="noopener" class="contact-card">
-            <div class="contact-icon">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
-              </svg>
-            </div>
-            <div class="contact-info">
-              <div class="contact-label">GitHub</div>
-              <div class="contact-value">EoinHoustoun</div>
-            </div>
-            <div class="contact-arrow">→</div>
+          </details>
+          <a class="edu-row edu-link" href="https://www.mygreatlearning.com/eportfolio/eoin-houstoun" target="_blank" rel="noopener">
+            <span class="plate edu-logo"><img src="docs/assets/logos/mit.svg" alt="" height="16"></span>
+            <span class="edu-text"><strong>Machine Learning: Data-Driven Decisions</strong><span>MIT · 2025 · scholarship</span></span>
           </a>
-
-          <!-- LinkedIn -->
-          <a href="https://www.linkedin.com/in/eoin-houstoun-b0322b231/" target="_blank" rel="noopener" class="contact-card">
-            <div class="contact-icon">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-              </svg>
-            </div>
-            <div class="contact-info">
-              <div class="contact-label">LinkedIn</div>
-              <div class="contact-value">Connect with me</div>
-            </div>
-            <div class="contact-arrow">→</div>
-          </a>
-
-          <!-- MIT ePortfolio -->
-          <a href="https://www.mygreatlearning.com/eportfolio/eoin-houstoun" target="_blank" rel="noopener" class="contact-card">
-            <div class="contact-icon">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
-              </svg>
-            </div>
-            <div class="contact-info">
-              <div class="contact-label">ePortfolio & Certificate</div>
-              <div class="contact-value">MIT Machine Learning</div>
-            </div>
-            <div class="contact-arrow">→</div>
+          <a class="edu-row edu-link" href="docs/assets/EoinHoustoun-Modelling-Expected-Goals-Course-Certificate-AnalyiSport.pdf" target="_blank" rel="noopener">
+            <span class="plate edu-logo edu-logo--text">xG</span>
+            <span class="edu-text"><strong>Modelling Expected Goals</strong><span>AnalyiSport · 2022 · certificate</span></span>
           </a>
         </div>
-      </div>
-    </div>
-  </section>
+      </details>
 
-  <!-- ===== FOOTER ===== -->
+      <details class="rail-block" open>
+        <summary><span>Models I benchmark &amp; build with</span></summary>
+        <ul class="model-grid">
+          <li><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z"/></svg><span>Claude</span></li>
+          <li><svg viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd" aria-hidden="true"><path d="M9.205 8.658v-2.26c0-.19.072-.333.238-.428l4.543-2.616c.619-.357 1.356-.523 2.117-.523 2.854 0 4.662 2.212 4.662 4.566 0 .167 0 .357-.024.547l-4.71-2.759a.797.797 0 00-.856 0l-5.97 3.473zm10.609 8.8V12.06c0-.333-.143-.57-.429-.737l-5.97-3.473 1.95-1.118a.433.433 0 01.476 0l4.543 2.617c1.309.76 2.189 2.378 2.189 3.948 0 1.808-1.07 3.473-2.76 4.163zM7.802 12.703l-1.95-1.142c-.167-.095-.239-.238-.239-.428V5.899c0-2.545 1.95-4.472 4.591-4.472 1 0 1.927.333 2.712.928L8.23 5.067c-.285.166-.428.404-.428.737v6.898zM12 15.128l-2.795-1.57v-3.33L12 8.658l2.795 1.57v3.33L12 15.128zm1.796 7.23c-1 0-1.927-.332-2.712-.927l4.686-2.712c.285-.166.428-.404.428-.737v-6.898l1.974 1.142c.167.095.238.238.238.428v5.233c0 2.545-1.974 4.472-4.614 4.472zm-5.637-5.303l-4.544-2.617c-1.308-.761-2.188-2.378-2.188-3.948A4.482 4.482 0 014.21 6.327v5.423c0 .333.143.571.428.738l5.947 3.449-1.95 1.118a.432.432 0 01-.476 0zm-.262 3.9c-2.688 0-4.662-2.021-4.662-4.519 0-.19.024-.38.047-.57l4.686 2.71c.286.167.571.167.856 0l5.97-3.448v2.26c0 .19-.07.333-.237.428l-4.543 2.616c-.619.357-1.356.523-2.117.523zm5.899 2.83a5.947 5.947 0 005.827-4.756C22.287 18.339 24 15.84 24 13.296c0-1.665-.713-3.282-1.998-4.448.119-.5.19-.999.19-1.498 0-3.401-2.759-5.947-5.946-5.947-.642 0-1.26.095-1.88.31A5.962 5.962 0 0010.205 0a5.947 5.947 0 00-5.827 4.757C1.713 5.447 0 7.945 0 10.49c0 1.666.713 3.283 1.998 4.448-.119.5-.19 1-.19 1.499 0 3.401 2.759 5.946 5.946 5.946.642 0 1.26-.095 1.88-.309a5.96 5.96 0 004.162 1.713z"></path></svg><span>GPT</span></li>
+          <li><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81"/></svg><span>Gemini</span></li>
+          <li><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.915 4.03c-1.968 0-3.683 1.28-4.871 3.113C.704 9.208 0 11.883 0 14.449c0 .706.07 1.369.21 1.973a6.624 6.624 0 0 0 .265.86 5.297 5.297 0 0 0 .371.761c.696 1.159 1.818 1.927 3.593 1.927 1.497 0 2.633-.671 3.965-2.444.76-1.012 1.144-1.626 2.663-4.32l.756-1.339.186-.325c.061.1.121.196.183.3l2.152 3.595c.724 1.21 1.665 2.556 2.47 3.314 1.046.987 1.992 1.22 3.06 1.22 1.075 0 1.876-.355 2.455-.843a3.743 3.743 0 0 0 .81-.973c.542-.939.861-2.127.861-3.745 0-2.72-.681-5.357-2.084-7.45-1.282-1.912-2.957-2.93-4.716-2.93-1.047 0-2.088.467-3.053 1.308-.652.57-1.257 1.29-1.82 2.05-.69-.875-1.335-1.547-1.958-2.056-1.182-.966-2.315-1.303-3.454-1.303zm10.16 2.053c1.147 0 2.188.758 2.992 1.999 1.132 1.748 1.647 4.195 1.647 6.4 0 1.548-.368 2.9-1.839 2.9-.58 0-1.027-.23-1.664-1.004-.496-.601-1.343-1.878-2.832-4.358l-.617-1.028a44.908 44.908 0 0 0-1.255-1.98c.07-.109.141-.224.211-.327 1.12-1.667 2.118-2.602 3.358-2.602zm-10.201.553c1.265 0 2.058.791 2.675 1.446.307.327.737.871 1.234 1.579l-1.02 1.566c-.757 1.163-1.882 3.017-2.837 4.338-1.191 1.649-1.81 1.817-2.486 1.817-.524 0-1.038-.237-1.383-.794-.263-.426-.464-1.13-.464-2.046 0-2.221.63-4.535 1.66-6.088.454-.687.964-1.226 1.533-1.533a2.264 2.264 0 0 1 1.088-.285z"/></svg><span>Llama</span></li>
+          <li><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.143 3.429v3.428h-3.429v3.429h-3.428V6.857H6.857V3.43H3.43v13.714H0v3.428h10.286v-3.428H6.857v-3.429h3.429v3.429h3.429v-3.429h3.428v3.429h-3.428v3.428H24v-3.428h-3.43V3.429z"/></svg><span>Mistral</span></li>
+          <li><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.919 14.545 20.817 9.17l1.47-2.544a.56.56 0 0 0 0-.566l-1.633-2.83a.57.57 0 0 0-.49-.283h-6.207L12.487.402a.57.57 0 0 0-.49-.284H8.732a.56.56 0 0 0-.49.284L5.139 5.775h-2.94a.56.56 0 0 0-.49.284L.077 8.887a.56.56 0 0 0 0 .567L3.18 14.83l-1.47 2.545a.56.56 0 0 0 0 .566l1.634 2.83a.57.57 0 0 0 .49.283h6.205l1.47 2.545a.57.57 0 0 0 .49.284h3.266a.57.57 0 0 0 .49-.284l3.104-5.375h2.94a.57.57 0 0 0 .49-.283l1.634-2.828a.55.55 0 0 0-.004-.568M8.733.686l1.634 2.828-1.634 2.828H21.8L20.164 9.17H7.425L5.63 6.06Zm1.306 19.801-6.205-.002 1.634-2.83h3.265L2.201 6.344h3.267q3.182 5.517 6.367 11.032zm10.124-5.66L18.53 12l-6.532 11.315-1.634-2.83c2.129-3.673 4.25-7.351 6.373-11.028h3.592l3.102 5.374z"/></svg><span>Qwen</span></li>
+          <li><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.748 4.651c-.254-.124-.364.113-.512.233-.051.04-.094.09-.137.137-.372.397-.806.657-1.373.626-.829-.046-1.537.214-2.163.848-.133-.782-.575-1.248-1.247-1.548-.352-.155-.708-.311-.955-.65-.172-.24-.219-.509-.305-.774-.055-.16-.11-.323-.293-.35-.2-.031-.278.136-.356.276-.313.572-.434 1.202-.422 1.84.027 1.436.633 2.58 1.838 3.393.137.094.172.187.129.323-.082.28-.18.553-.266.833-.055.179-.137.218-.328.14a5.5 5.5 0 0 1-1.737-1.179c-.857-.828-1.631-1.743-2.597-2.46a12 12 0 0 0-.689-.47c-.985-.957.13-1.743.387-1.836.27-.098.094-.433-.778-.428-.872.003-1.67.295-2.687.685a3 3 0 0 1-.465.136 9.6 9.6 0 0 0-2.883-.101c-1.885.21-3.39 1.1-4.497 2.622C.082 8.776-.231 10.854.152 13.02c.403 2.284 1.568 4.175 3.36 5.653 1.857 1.533 3.997 2.284 6.438 2.14 1.482-.085 3.132-.284 4.994-1.86.47.234.962.328 1.78.398.629.058 1.235-.031 1.705-.129.735-.155.684-.836.418-.961-2.155-1.004-1.682-.595-2.112-.926 1.095-1.295 2.768-3.598 3.284-6.733.05-.346.115-.834.108-1.114-.004-.171.035-.238.23-.257a4.2 4.2 0 0 0 1.545-.475c1.397-.763 1.96-2.016 2.093-3.517.02-.23-.004-.467-.247-.588M11.58 18.168c-2.088-1.642-3.101-2.183-3.52-2.16-.39.024-.32.472-.234.763.09.288.207.487.371.74.114.167.192.416-.113.603-.673.416-1.842-.14-1.897-.168-1.361-.801-2.5-1.86-3.301-3.306-.775-1.393-1.225-2.888-1.299-4.482-.02-.385.094-.522.477-.592a4.7 4.7 0 0 1 1.53-.038c2.131.311 3.946 1.264 5.467 2.774.868.86 1.525 1.887 2.202 2.89.72 1.066 1.494 2.082 2.48 2.915.348.291.626.513.892.677-.802.09-2.14.109-3.055-.615zm1.001-6.44a.306.306 0 0 1 .415-.287.3.3 0 0 1 .113.074.3.3 0 0 1 .086.214c0 .17-.136.307-.308.307a.303.303 0 0 1-.306-.307m3.11 1.596c-.2.081-.4.151-.591.16a1.25 1.25 0 0 1-.798-.254c-.274-.23-.47-.358-.551-.758a1.7 1.7 0 0 1 .015-.588c.07-.327-.007-.537-.238-.727-.188-.156-.426-.199-.689-.199a.6.6 0 0 1-.254-.078.253.253 0 0 1-.114-.358 1 1 0 0 1 .192-.21c.356-.202.767-.136 1.146.016.352.144.618.408 1.001.782.392.451.462.576.685.915.176.264.336.536.446.848.066.194-.02.353-.25.45"/></svg><span>DeepSeek</span></li>
+          <li><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.025 1.13c-5.77 0-10.449 4.647-10.449 10.378 0 1.112.178 2.181.503 3.185.064-.222.203-.444.416-.577a.96.96 0 0 1 .524-.15c.293 0 .584.124.84.284.278.173.48.408.71.694.226.282.458.611.684.951v-.014c.017-.324.106-.622.264-.874s.403-.487.762-.543c.3-.047.596.06.787.203s.31.313.4.467c.15.257.212.468.233.542.01.026.653 1.552 1.657 2.54.616.605 1.01 1.223 1.082 1.912.055.537-.096 1.059-.38 1.572.637.121 1.294.187 1.967.187.657 0 1.298-.063 1.921-.178-.287-.517-.44-1.041-.384-1.581.07-.69.465-1.307 1.081-1.913 1.004-.987 1.647-2.513 1.657-2.539.021-.074.083-.285.233-.542.09-.154.208-.323.4-.467a1.08 1.08 0 0 1 .787-.203c.359.056.604.29.762.543s.247.55.265.874v.015c.225-.34.457-.67.683-.952.23-.286.432-.52.71-.694.257-.16.547-.284.84-.285a.97.97 0 0 1 .524.151c.228.143.373.388.43.625l.006.04a10.3 10.3 0 0 0 .534-3.273c0-5.731-4.678-10.378-10.449-10.378M8.327 6.583a1.5 1.5 0 0 1 .713.174 1.487 1.487 0 0 1 .617 2.013c-.183.343-.762-.214-1.102-.094-.38.134-.532.914-.917.71a1.487 1.487 0 0 1 .69-2.803m7.486 0a1.487 1.487 0 0 1 .689 2.803c-.385.204-.536-.576-.916-.71-.34-.12-.92.437-1.103.094a1.487 1.487 0 0 1 .617-2.013 1.5 1.5 0 0 1 .713-.174m-10.68 1.55a.96.96 0 1 1 0 1.921.96.96 0 0 1 0-1.92m13.838 0a.96.96 0 1 1 0 1.92.96.96 0 0 1 0-1.92M8.489 11.458c.588.01 1.965 1.157 3.572 1.164 1.607-.007 2.984-1.155 3.572-1.164.196-.003.305.12.305.454 0 .886-.424 2.328-1.563 3.202-.22-.756-1.396-1.366-1.63-1.32q-.011.001-.02.006l-.044.026-.01.008-.03.024q-.018.017-.035.036l-.032.04a1 1 0 0 0-.058.09l-.014.025q-.049.088-.11.19a1 1 0 0 1-.083.116 1.2 1.2 0 0 1-.173.18q-.035.029-.075.058a1.3 1.3 0 0 1-.251-.243 1 1 0 0 1-.076-.107c-.124-.193-.177-.363-.337-.444-.034-.016-.104-.008-.2.022q-.094.03-.216.087-.06.028-.125.063l-.13.074q-.067.04-.136.086a3 3 0 0 0-.135.096 3 3 0 0 0-.26.219 2 2 0 0 0-.12.121 2 2 0 0 0-.106.128l-.002.002a2 2 0 0 0-.09.132l-.001.001a1.2 1.2 0 0 0-.105.212q-.013.036-.024.073c-1.139-.875-1.563-2.317-1.563-3.203 0-.334.109-.457.305-.454m.836 10.354c.824-1.19.766-2.082-.365-3.194-1.13-1.112-1.789-2.738-1.789-2.738s-.246-.945-.806-.858-.97 1.499.202 2.362c1.173.864-.233 1.45-.685.64-.45-.812-1.683-2.896-2.322-3.295s-1.089-.175-.938.647 2.822 2.813 2.562 3.244-1.176-.506-1.176-.506-2.866-2.567-3.49-1.898.473 1.23 2.037 2.16c1.564.932 1.686 1.178 1.464 1.53s-3.675-2.511-4-1.297c-.323 1.214 3.524 1.567 3.287 2.405-.238.839-2.71-1.587-3.216-.642-.506.946 3.49 2.056 3.522 2.064 1.29.33 4.568 1.028 5.713-.624m5.349 0c-.824-1.19-.766-2.082.365-3.194 1.13-1.112 1.789-2.738 1.789-2.738s.246-.945.806-.858.97 1.499-.202 2.362c-1.173.864.233 1.45.685.64.451-.812 1.683-2.896 2.322-3.295s1.089-.175.938.647-2.822 2.813-2.562 3.244 1.176-.506 1.176-.506 2.866-2.567 3.49-1.898-.473 1.23-2.037 2.16c-1.564.932-1.686 1.178-1.464 1.53s3.675-2.511 4-1.297c.323 1.214-3.524 1.567-3.287 2.405.238.839 2.71-1.587 3.216-.642.506.946-3.49 2.056-3.522 2.064-1.29.33-4.568 1.028-5.713-.624"/></svg><span>Hugging Face</span></li>
+          <li><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.948 8.798v-1.43a6.7 6.7 0 0 1 .424-.018c3.922-.124 6.493 3.374 6.493 3.374s-2.774 3.851-5.75 3.851c-.398 0-.787-.062-1.158-.185v-4.346c1.528.185 1.837.857 2.747 2.385l2.04-1.714s-1.492-1.952-4-1.952a6.016 6.016 0 0 0-.796.035m0-4.735v2.138l.424-.027c5.45-.185 9.01 4.47 9.01 4.47s-4.08 4.964-8.33 4.964c-.37 0-.733-.035-1.095-.097v1.325c.3.035.61.062.91.062 3.957 0 6.82-2.023 9.593-4.408.459.371 2.34 1.263 2.73 1.652-2.633 2.208-8.772 3.984-12.253 3.984-.335 0-.653-.018-.971-.053v1.864H24V4.063zm0 10.326v1.131c-3.657-.654-4.673-4.46-4.673-4.46s1.758-1.944 4.673-2.262v1.237H8.94c-1.528-.186-2.73 1.245-2.73 1.245s.68 2.412 2.739 3.11M2.456 10.9s2.164-3.197 6.5-3.533V6.201C4.153 6.59 0 10.653 0 10.653s2.35 6.802 8.948 7.42v-1.237c-4.84-.6-6.492-5.936-6.492-5.936z"/></svg><span>NVIDIA</span></li>
+        </ul>
+        <p class="rail-note">Benchmarked and optimised on Artemis. Hands-on with BitNet b1.58, Qwen3.5-0.8B, LFM2.5-350M, Parakeet and Whisper.</p>
+      </details>
+
+      <details class="rail-block" open>
+        <summary><span>Statistical toolkit</span></summary>
+        <dl class="toolkit">
+          <dt>Inference</dt><dd><span class="chip">Welch CIs</span><span class="chip">Power analysis</span><span class="chip">Hypothesis testing</span><span class="chip">Bootstrap</span><span class="chip">Paired A/B</span></dd>
+          <dt>Bayesian</dt><dd><span class="chip">Empirical Bayes</span><span class="chip">Shrinkage</span><span class="chip">Gaussian processes</span></dd>
+          <dt>Probability &amp; sport</dt><dd><span class="chip">Dixon-Coles</span><span class="chip">Poisson</span><span class="chip">Elo</span><span class="chip">Kelly</span><span class="chip">Monte Carlo</span><span class="chip">xG</span></dd>
+          <dt>Machine learning</dt><dd><span class="chip">XGBoost</span><span class="chip">PyTorch</span><span class="chip">Calibration</span><span class="chip">Nested CV</span><span class="chip">SHAP</span><span class="chip">Transformers</span></dd>
+          <dt>Optimisation</dt><dd><span class="chip">MILP</span><span class="chip">Optuna</span><span class="chip">PCA</span></dd>
+        </dl>
+      </details>
+
+      <details class="rail-block" open>
+        <summary><span>Stack</span></summary>
+        <div class="chip-row chip-row--tight"><span class="chip">Python</span><span class="chip">R</span><span class="chip">SQL</span><span class="chip">PyTorch</span><span class="chip">scikit-learn</span><span class="chip">vLLM</span><span class="chip">FastAPI</span><span class="chip">Streamlit</span><span class="chip">Docker</span><span class="chip">Git</span></div>
+      </details>
+    </aside>
+  </div>
+
   <footer>
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-name">Eoin Houstoun</div>
-        <div class="footer-sub">Data Scientist &amp; AI Engineer &middot; Published Researcher, AIAI 2025</div>
-        <div class="footer-links">
-          <a href="https://github.com/EoinHoustoun" target="_blank" rel="noopener">GitHub</a>
-          <span class="footer-sep">·</span>
-          <a href="https://link.springer.com/chapter/10.1007/978-3-031-96235-6_5" target="_blank" rel="noopener">Springer Paper</a>
-          <span class="footer-sep">·</span>
-          <a href="https://www.mygreatlearning.com/eportfolio/eoin-houstoun" target="_blank" rel="noopener">ePortfolio & Certificate</a>
-        </div>
-        <div class="footer-copy">&copy; 2025 Eoin Houstoun</div>
-      </div>
+    <div class="footer-inner">
+      <p><strong>Eoin Houstoun</strong> · AI Engineer · London</p>
+      <p class="footer-links"><a href="https://www.linkedin.com/in/eoin-houstoun-b0322b231/" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://github.com/EoinHoustoun" target="_blank" rel="noopener">GitHub</a> · <a href="https://link.springer.com/chapter/10.1007/978-3-031-96235-6_5" target="_blank" rel="noopener">Springer paper</a></p>
+      <p>© <span id="year">2026</span> Eoin Houstoun</p>
     </div>
   </footer>
 
-  <script src="script.js?v=10"></script>
+  <script src="js/lib/gsap.min.js" defer></script>
+  <script src="js/lib/ScrollTrigger.min.js" defer></script>
+  <script src="js/lib/ScrambleTextPlugin.min.js" defer></script>
+  <script src="script.js?v=11" defer></script>
 </body>
 </html>
