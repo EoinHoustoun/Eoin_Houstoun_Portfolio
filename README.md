@@ -130,7 +130,7 @@ A hierarchical Bayesian goal model (MCMC), a classical Dixon-Coles model and a t
 
 A causal study of 77 in-season Premier League sackings (2010-11 to 2025-26), each compared with matched teams that hit the same bad run and kept their manager.
 
-- Sacked teams improve by 0.44 points per game, and so do the matched teams: the effect of the sacking is 0.00 (95% interval -0.12 to +0.12)
+- The new-manager bounce is real (+0.44 points per game) but matched teams that kept their manager recover by exactly as much: it is regression to the mean, and the extra gain from sacking is 0.00 (95% interval -0.12 to +0.12)
 - Matching includes the defeat that usually triggers a sacking (Ashenfelter's dip), which was needed for parallel pre-trends
 - Holds under synthetic control, alternative matching and a placebo test with fake sackings
 - Techniques: matched difference-in-differences, event study, synthetic control, bootstrap, Wikipedia scraping

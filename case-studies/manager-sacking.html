@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Does Sacking the Manager Work? · Eoin Houstoun</title>
-<meta name="description" content="A causal study of 77 Premier League sackings using matched difference-in-differences, synthetic control and placebo tests.">
-<style>.back{padding-top:20px}.back a{font:600 .92rem var(--body);color:var(--s1);text-decoration:none}.back a:hover{text-decoration:underline}:root{color-scheme:light}</style>
+<meta name="description" content="Sacking the manager is followed by a +0.44 points-per-game bounce, and teams that kept their manager bounce back just as much: a causal study of 77 Premier League sackings.">
+<style>.back{padding-top:20px}.back a{font:600 .92rem var(--body);color:var(--s1);text-decoration:none}.back a:hover{text-decoration:underline}</style>
 </head>
 <body style="margin:0">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -68,7 +68,7 @@ footer{margin-top:44px;font-size:.92rem;color:var(--ink2)}
 <header>
   <div class="kicker">Football analytics · Causal inference</div>
   <h1>Does Sacking the Manager Work?</h1>
-  <p class="dek">Premier League teams that sack their manager pick up far more points afterwards. Is that the new manager, or would the bounce have happened anyway? 77 sackings across 16 seasons, compared with teams in the same hole that kept their manager.</p>
+  <p class="dek">Sack the manager and results improve: <b>+0.44 points per game</b> across 77 Premier League sackings. But teams in the same hole that kept their manager improved by exactly as much. The new-manager bounce is real; the new manager is not the reason.</p>
   
   <div class="tiles" id="tiles"></div>
 </header>
@@ -80,7 +80,7 @@ footer{margin-top:44px;font-size:.92rem;color:var(--ink2)}
 </section>
 
 <section>
-  <h2>The answer: no measurable effect</h2>
+  <h2>The bounce happens either way</h2>
   <div class="fig">
     <h3>Points per game around the change, sacked teams vs matched teams that kept their manager</h3>
     <p class="sub">Game 0 is the first league game after the vacancy. Controls are lined up at the equivalent moment of their own bad run. Hover for values.</p>
@@ -92,7 +92,7 @@ footer{margin-top:44px;font-size:.92rem;color:var(--ink2)}
 </section>
 
 <section>
-  <h2>Before and after, side by side</h2>
+  <h2>Same hole, same recovery</h2>
   <div class="fig">
     <h3>Average points per game, 10 games before vs 10 games after</h3>
     <p class="sub">Both groups bounce back by the same amount.</p>
@@ -112,7 +112,7 @@ footer{margin-top:44px;font-size:.92rem;color:var(--ink2)}
 </section>
 
 <section>
-  <h2>Does the answer survive other designs?</h2>
+  <h2>Trying to break the finding</h2>
   <div class="fig">
     <h3>Estimated effect on points per game under each design, with 95% intervals</h3>
     <p class="sub">Every estimate sits close to zero. The placebo row uses fake "sackings" at teams that kept their manager, and correctly finds nothing.</p>
@@ -151,16 +151,16 @@ const sg = x => (x>=0?"+":"")+x.toFixed(2);
 const P = D.outcomes.pts, pp = D.pre_post;
 
 $("#tiles").innerHTML = [
-  [sg(P.naive[0]),"points per game: sacked teams, after vs before"],
-  [sg(P.controls[0]),"points per game: matched teams that kept their manager"],
-  [sg(P.did[0]).replace("-0.00","0.00"),"effect of the sacking"],
-  [D.n_events,"in-season sackings analysed"]
+  [sg(P.naive[0]),"points per game after a sacking: the bounce everyone sees"],
+  [sg(P.controls[0]),"points per game for matched teams that kept their manager"],
+  [D.n_events,"in-season sackings, 16 seasons"],
+  [String(D.robustness.length - 1),"different designs, all landing near zero"]
 ].map(([b,s])=>`<div class="tile"><b>${b}</b><span>${s}</span></div>`).join("");
 
 $("#answer").innerHTML = [
   `<b>Sacked teams improve a lot:</b> from ${pp.treated_pre.toFixed(2)} to ${pp.treated_post.toFixed(2)} points per game.`,
   `<b>So do the matched teams that kept their manager:</b> from ${pp.ctl_pre.toFixed(2)} to ${pp.ctl_post.toFixed(2)}.`,
-  `<b>The difference is the effect of the sacking:</b> ${sg(P.did[0]).replace("-0.00","0.00")} points per game (95% interval ${sg(P.did[1])} to ${sg(P.did[2])}). Over a 10-game spell, that interval rules out an average gain of more than about 1.2 points.`
+  `<b>So the bounce is regression to the mean, not the new manager.</b> The extra gain from sacking is ${sg(P.did[0]).replace("-0.00","0.00")} points per game (95% interval ${sg(P.did[1])} to ${sg(P.did[2])}): over a 10-game spell, any real average boost is at most about 1.2 points.`
 ].map(x=>`<li>${x}</li>`).join("");
 
 function chartPath(){
