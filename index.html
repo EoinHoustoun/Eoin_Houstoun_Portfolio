@@ -211,6 +211,52 @@
           </article>
 
           <!-- Validation Procedures -->
+          <article class="project-card" data-cat="sports research" id="proj-bayes">
+            <div class="card-media">
+              <div class="slideshow" data-interval="4200">
+                <img src="docs/assets/bayes_gap.jpg" alt="Gap to the closing market in log loss for each forecaster" class="slide contain active" loading="lazy">
+                <img src="docs/assets/bayes_promoted.jpg" alt="Promoted side effect on goals scored and conceded by season" class="slide contain" loading="lazy">
+                <img src="docs/assets/bayes_teams.jpg" alt="Team strengths with 90% posterior intervals" class="slide contain" loading="lazy">
+                <div class="slide-dots"></div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="card-tags"><span class="badge badge-sports">Sports modelling</span><span class="badge badge-research">Bayesian · MCMC</span></div>
+              <h3>Bayes vs the Market</h3>
+              <p class="glance">A hierarchical Bayesian goal model, a classical Dixon-Coles model and a tabular foundation model, tested walk-forward on <span class="hl">1,520 matches</span> against the closing market.</p>
+              <div class="chip-row"><span class="chip">NumPyro NUTS</span><span class="chip">Partial pooling</span><span class="chip">TabICL benchmark</span></div>
+              <button class="expander-toggle" type="button" aria-expanded="false" aria-controls="exp-bayes"><span>Details</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+              <div class="expander-body" id="exp-bayes">
+                <p>The same Poisson model fitted two ways: maximum likelihood and a hierarchical Bayesian version sampled with NUTS (108 fits, zero divergences), refit every 28 days on past data only. The market won, and both models finished level. My first Bayesian run lost: down-weighting old matches shrank its effective evidence, so it pulled every team towards average. One pre-declared fix brought it level. Where pooling earns its keep is promoted sides, which score about 30% fewer goals and concede about 41% more than their later level. TabICL, a zero-tuning foundation model, added nothing beyond the market.</p>
+                <div class="tech-stack"><span>Python</span><span>NumPyro</span><span>JAX</span><span>Dixon-Coles</span><span>Hierarchical Bayes</span><span>TabICL</span><span>Bootstrap</span></div>
+              </div>
+              <div class="card-actions"><a href="case-studies/bayes-vs-market.html" class="card-btn">Case study →</a><a href="https://github.com/EoinHoustoun/Bayes_vs_Market" target="_blank" rel="noopener" class="card-btn card-btn-ghost">GitHub →</a></div>
+            </div>
+          </article>
+
+          <article class="project-card" data-cat="sports research" id="proj-sacking">
+            <div class="card-media">
+              <div class="slideshow" data-interval="4200">
+                <img src="docs/assets/sack_path.jpg" alt="Points per game around a sacking for sacked and matched teams" class="slide contain active" loading="lazy">
+                <img src="docs/assets/sack_beforeafter.jpg" alt="Points per game before and after for both groups" class="slide contain" loading="lazy">
+                <img src="docs/assets/sack_robust.jpg" alt="Estimated effect under each design with 95% intervals" class="slide contain" loading="lazy">
+                <div class="slide-dots"></div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="card-tags"><span class="badge badge-sports">Sports analytics</span><span class="badge badge-research">Causal inference</span></div>
+              <h3>Does Sacking the Manager Work?</h3>
+              <p class="glance">77 Premier League sackings compared with matched teams that kept their manager: the new-manager bounce is <span class="hl">0.00 points per game</span> once regression to the mean is removed.</p>
+              <div class="chip-row"><span class="chip">Matched DiD</span><span class="chip">Synthetic control</span><span class="chip">Placebo tests</span></div>
+              <button class="expander-toggle" type="button" aria-expanded="false" aria-controls="exp-sacking"><span>Details</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+              <div class="expander-body" id="exp-sacking">
+                <p>Sacked teams improve by 0.44 points per game, and so do teams that hit the same bad run and kept their manager. Each sacking is matched to five such teams on 10-game form, betting-market quality, stage of season and the defeat that usually triggers the sacking. The effect is 0.00 points per game (95% interval -0.12 to +0.12), and it holds under synthetic control, alternative matching and a placebo test with fake sackings. Managerial changes were scraped from Wikipedia for 16 seasons.</p>
+                <div class="tech-stack"><span>Python</span><span>pandas</span><span>Difference-in-differences</span><span>Synthetic control</span><span>Event study</span><span>Bootstrap</span></div>
+              </div>
+              <div class="card-actions"><a href="case-studies/manager-sacking.html" class="card-btn">Case study →</a><a href="https://github.com/EoinHoustoun/Manager_Sacking_Effect" target="_blank" rel="noopener" class="card-btn card-btn-ghost">GitHub →</a></div>
+            </div>
+          </article>
+
           <article class="project-card" data-cat="research sports" id="proj-validation">
             <div class="card-media card-media--light"><img src="docs/assets/int_val.jpg" alt="Internal-external validation diagram" class="contain" loading="lazy"></div>
             <div class="card-body">
@@ -519,7 +565,8 @@
         <summary><span>Statistical toolkit</span></summary>
         <dl class="toolkit">
           <dt>Inference</dt><dd><span class="chip">Welch CIs</span><span class="chip">Power analysis</span><span class="chip">Hypothesis testing</span><span class="chip">Bootstrap</span><span class="chip">Paired A/B</span></dd>
-          <dt>Bayesian</dt><dd><span class="chip">Empirical Bayes</span><span class="chip">Shrinkage</span><span class="chip">Gaussian processes</span></dd>
+          <dt>Bayesian</dt><dd><span class="chip">Hierarchical models</span><span class="chip">MCMC (NUTS)</span><span class="chip">Empirical Bayes</span><span class="chip">Shrinkage</span><span class="chip">Gaussian processes</span></dd>
+          <dt>Causal inference</dt><dd><span class="chip">Diff-in-diff</span><span class="chip">Synthetic control</span><span class="chip">Matching</span><span class="chip">Placebo tests</span></dd>
           <dt>Probability &amp; sport</dt><dd><span class="chip">Dixon-Coles</span><span class="chip">Poisson</span><span class="chip">Elo</span><span class="chip">Kelly</span><span class="chip">Monte Carlo</span><span class="chip">xG</span></dd>
           <dt>Machine learning</dt><dd><span class="chip">XGBoost</span><span class="chip">PyTorch</span><span class="chip">Calibration</span><span class="chip">Nested CV</span><span class="chip">SHAP</span><span class="chip">Transformers</span></dd>
           <dt>Optimisation</dt><dd><span class="chip">MILP</span><span class="chip">Optuna</span><span class="chip">PCA</span></dd>

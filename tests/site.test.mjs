@@ -148,3 +148,29 @@ test('TurinTech section sells Eoin: evoML, onboarding, people skills', async () 
   for (const w of [/client/i, /captain/i, /present/i, /trained/i]) assert.match(people, w);
   await ctx.close();
 });
+
+test('case studies: card links open pages with rendered charts, a way back and no em dash', async () => {
+  const { page, ctx } = await open();
+  const links = await page.$$eval('#projects a[href^="case-studies/"]', as => as.map(a => a.getAttribute('href')));
+  assert.deepEqual([...new Set(links)].sort(), ['case-studies/bayes-vs-market.html', 'case-studies/manager-sacking.html']);
+  for (const href of links) {
+    for (const viewport of [{ width: 1440, height: 900 }, { width: 390, height: 844 }]) {
+      const p = await ctx.newPage();
+      await p.setViewportSize(viewport);
+      const errors = [];
+      p.on('pageerror', e => errors.push(e.message));
+      await p.goto(URL + href, { waitUntil: 'load' });
+      const charts = await p.$$eval('svg.ch', svgs => svgs.map(s => s.childElementCount));
+      assert.ok(charts.length >= 3 && charts.every(n => n > 5), `${href}: charts not rendered`);
+      assert.equal(await p.$eval('.back a', a => a.getAttribute('href')), '../index.html#projects');
+      const text = await p.evaluate(() => document.documentElement.outerHTML);
+      assert.ok(!text.includes('—'), `${href}: em dash found`);
+      assert.ok(!/draft for review/i.test(await p.evaluate(() => document.body.innerText)), `${href}: draft label left in`);
+      const overflow = await p.evaluate(() => document.documentElement.scrollWidth - innerWidth);
+      assert.ok(overflow <= 1, `${href}: page scrolls sideways at ${viewport.width}px`);
+      assert.deepEqual(errors, [], `${href}: page errors`);
+      await p.close();
+    }
+  }
+  await ctx.close();
+});

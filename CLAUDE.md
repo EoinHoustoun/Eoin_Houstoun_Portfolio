@@ -89,6 +89,7 @@ Serve the repo (`python3 -m http.server 8765`), run `cd tests && npm test` (Play
 - `js/lib/`: vendored GSAP 3.15 (core, ScrollTrigger, ScrambleTextPlugin). Not `vendor/` (Jekyll excludes it).
 - `docs/assets/logos/` organisation logos (shown on light plates), `docs/assets/models/` AI model icons (inlined into the rail).
 - `tests/`: Playwright acceptance tests (fold contents, facts, phone layout, reduced motion, no-GSAP fallback, light contrast, keyboard filters).
+- `case-studies/`: standalone case-study pages (full HTML documents with their own styles and a link back to the portfolio), linked from a card's "Case study" button. Built from each project's `writeup/` folder.
 - Specs and plans live in `docs/superpowers/`.
 
 ## Design System
@@ -116,6 +117,8 @@ Serve the repo (`python3 -m http.server 8765`), run `cd tests && npm test` (Play
 | Premier League Match Predictor | Football_Match_Predictor | sports | id `proj-fpred`, hero tile links here |
 | Fantasy Football AI Planner | Fantasy_Football_AI | sports | |
 | Football Transfer Intelligence Agent | Football_Transfer_Intelligence | sports | |
+| Bayes vs the Market | Bayes_vs_Market | sports research | id `proj-bayes`; case study page `case-studies/bayes-vs-market.html` |
+| Does Sacking the Manager Work? | Manager_Sacking_Effect | sports research | id `proj-sacking`; case study page `case-studies/manager-sacking.html` |
 | Validation Procedures in Machine Learning | Final-Year-Project | research sports | BSc dissertation |
 | Fever Prediction with Infrared Thermography | Infrared_Thermography | clinical | |
 | Pediatric Appendicitis Prediction | Pediatric_Appendicitis | clinical | Live demo |

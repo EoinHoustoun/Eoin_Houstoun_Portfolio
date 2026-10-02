@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Does Sacking the Manager Work? · Eoin Houstoun</title>
+<meta name="description" content="A causal study of 77 Premier League sackings using matched difference-in-differences, synthetic control and placebo tests.">
+<style>.back{padding-top:20px}.back a{font:600 .92rem var(--body);color:var(--s1);text-decoration:none}.back a:hover{text-decoration:underline}:root{color-scheme:light}</style>
+</head>
+<body style="margin:0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --bg:#F6F7F9; --surface:#FFFFFF; --raise:#EDF0F4; --ink:#0B0F17; --ink2:#2A3240; --line:#C9D0DA; --grid:#DCE1E8;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --bench:#0B0F17; --hl:#FFF1D6; --hl-line:#D9A441;
+  --display:"Archivo","Helvetica Neue",Arial,sans-serif; --body:"Source Sans 3","Helvetica Neue",Arial,sans-serif; --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0E1117; --surface:#161B23; --raise:#1E2530; --ink:#F2F4F7; --ink2:#D5DBE3; --line:#3A4452; --grid:#2A323E;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --bench:#F2F4F7; --hl:#2B2312; --hl-line:#8F6B28; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E1117; --surface:#161B23; --raise:#1E2530; --ink:#F2F4F7; --ink2:#D5DBE3; --line:#3A4452; --grid:#2A323E;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --bench:#F2F4F7; --hl:#2B2312; --hl-line:#8F6B28; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;padding-inline:16px;padding-block:0 64px}
+.wrap{max-width:780px;margin:0 auto}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0}
+header{padding-block:40px 8px}
+.kicker{font:600 .82rem var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--s2)}
+h1{font-size:clamp(2rem,6vw,3rem);font-weight:800;line-height:1.05;letter-spacing:-.02em;margin-top:6px}
+.dek{font-size:1.15rem;color:var(--ink2);margin:12px 0 0;max-width:60ch}
+.draft{display:inline-block;margin-top:14px;font:600 .8rem var(--mono);border:1.5px dashed var(--hl-line);background:var(--hl);border-radius:6px;padding:4px 10px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin:26px 0 8px}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px}
+.tile b{display:block;font:800 1.9rem var(--display);line-height:1.1}
+.tile span{font-size:.92rem;color:var(--ink2)}
+section{padding-top:38px}
+h2{font-size:1.5rem;font-weight:800;margin-bottom:10px}
+p{margin:0 0 12px;max-width:66ch}
+ol.steps{margin:0 0 12px;padding-left:1.3em;max-width:66ch}
+ol.steps li{margin-bottom:6px}
+.fig{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;margin:14px 0}
+.fig h3{font-size:1.02rem;font-weight:800;margin-bottom:2px}
+.fig .sub{font-size:.92rem;color:var(--ink2);margin:0 0 10px}
+.scroll{overflow-x:auto}
+svg.ch{display:block;width:100%;min-width:520px;height:auto}
+svg.ch text{fill:var(--ink);font-family:var(--body);font-size:13px}
+svg.ch .muted{fill:var(--ink2)}
+svg.ch .num{font-family:var(--mono);font-size:12px}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:.9rem;margin-top:8px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+details.tbl{margin-top:10px}
+details.tbl summary{cursor:pointer;font-weight:600;font-size:.9rem}
+table{border-collapse:collapse;width:100%;font-size:.9rem;margin-top:8px}
+th,td{text-align:left;padding:5px 8px;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
+td.n,th.n{text-align:right;font-family:var(--mono);font-size:.85rem}
+.note{background:var(--hl);border:1px solid var(--hl-line);border-radius:10px;padding:12px 14px;margin:14px 0;max-width:66ch}
+.toggle{display:inline-flex;border:1.5px solid var(--line);border-radius:8px;overflow:hidden;margin-bottom:8px}
+.toggle button{font:600 .88rem var(--body);background:var(--surface);color:var(--ink);border:0;padding:6px 14px;cursor:pointer}
+.toggle button[aria-pressed=true]{background:var(--ink);color:var(--bg)}
+#tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--bg);font-size:.85rem;padding:6px 9px;border-radius:6px;opacity:0;transition:opacity .1s;max-width:260px;z-index:9}
+footer{margin-top:44px;font-size:.92rem;color:var(--ink2)}
+:focus-visible{outline:3px solid var(--s1);outline-offset:2px}
+</style>
+<div class="wrap">
+<nav class="back"><a href="../index.html#projects">&larr; Eoin Houstoun · Portfolio</a></nav>
+<header>
+  <div class="kicker">Football analytics · Causal inference</div>
+  <h1>Does Sacking the Manager Work?</h1>
+  <p class="dek">Premier League teams that sack their manager pick up far more points afterwards. Is that the new manager, or would the bounce have happened anyway? 77 sackings across 16 seasons, compared with teams in the same hole that kept their manager.</p>
+  
+  <div class="tiles" id="tiles"></div>
+</header>
+
+<section>
+  <h2>The trap: teams sack at their lowest point</h2>
+  <p>Clubs rarely sack a manager after a good week. They sack after a bad run, and very often straight after a defeat. Bad runs in football are partly bad luck, and bad luck does not last, so results tend to recover whatever the club does. Statisticians call this regression to the mean. Comparing "before" with "after" credits the new manager with a recovery that was coming anyway.</p>
+  <p>The fix is a comparison group: teams that hit an equally bad run at the same stage of the season, rated just as highly by the betting market, and did <b>not</b> change manager. If sacked teams improve more than those, that extra is the effect of the sacking.</p>
+</section>
+
+<section>
+  <h2>The answer: no measurable effect</h2>
+  <div class="fig">
+    <h3>Points per game around the change, sacked teams vs matched teams that kept their manager</h3>
+    <p class="sub">Game 0 is the first league game after the vacancy. Controls are lined up at the equivalent moment of their own bad run. Hover for values.</p>
+    <div class="scroll"><svg class="ch" id="ch-path" role="img" aria-label="Points per game by game relative to the change"></svg></div>
+    <div class="legend"><span><i style="background:var(--s2)"></i>Sacked their manager</span><span><i style="background:var(--s1)"></i>Kept their manager (matched)</span></div>
+    <details class="tbl"><summary>Show as a table</summary><table id="t-path"></table></details>
+  </div>
+  <ol class="steps" id="answer"></ol>
+</section>
+
+<section>
+  <h2>Before and after, side by side</h2>
+  <div class="fig">
+    <h3>Average points per game, 10 games before vs 10 games after</h3>
+    <p class="sub">Both groups bounce back by the same amount.</p>
+    <div class="scroll"><svg class="ch" id="ch-db" role="img" aria-label="Before and after points per game for both groups"></svg></div>
+  </div>
+</section>
+
+<section>
+  <h2>Other ways of measuring performance</h2>
+  <p>Points are noisy, so I repeated the comparison on goal difference, shots on target and points above what the betting market expected. Each row has its own scale; the dark line is zero effect.</p>
+  <div class="fig">
+    <h3>Effect of the sacking (sacked change minus matched change), with 95% intervals</h3>
+    <div class="scroll"><svg class="ch" id="ch-out" role="img" aria-label="Effect on four outcomes"></svg></div>
+    <details class="tbl"><summary>Show as a table</summary><table id="t-out"></table></details>
+  </div>
+  <p id="sot-text"></p>
+</section>
+
+<section>
+  <h2>Does the answer survive other designs?</h2>
+  <div class="fig">
+    <h3>Estimated effect on points per game under each design, with 95% intervals</h3>
+    <p class="sub">Every estimate sits close to zero. The placebo row uses fake "sackings" at teams that kept their manager, and correctly finds nothing.</p>
+    <div class="scroll"><svg class="ch" id="ch-rob" role="img" aria-label="Robustness of the estimate"></svg></div>
+  </div>
+</section>
+
+<section>
+  <h2>What I take from it</h2>
+  <ol class="steps">
+    <li><b>The "new manager bounce" is real in the data and mostly not caused by the new manager.</b> Teams in the same position who kept their manager recovered by the same amount.</li>
+    <li><b>The betting market already knew.</b> Market expected points barely moved after a sacking, and the sacked teams had been well below what the market expected before it: a sign that part of the bad run was bad luck.</li>
+    <li><b>Timing matters for the comparison.</b> Sacked teams averaged about 0.2 points in the game right before the sacking. Only once the controls were matched on that final defeat too did the two groups look identical beforehand.</li>
+    <li><b>"No measurable effect" is not "no effect".</b> With 77 sackings the interval rules out a large average boost, but a small one, or a big one for some appointments, is still possible.</li>
+  </ol>
+</section>
+
+<section>
+  <h2>Method notes</h2>
+  <ol class="steps" id="method"></ol>
+</section>
+
+<footer>Code: Python, pandas, NumPy, SciPy. Data: football-data.co.uk results and odds; managerial changes from each season's Wikipedia page.</footer>
+</div>
+<div id="tip" role="tooltip"></div>
+
+<script>
+const D = {"n_events": 77, "n_changes_all": 114, "seasons": "2010-11 to 2025-26", "n_controls": 385, "outcomes": {"pts": {"label": "Points per game", "naive": [0.4383786848072563, 0.3230001546072974, 0.5526891362605648], "controls": [0.43840342197485066, 0.3708383065347351, 0.505815553494125], "did": [-2.4737167594322762e-05, -0.11727288188002474, 0.1194447021232734]}, "gd": {"label": "Goal difference per game", "naive": [0.5474799010513297, 0.3829461708925995, 0.7179761904761904], "controls": [0.509481550195836, 0.4170155638012781, 0.5995413574520716], "did": [0.037998350855493704, -0.12745841063698202, 0.21062049062049057]}, "sotd": {"label": "Shots on target difference", "naive": [0.7396361574933003, 0.34191584209441356, 1.1332817975675114], "controls": [0.38262935477221194, 0.18004942279942276, 0.5841632137703566], "did": [0.3570068027210884, -0.07056287363430232, 0.7721757111935678]}, "surprise": {"label": "Points above market expectation", "naive": [0.45714998898028525, 0.3550960611935551, 0.5590845034475492], "controls": [0.44230200850331647, 0.3808800983237714, 0.5039471673873814], "did": [0.01484798047696879, -0.08154756619066711, 0.11070525397652281]}}, "pre_post": {"treated_pre": 0.8315295815295815, "treated_post": 1.2699082663368377, "ctl_pre": 0.8604040404040405, "ctl_post": 1.2988074623788908, "treated_pre_xpts": 1.219117544234805, "treated_post_xpts": 1.200346240061776}, "path_treated": {"-10": 1.058, "-9": 0.972, "-8": 0.961, "-7": 1.158, "-6": 0.935, "-5": 0.714, "-4": 0.857, "-3": 0.727, "-2": 0.727, "-1": 0.208, "0": 1.13, "1": 1.377, "2": 1.351, "3": 1.494, "4": 1.182, "5": 1.312, "6": 1.173, "7": 1.151, "8": 1.197, "9": 1.319}, "path_controls": {"-10": 0.985, "-9": 1.034, "-8": 0.995, "-7": 1.024, "-6": 0.888, "-5": 0.969, "-4": 1.055, "-3": 0.758, "-2": 0.701, "-1": 0.208, "0": 1.395, "1": 1.33, "2": 1.413, "3": 1.4, "4": 1.208, "5": 1.312, "6": 1.298, "7": 1.23, "8": 1.114, "9": 1.274}, "robustness": [{"label": "Main: matched on 10-game form, market quality, stage, recent form and last game", "est": [-2.4737167594322762e-05, -0.11727288188002474, 0.1194447021232734]}, {"label": "Matched on 10-game form, market quality and stage only", "est": [-0.05246031746031745, -0.17443972892187176, 0.06983954339311484]}, {"label": "Plus last-3-game form", "est": [-0.03932075860647289, -0.1585391929499072, 0.07817656153370439]}, {"label": "Basic match, k=3", "est": [-0.06633168418882705, -0.19835051192194048, 0.06179056723699576]}, {"label": "Basic match, k=10", "est": [-0.01368841475984333, -0.1306435399917543, 0.10342660018552867]}, {"label": "Basic match, match on goal difference too", "est": [-0.03953617810760668, -0.163978638425067, 0.08339468666254374]}, {"label": "Basic match, match on surprise not points", "est": [-0.03584312512883942, -0.15740777674706247, 0.08627685013399287]}, {"label": "Synthetic control", "est": [-0.03177118388232274, -0.1533233694447453, 0.08533348115570782]}, {"label": "Placebo: fake sackings (should be 0)", "est": [0.01717493815708101, -0.06516754277468562, 0.0785247629354772]}]};
+const $ = s => document.querySelector(s);
+const tip = $("#tip");
+function bindTips(svg){svg.querySelectorAll("[data-tip]").forEach(el=>{
+  el.addEventListener("pointerenter",()=>{tip.innerHTML=el.dataset.tip;tip.style.opacity=1});
+  el.addEventListener("pointermove",e=>{tip.style.left=Math.min(e.clientX+14,innerWidth-270)+"px";tip.style.top=(e.clientY+14)+"px"});
+  el.addEventListener("pointerleave",()=>{tip.style.opacity=0});});}
+const sg = x => (x>=0?"+":"")+x.toFixed(2);
+const P = D.outcomes.pts, pp = D.pre_post;
+
+$("#tiles").innerHTML = [
+  [sg(P.naive[0]),"points per game: sacked teams, after vs before"],
+  [sg(P.controls[0]),"points per game: matched teams that kept their manager"],
+  [sg(P.did[0]).replace("-0.00","0.00"),"effect of the sacking"],
+  [D.n_events,"in-season sackings analysed"]
+].map(([b,s])=>`<div class="tile"><b>${b}</b><span>${s}</span></div>`).join("");
+
+$("#answer").innerHTML = [
+  `<b>Sacked teams improve a lot:</b> from ${pp.treated_pre.toFixed(2)} to ${pp.treated_post.toFixed(2)} points per game.`,
+  `<b>So do the matched teams that kept their manager:</b> from ${pp.ctl_pre.toFixed(2)} to ${pp.ctl_post.toFixed(2)}.`,
+  `<b>The difference is the effect of the sacking:</b> ${sg(P.did[0]).replace("-0.00","0.00")} points per game (95% interval ${sg(P.did[1])} to ${sg(P.did[2])}). Over a 10-game spell, that interval rules out an average gain of more than about 1.2 points.`
+].map(x=>`<li>${x}</li>`).join("");
+
+function chartPath(){
+  const rel=Object.keys(D.path_treated).map(Number).sort((a,b)=>a-b);
+  const W=720,H=320,L=56,R=20,T=20,B=44, x0=rel[0], x1=rel[rel.length-1];
+  const X=r=>L+20+(r-x0)/(x1-x0)*(W-L-R-20), Y=v=>T+(2.0-v)/2.0*(H-T-B);
+  let g="";
+  [0,0.5,1,1.5,2].forEach(v=>g+=`<line x1="${L}" y1="${Y(v)}" x2="${W-R}" y2="${Y(v)}" stroke="var(--grid)"/><text class="num muted" x="${L-8}" y="${Y(v)+4}" text-anchor="end">${v.toFixed(1)}</text>`);
+  g+=`<line x1="${(X(-1)+X(0))/2}" y1="${T}" x2="${(X(-1)+X(0))/2}" y2="${H-B}" stroke="var(--ink)" stroke-width="2" stroke-dasharray="5 4"/><text x="${(X(-1)+X(0))/2+6}" y="${T+12}" class="num">manager changed</text>`;
+  [-10,-5,0,5,9].forEach(r=>g+=`<text class="num muted" x="${X(r)}" y="${H-B+18}" text-anchor="middle">${r}</text>`);
+  g+=`<text x="${(L+W-R)/2}" y="${H-6}" text-anchor="middle" class="muted">League games relative to the change</text>`;
+  [["path_controls","--s1","Kept manager"],["path_treated","--s2","Sacked"]].forEach(([k,c,lab])=>{
+    const pts=rel.map(r=>`${X(r)},${Y(D[k][r])}`).join(" ");
+    g+=`<polyline points="${pts}" fill="none" stroke="var(${c})" stroke-width="2.5" stroke-linejoin="round"/>`;
+    rel.forEach(r=>g+=`<circle cx="${X(r)}" cy="${Y(D[k][r])}" r="4.5" fill="var(${c})" stroke="var(--surface)" stroke-width="2"/>`);
+  });
+  rel.forEach(r=>g+=`<rect x="${X(r)-14}" y="${T}" width="28" height="${H-T-B}" fill="transparent" data-tip="<b>Game ${r}</b><br>Sacked: ${D.path_treated[r].toFixed(2)} pts<br>Kept manager: ${D.path_controls[r].toFixed(2)} pts"/>`);
+  const s=$("#ch-path"); s.setAttribute("viewBox",`0 0 ${W} ${H}`); s.innerHTML=g; bindTips(s);
+  $("#t-path").innerHTML="<tr><th>Game</th><th class=n>Sacked</th><th class=n>Kept manager</th></tr>"+rel.map(r=>`<tr><td>${r}</td><td class=n>${D.path_treated[r].toFixed(2)}</td><td class=n>${D.path_controls[r].toFixed(2)}</td></tr>`).join("");
+}
+
+function chartDumbbell(){
+  const W=720,H=170,L=210,R=60, X=v=>L+(v-0.6)/(1.5-0.6)*(W-L-R);
+  let g="";
+  [0.6,0.8,1.0,1.2,1.4].forEach(v=>g+=`<line x1="${X(v)}" y1="20" x2="${X(v)}" y2="${H-30}" stroke="var(--grid)"/><text class="num muted" x="${X(v)}" y="${H-10}" text-anchor="middle">${v.toFixed(1)}</text>`);
+  [["Sacked their manager",pp.treated_pre,pp.treated_post,"--s2",50],["Kept their manager",pp.ctl_pre,pp.ctl_post,"--s1",105]].forEach(([lab,a,b,c,y])=>{
+    g+=`<text x="${L-14}" y="${y+4}" text-anchor="end">${lab}</text>`;
+    g+=`<line x1="${X(a)}" y1="${y}" x2="${X(b)}" y2="${y}" stroke="var(${c})" stroke-width="3"/>`;
+    g+=`<circle cx="${X(a)}" cy="${y}" r="7" fill="var(--surface)" stroke="var(${c})" stroke-width="2.5"/><circle cx="${X(b)}" cy="${y}" r="7" fill="var(${c})" stroke="var(--surface)" stroke-width="2"/>`;
+    g+=`<text class="num" x="${X(a)}" y="${y-14}" text-anchor="middle">${a.toFixed(2)}</text><text class="num" x="${X(b)}" y="${y-14}" text-anchor="middle">${b.toFixed(2)}</text>`;
+    g+=`<rect x="${L}" y="${y-20}" width="${W-L}" height="40" fill="transparent" data-tip="<b>${lab}</b><br>Before ${a.toFixed(2)}, after ${b.toFixed(2)}<br>Change ${sg(b-a)}"/>`;
+  });
+  g+=`<text class="muted" x="${W-R+6}" y="54">after</text>`;
+  const s=$("#ch-db"); s.setAttribute("viewBox",`0 0 ${W} ${H}`); s.innerHTML=g; bindTips(s);
+}
+
+function chartOutcomes(){
+  const rows=Object.values(D.outcomes), W=720, rowH=52, L=260, R=40, H=rows.length*rowH+20;
+  let g="";
+  rows.forEach((r,i)=>{
+    const [m,lo,hi]=r.did, span=Math.max(Math.abs(lo),Math.abs(hi))*1.25, y=20+i*rowH+rowH/2;
+    const X=v=>L+(v+span)/(2*span)*(W-L-R);
+    g+=`<text x="${L-14}" y="${y+4}" text-anchor="end">${r.label}</text>`;
+    g+=`<line x1="${X(0)}" y1="${y-16}" x2="${X(0)}" y2="${y+16}" stroke="var(--ink)" stroke-width="2"/>`;
+    g+=`<line x1="${X(lo)}" y1="${y}" x2="${X(hi)}" y2="${y}" stroke="var(--s2)" stroke-width="2.5" stroke-linecap="round"/>`;
+    g+=`<circle cx="${X(m)}" cy="${y}" r="7" fill="var(--s2)" stroke="var(--surface)" stroke-width="2"/>`;
+    g+=`<text class="num muted" x="${X(lo)}" y="${y+22}" text-anchor="middle">${sg(lo)}</text><text class="num muted" x="${X(hi)}" y="${y+22}" text-anchor="middle">${sg(hi)}</text>`;
+    g+=`<rect x="${L}" y="${y-rowH/2}" width="${W-L}" height="${rowH}" fill="transparent" data-tip="<b>${r.label}</b><br>Sacked change ${sg(r.naive[0])}<br>Matched change ${sg(r.controls[0])}<br>Effect ${sg(r.did[0])} (95% ${sg(lo)} to ${sg(hi)})"/>`;
+  });
+  const s=$("#ch-out"); s.setAttribute("viewBox",`0 0 ${W} ${H}`); s.innerHTML=g; bindTips(s);
+  $("#t-out").innerHTML="<tr><th>Measure</th><th class=n>Sacked change</th><th class=n>Matched change</th><th class=n>Effect</th><th class=n>95% interval</th></tr>"+rows.map(r=>`<tr><td>${r.label}</td><td class=n>${sg(r.naive[0])}</td><td class=n>${sg(r.controls[0])}</td><td class=n>${sg(r.did[0])}</td><td class=n>${sg(r.did[1])} to ${sg(r.did[2])}</td></tr>`).join("");
+  const s2=D.outcomes.sotd.did;
+  $("#sot-text").textContent=`Shots on target is the one hint of something: sacked teams' shot difference improved by ${s2[0].toFixed(2)} per game more than the matched teams', but the interval (${sg(s2[1])} to ${sg(s2[2])}) still includes zero. A possible small improvement in how teams play that does not show up in results, worth testing with more seasons or expected-goals data.`;
+}
+
+function chartRobust(){
+  const rows=D.robustness, W=720, rowH=48, L=330, R=30, H=rows.length*rowH+44;
+  const X=v=>L+(v+0.25)/0.5*(W-L-R);
+  let g="";
+  [-0.2,-0.1,0,0.1,0.2].forEach(v=>g+=`<line x1="${X(v)}" y1="10" x2="${X(v)}" y2="${H-28}" stroke="${v===0?"var(--ink)":"var(--grid)"}" stroke-width="${v===0?2:1}"/><text class="num muted" x="${X(v)}" y="${H-8}" text-anchor="middle">${sg(v)}</text>`);
+  rows.forEach((r,i)=>{
+    const y=24+i*rowH, [m,lo,hi]=r.est, placebo=r.label.startsWith("Placebo"), c=placebo?"--s1":"--s2";
+    const words=r.label.split(" "); let lines=[""];
+    words.forEach(w=>{if((lines[lines.length-1]+" "+w).length>44)lines.push(w);else lines[lines.length-1]=(lines[lines.length-1]+" "+w).trim()});
+    lines.forEach((ln,j)=>g+=`<text x="${L-14}" y="${y+4+(j-(lines.length-1)/2)*16}" text-anchor="end" style="font-size:12px">${ln}</text>`);
+    g+=`<line x1="${X(lo)}" y1="${y}" x2="${X(hi)}" y2="${y}" stroke="var(${c})" stroke-width="2.5" stroke-linecap="round"/>`;
+    g+=`<circle cx="${X(m)}" cy="${y}" r="6.5" fill="${i===0?`var(${c})`:"var(--surface)"}" stroke="var(${c})" stroke-width="2.5"/>`;
+    g+=`<rect x="${L}" y="${y-rowH/2}" width="${W-L}" height="${rowH}" fill="transparent" data-tip="<b>${r.label}</b><br>${sg(m)} points per game (95% ${sg(lo)} to ${sg(hi)})"/>`;
+  });
+  const s=$("#ch-rob"); s.setAttribute("viewBox",`0 0 ${W} ${H}`); s.innerHTML=g; bindTips(s);
+}
+
+$("#method").innerHTML=[
+  `<b>Sackings:</b> every in-season Premier League departure listed as "sacked" or "mutual consent" on the Wikipedia season pages, ${D.seasons}. Changes within 20 games of another change at the same club, and those too early or late to leave 6 games on each side, are excluded, leaving ${D.n_events}.`,
+  "<b>Windows:</b> 10 league games before and 10 after the vacancy, within the same season. Caretaker spells count as \"after\", because the question is the effect of the decision to sack.",
+  `<b>Matching:</b> for each sacking, the 5 nearest team-seasons with no managerial change, lined up at the point that best matches the sacked team on 10-game points, betting-market expected points (team quality and fixtures), stage of season, last-3-game points and the result of the final game before the change. One window per team-season.`,
+  "<b>Market expected points:</b> from de-margined closing odds (Pinnacle where available, pre-closing odds before 2012-13). Every data file checked to be the Premier League before use.",
+  "<b>Uncertainty:</b> bootstrap over sackings (5,000 resamples). Synthetic control: per sacking, non-negative weights on 40 donor windows chosen to reproduce the sacked team's cumulative points path before the change.",
+  "<b>Placebo:</b> 40 rounds of fake sackings drawn from look-alike windows at clubs that kept their manager, analysed with the same pipeline."
+].map(x=>`<li>${x}</li>`).join("");
+
+chartPath(); chartDumbbell(); chartOutcomes(); chartRobust();
+</script>
+
+</body>
+</html>

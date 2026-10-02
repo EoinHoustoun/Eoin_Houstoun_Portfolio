@@ -36,6 +36,8 @@ Models: **XGBoost**, **Random Forest**, **Monte Carlo cross-validation**, rigoro
 | [Neural Style Transfer](https://github.com/EoinHoustoun/Generative_AI) | Computer Vision | VGG19, PyTorch CNN, Neural Rendering | Complete |
 | [AI Chef Chatbot](https://github.com/EoinHoustoun/AI_Chef) | NLP | DistilBERT, TF-IDF, Web Scraping, Tkinter | Complete |
 | [Validation Procedures Exploration](https://github.com/EoinHoustoun/Final-Year-Project) | Research · ML | Regression, Cross-Validation, Bootstrapping, Temporal Validation | Complete |
+| [Bayes vs the Market](https://github.com/EoinHoustoun/Bayes_vs_Market) | Sports · Bayesian | Hierarchical Poisson (NumPyro NUTS), Dixon-Coles, TabICL | Complete · [Case study](https://eoinhoustoun.github.io/case-studies/bayes-vs-market.html) |
+| [Does Sacking the Manager Work?](https://github.com/EoinHoustoun/Manager_Sacking_Effect) | Sports · Causal inference | Matched DiD, Synthetic control, Placebo tests | Complete · [Case study](https://eoinhoustoun.github.io/case-studies/manager-sacking.html) |
 | Amazon Recommendation System | NLP · RecSys | Collaborative Filtering, Content-Based | Complete |
 | Retail Customer Prediction | Data Science | Classification Ensembles | Complete |
 | Customer Segmentation | Data Science | Unsupervised Clustering | Complete |
@@ -110,19 +112,47 @@ Football player transfer fee prediction as a rigorous case study for ML validati
 
 ---
 
-### 7. Amazon Recommendation System
+### 7. Bayes vs the Market
+
+A hierarchical Bayesian goal model (MCMC), a classical Dixon-Coles model and a tabular foundation model, tested walk-forward on 1,520 Premier League matches against the closing betting market.
+
+- The market won (log loss 0.961); the Bayesian (0.983) and classical (0.985) models finished level; TabICL added nothing beyond the market
+- Diagnosed over-shrinkage in the first Bayesian run (time-decay weights cut its effective evidence) and fixed it with one pre-declared change
+- Partial pooling finds promoted sides score about 30% fewer goals and concede about 41% more than their later level
+- Techniques: NumPyro NUTS (108 fits, zero divergences), maximum likelihood, walk-forward validation, paired bootstrap, TabICL v2
+- [View Repo](https://github.com/EoinHoustoun/Bayes_vs_Market) · [Case study](https://eoinhoustoun.github.io/case-studies/bayes-vs-market.html)
+
+<img src="docs/assets/bayes_gap.jpg" width="420"/>
+
+---
+
+### 8. Does Sacking the Manager Work?
+
+A causal study of 77 in-season Premier League sackings (2010-11 to 2025-26), each compared with matched teams that hit the same bad run and kept their manager.
+
+- Sacked teams improve by 0.44 points per game, and so do the matched teams: the effect of the sacking is 0.00 (95% interval -0.12 to +0.12)
+- Matching includes the defeat that usually triggers a sacking (Ashenfelter's dip), which was needed for parallel pre-trends
+- Holds under synthetic control, alternative matching and a placebo test with fake sackings
+- Techniques: matched difference-in-differences, event study, synthetic control, bootstrap, Wikipedia scraping
+- [View Repo](https://github.com/EoinHoustoun/Manager_Sacking_Effect) · [Case study](https://eoinhoustoun.github.io/case-studies/manager-sacking.html)
+
+<img src="docs/assets/sack_path.jpg" width="420"/>
+
+---
+
+### 9. Amazon Recommendation System
 
 Collaborative and content-based filtering for personalised product recommendations at scale.
 
 ---
 
-### 8. Retail Customer Prediction
+### 10. Retail Customer Prediction
 
 Customer purchase propensity modelling using classification ensembles for a retail environment.
 
 ---
 
-### 9. Customer Segmentation
+### 11. Customer Segmentation
 
 Unsupervised clustering to identify distinct customer personas for targeted marketing strategy.
 
