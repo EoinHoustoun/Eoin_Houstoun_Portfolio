@@ -38,9 +38,10 @@ test('facts: title, open source status, no phone, no em dash', async () => {
   assert.ok(!text.includes('—'), 'em dash found');
   assert.doesNotMatch(text, /\+?44\s?7\d{3}/, 'phone number found');
   const nemo = await page.$$eval('.oss-row', rows => rows.filter(r => /NeMo/.test(r.innerText)).map(r => r.innerText));
-  assert.ok(nemo.length && nemo.every(t => /In review/i.test(t)), 'NeMo must be In review');
+  assert.equal(nemo.length, 3, 'three NVIDIA NeMo rows');
+  assert.equal(nemo.filter(t => /Merged/i.test(t)).length, 2, 'two NeMo PRs merged');
   const merged = await page.$$eval('.oss-row .status-merged', els => els.length);
-  assert.equal(merged, 4);
+  assert.equal(merged, 6);
   assert.match(text, /linkedin\.com\/in\/eoin-houstoun-b0322b231/);
   await ctx.close();
 });

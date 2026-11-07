@@ -373,8 +373,8 @@
           <article class="contrib-card">
             <p class="contrib-kicker">AI engineering</p>
             <h3>Agents and subagents</h3>
-            <p>I build and harden the autonomous agents that run optimisation campaigns, plus an in-product assistant of subagents that walks users through setting up benchmarks. Multi-agent systems on the Claude API; I cut per-campaign token cost by 25%.</p>
-            <div class="chip-row"><span class="chip">Multi-agent systems</span><span class="chip">Claude API</span><span class="chip">Prompt design</span><span class="chip">Cost modelling</span></div>
+            <p>I build and harden the autonomous agents that run optimisation campaigns, plus an in-product assistant of subagents that walks users through setting up benchmarks, and the agent skills and CLI workflows that let coding agents drive the platform. Multi-agent systems on the Claude API; I cut per-campaign token cost by 25%.</p>
+            <div class="chip-row"><span class="chip">Agent skills</span><span class="chip">Multi-agent systems</span><span class="chip">Claude API</span><span class="chip">Prompt design</span><span class="chip">Cost modelling</span></div>
           </article>
           <article class="contrib-card">
             <p class="contrib-kicker">Research</p>
@@ -409,7 +409,7 @@
               <div class="expander-body" id="exp-tt">
                 <ul>
                   <li><strong>Statistical validation:</strong> designed and delivered the validation layer: Welch confidence intervals, significance-gated verdicts, an empirical Bayes scoring model and a power-based run planner.</li>
-                  <li><strong>Agent engineering:</strong> built and hardened autonomous coding agents and subagents that guide users through benchmark setup; cut per-campaign token cost by 25%.</li>
+                  <li><strong>Agent engineering:</strong> built and hardened autonomous coding agents and subagents that guide users through benchmark setup; build the agent skills and CLI workflows that let coding agents drive Artemis; cut per-campaign token cost by 25%.</li>
                   <li><strong>Research:</strong> benchmark LLMs and ML models and run A/B-verified inference experiments across vLLM, OpenVINO and ONNX Runtime.</li>
                   <li><strong>Clients:</strong> onboard client engineering teams onto Artemis and evoML (automated ML pipelines with full source code) and lead technical walkthroughs on client calls.</li>
                 </ul>
@@ -478,13 +478,15 @@
           <h2 id="oss-title">Upstream contributions</h2>
         </div>
         <div class="oss-card">
-          <p class="oss-lede">Fixes I took from candidate to merged in major AI projects: starting from a candidate produced by our optimisation agent, I reviewed every line, wrote or repaired the tests, ran the validation and defended each change in review. <strong>4 merged</strong> into projects with <strong>190k+ combined stars</strong>.</p>
+          <p class="oss-lede">Fixes I took from candidate to merged in major AI projects: starting from a candidate produced by our optimisation agent, I reviewed every line, wrote or repaired the tests, ran the validation and defended each change in review. <strong>6 merged</strong> into projects with <strong>220k+ combined stars</strong>, including two at <strong>NVIDIA</strong>.</p>
           <ul class="oss-list">
-            <li class="oss-row"><a href="https://github.com/vllm-project/vllm/pull/51703" target="_blank" rel="noopener" class="oss-name">vLLM</a><span class="oss-stars">90k ★</span><span class="oss-desc">Engine initialisation robustness fix</span><span class="status status-merged">Merged</span></li>
-            <li class="oss-row"><a href="https://github.com/unslothai/unsloth/pull/8464" target="_blank" rel="noopener" class="oss-name">unsloth</a><span class="oss-stars">75k ★</span><span class="oss-desc">Learning-rate warmup scheduler fix</span><span class="status status-merged">Merged</span></li>
-            <li class="oss-row"><a href="https://github.com/k2-fsa/sherpa-onnx/pull/3857" target="_blank" rel="noopener" class="oss-name">sherpa-onnx</a><span class="oss-stars">14k ★</span><span class="oss-desc">Float32 numerical stability in feature normalisation</span><span class="status status-merged">Merged</span></li>
+            <li class="oss-row"><a href="https://github.com/vllm-project/vllm/pull/51703" target="_blank" rel="noopener" class="oss-name">vLLM</a><span class="oss-stars">97k ★</span><span class="oss-desc">Engine initialisation robustness fix</span><span class="status status-merged">Merged</span></li>
+            <li class="oss-row"><a href="https://github.com/unslothai/unsloth/pull/8464" target="_blank" rel="noopener" class="oss-name">unsloth</a><span class="oss-stars">79k ★</span><span class="oss-desc">Learning-rate warmup scheduler fix</span><span class="status status-merged">Merged</span></li>
+            <li class="oss-row"><a href="https://github.com/k2-fsa/sherpa-onnx/pull/3857" target="_blank" rel="noopener" class="oss-name">sherpa-onnx</a><span class="oss-stars">16k ★</span><span class="oss-desc">Float32 numerical stability in feature normalisation</span><span class="status status-merged">Merged</span></li>
             <li class="oss-row"><a href="https://github.com/QuentinFuxa/WhisperLiveKit/pull/391" target="_blank" rel="noopener" class="oss-name">WhisperLiveKit</a><span class="oss-stars">11k ★</span><span class="oss-desc">Streaming ASR optimisation, -51.9% compute</span><span class="status status-merged">Merged</span></li>
-            <li class="oss-row"><a href="https://github.com/NVIDIA-NeMo/Speech/pull/16063" target="_blank" rel="noopener" class="oss-name">NVIDIA NeMo</a><span class="oss-stars">18k ★</span><span class="oss-desc">Diarization config and word-confidence fixes (2 PRs)</span><span class="status status-review">In review</span></li>
+            <li class="oss-row"><a href="https://github.com/NVIDIA/NeMo-Speech.cpp/pull/62" target="_blank" rel="noopener" class="oss-name">NVIDIA NeMo-Speech.cpp</a><span class="oss-stars">NVIDIA</span><span class="oss-desc">Speaker diarization speed-up: 24% faster as measured by NVIDIA, same error rate</span><span class="status status-merged">Merged</span></li>
+            <li class="oss-row"><a href="https://github.com/NVIDIA-NeMo/Speech/pull/16064" target="_blank" rel="noopener" class="oss-name">NVIDIA NeMo</a><span class="oss-stars">19k ★</span><span class="oss-desc">Word-confidence boundaries derived from the decoded text</span><span class="status status-merged">Merged</span></li>
+            <li class="oss-row"><a href="https://github.com/NVIDIA-NeMo/Speech/pull/16063" target="_blank" rel="noopener" class="oss-name">NVIDIA NeMo</a><span class="oss-stars">19k ★</span><span class="oss-desc">Diarizer dataloader batch-size fix</span><span class="status status-review">In review</span></li>
           </ul>
         </div>
       </section>
