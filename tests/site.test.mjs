@@ -41,7 +41,8 @@ test('facts: title, open source status, no phone, no em dash', async () => {
   assert.equal(nemo.length, 3, 'three NVIDIA NeMo rows');
   assert.equal(nemo.filter(t => /Merged/i.test(t)).length, 2, 'two NeMo PRs merged');
   const merged = await page.$$eval('.oss-row .status-merged', els => els.length);
-  assert.equal(merged, 6);
+  assert.equal(merged, 7);
+  assert.doesNotMatch(text, /open to [a-z ,]*roles|looking for (a )?(new )?role|available for hire/i, 'job-seeking signal on public site');
   assert.match(text, /linkedin\.com\/in\/eoin-houstoun-b0322b231/);
   await ctx.close();
 });
